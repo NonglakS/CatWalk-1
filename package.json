@@ -5,7 +5,7 @@
   "main": "alert.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-serve --open --no-watch",
+    "live": "live-server",
     "build": "webpack -d eval-source-map --mode production --watch"
   },
   "repository": {
@@ -23,6 +23,7 @@
     "babel-loader": "^8.2.2",
     "jest": "^26.6.3",
     "jquery": "^3.6.0",
+    "live-server": "^1.2.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
@@ -33,7 +34,6 @@
     "@testing-library/react": "^11.2.6",
     "webpack": "^5.33.2",
     "webpack-cli": "^4.6.0",
-    "webpack-dev-server": "^3.11.2",
     "webpack-serve": "^4.0.0"
   }
 }
