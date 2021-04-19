@@ -7,6 +7,7 @@ import AddQuestion from './AddQuestion.jsx';
 export default function Questions(props) {
   const urlAddOn = 'qa/questions?product_id=13023';
   const [questionsAnswers, setQuestionsAnswers] = useState('');
+  const [questionsRendered, setQuestionsRendered] = useState(2);
 
   useEffect(() => {
     getData(urlAddOn, (err, res) => {
@@ -18,6 +19,10 @@ export default function Questions(props) {
       }
     });
   }, []);
+
+  // const renderQuestions = function (arr) {
+
+  // };
 
   return (
     <>
