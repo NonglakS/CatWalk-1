@@ -1,0 +1,23 @@
+
+.mainview, .col{
+  border: 2px solid red;
+  padding: 10px;
+  height: 650px;
+}
+
+#glider-prev {
+  position: absolute;
+  top: 50%;
+  left: 100px;
+}
+
+#glider-next {
+  position: absolute;
+  top: 50%;
+  right: 60px;
+}
+
+.thumbnails {
+  position: absolute;
+  left: 0px;
+}
