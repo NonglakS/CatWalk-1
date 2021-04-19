@@ -1,5 +1,3 @@
 # CatWalk
 
-This is our Front End Captstone.
-
-GO TEAM BEEact!!!
+This project utilizes CircleCI to ensure continuous integration for our project.
