@@ -1,6 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import getData from '../../helperFunctions/getData.js';
+import QuestionsSearch from './QuestionsSearch.jsx';
+import AddQuestion from './AddQuestion.jsx';
 
 export default function Questions(props) {
   const urlAddOn = 'qa/questions?product_id=13023';
@@ -11,7 +13,7 @@ export default function Questions(props) {
       if (err) {
         console.log('err', err);
       } else {
-        console.log('res', res);
+        console.log('res', res.data);
         setQuestionsAnswers(res.data);
       }
     });
@@ -20,8 +22,10 @@ export default function Questions(props) {
   return (
     <>
       <h3>Questions and Answers</h3>
-      {questionsAnswers
-        && <div>{questionsAnswers.results[0].asker_name}</div>}
+      <QuestionsSearch />
+      {questionsAnswers.results
+      && questionsAnswers.results.map((data) => <li>{data.question_body}</li>)}
+      <AddQuestion />
     </>
   );
 }
