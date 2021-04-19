@@ -37,4 +37,18 @@ describe('averageReviewScore', () => {
 
     expect(actualAverage).toEqual(expectedAverage);
   });
+  it('rounds the average to the nearest 10th place', () => {
+    const scores ={
+      1: '1',
+      2: '1',
+      3: '1',
+      4: '1',
+      5: '3',
+    };
+
+    const expectedAverage = 3.6;
+    const actualAverage = averageReviewScore(scores);
+
+    expect(actualAverage).toEqual(expectedAverage);
+  });
 });
