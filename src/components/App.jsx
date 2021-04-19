@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import getData from '../helperFunctions/getData.js';
+import averageReviewScore from '../helperFunctions/averageReviewScore.js';
 import QuestionsSection from './QA/QuestionsSection.jsx';
 import ReviewsSection from './Reviews/ReviewsSection.jsx'
 
@@ -7,6 +8,7 @@ export default function App(props) {
   const urlAddOn = 'products/13023';
   const [product, setProduct] = useState('');
   const [reviewsMeta, setReviewsMeta] = useState({});
+  const [reviewScore, setReviewScore] = useState(0);
 
   useEffect(() => {
     getData(urlAddOn, (err, res) => {
@@ -21,17 +23,15 @@ export default function App(props) {
       if (err) {
         console.log('err', err);
       } else {
-        console.log('res', res);
         setReviewsMeta(res.data);
+        setReviewScore(averageReviewScore(res.data.ratings));
       }
     });
   }, []);
 
   return (
     <>
-      <h3>Hello World</h3>
-      {product
-        && <div>{product.id}</div>}
+      <h3>Product Review Score: {reviewScore}</h3>
       <QuestionsSection />
       <ReviewsSection reviewsMeta={reviewsMeta} />
     </>
