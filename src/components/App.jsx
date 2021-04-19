@@ -9,23 +9,23 @@ export default function App(props) {
   const urlAddOn = 'products/13023';
   const [product, setProduct] = useState('');
 
-  useEffect(() => {
-    getData(urlAddOn, (err, res) => {
-      if (err) {
-        console.log('err', err);
-      } else {
-        console.log('res', res);
-        setProduct(res.data);
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   getData(urlAddOn, (err, res) => {
+  //     if (err) {
+  //       console.log('err', err);
+  //     } else {
+  //       console.log('res', res);
+  //       setProduct(res.data);
+  //     }
+  //   });
+  // }, []);
 
   const thing = sum(1, 2);
   return (
     <>
       <h3>Hello World</h3>
-      {product
-        && <div>{product.id}</div>}
+      {/* {product
+        && <div>{product.id}</div>} */}
       <QuestionsSection />
     </>
   );

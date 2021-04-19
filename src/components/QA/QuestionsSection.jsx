@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react';
 import getData from '../../helperFunctions/getData.js';
 
 export default function Questions(props) {
-  const urlAddOn = 'products/13023';
-  const [product, setProduct] = useState('');
+  const urlAddOn = 'qa/questions?product_id=13023';
+  const [questionsAnswers, setQuestionsAnswers] = useState('');
 
   useEffect(() => {
     getData(urlAddOn, (err, res) => {
@@ -12,16 +12,16 @@ export default function Questions(props) {
         console.log('err', err);
       } else {
         console.log('res', res);
-        setProduct(res.data);
+        setQuestionsAnswers(res.data);
       }
     });
   }, []);
 
   return (
     <>
-      <h3>Hello World</h3>
-      {product
-        && <div>{product.id}</div>}
+      <h3>Questions and Answers</h3>
+      {questionsAnswers
+        && <div>{questionsAnswers.results[0].asker_name}</div>}
     </>
   );
 }
