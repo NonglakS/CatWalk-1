@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import getData from '../helperFunctions/getData.js';
-import ReviewsSection from './Reviews/ReviewsSection.jsx';
+import QuestionsSection from './QA/QuestionsSection.jsx';
+import ReviewsSection from './Reviews/ReviewsSection.jsx'
 
 export default function App(props) {
   const urlAddOn = 'products/13023';
@@ -31,6 +32,7 @@ export default function App(props) {
       <h3>Hello World</h3>
       {product
         && <div>{product.id}</div>}
+      <QuestionsSection />
       <ReviewsSection reviewsMeta={reviewsMeta} />
     </>
   );
