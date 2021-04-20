@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import getData from '../helperFunctions/getData.js';
 import averageReviewScore from '../helperFunctions/averageReviewScore.js';
 import QuestionsSection from './QA/QuestionsSection.jsx';
-import ReviewsSection from './Reviews/ReviewsSection.jsx'
+import ReviewsSection from './Reviews/ReviewsSection.jsx';
+import Overview from './Overview/overview.jsx'
 
 export default function App(props) {
   const urlAddOn = 'products/13023';
