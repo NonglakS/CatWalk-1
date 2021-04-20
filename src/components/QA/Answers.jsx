@@ -1,9 +1,11 @@
 import React from 'react';
 
-function Answers({answer}) {
+function Answers({ answer }) {
+
+
   return (
     <span>
-      A: {answer}
+      A: Who cares?
       <br />
     </span>
   );
