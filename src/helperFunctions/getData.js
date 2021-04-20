@@ -1,6 +1,4 @@
 import axios from 'axios';
-// import TOKEN from '../../config.js';
-// require('dotenv').config() //this line tell a server to load anything that's in a file .env into an environment variable
 
 console.log(process.env)
 

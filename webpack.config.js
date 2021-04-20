@@ -5,10 +5,6 @@ const webpack = require('webpack');
 
 const Dotenv = require('dotenv-webpack');
 
-const dotenv = require('dotenv').config( {
-  path: path.join(__dirname, '.env')
-} );
-
 module.exports = {
   entry: `${SRC_DIR}/index.jsx`,
   output: {
@@ -27,9 +23,6 @@ module.exports = {
     ],
   },
   plugins: [
-    // new webpack.DefinePlugin( {
-    //   "process.env": dotenv.parsed
-    // } ),
     new Dotenv()
   ],
 };
