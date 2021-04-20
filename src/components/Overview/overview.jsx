@@ -36,8 +36,9 @@ export default function Overview () {
       <CurrentStyleContext.Provider value={currentStyle}>
       <div className="row mainview">
         <div className="col-md-7 my-auto d-flex justify-content-center"><Gallery /></div>
-        <div className="col">Product Information
-        <StyleSelector handleStyleChange={handleStyleChange} /></div>
+        <div className="col product-information">
+          <StyleSelector handleStyleChange={handleStyleChange} />
+        </div>
       </div>
       </CurrentStyleContext.Provider>
       </StyleContext.Provider>
