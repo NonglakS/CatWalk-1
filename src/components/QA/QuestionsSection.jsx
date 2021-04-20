@@ -14,7 +14,6 @@ export default function Questions(props) {
       if (err) {
         console.log('err', err);
       } else {
-        console.log('res', res.data);
         setQuestionsAnswers(res.data);
       }
     });
