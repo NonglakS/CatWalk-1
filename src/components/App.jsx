@@ -1,41 +1,41 @@
-import React, {useEffect, useState} from 'react';
-import sum from '../helperFunctions/sum';
+import React, { useEffect, useState } from 'react';
 import getData from '../helperFunctions/getData.js';
-import ReviewsSection from './Reviews/ReviewsSection.jsx'
+import averageReviewScore from '../helperFunctions/averageReviewScore.js';
+import QuestionsSection from './QA/QuestionsSection.jsx';
+import ReviewsSection from './Reviews/ReviewsSection.jsx';
+import Overview from './Overview/overview.jsx'
 
 export default function App(props) {
-  let urlAddOn = 'products/13023'
-  let [product, setProduct] = useState('')
-  let [reviewsMeta, setReviewsMeta] = useState({})
+  const urlAddOn = 'products/13023';
+  const [product, setProduct] = useState('');
+  const [reviewsMeta, setReviewsMeta] = useState({});
+  const [reviewScore, setReviewScore] = useState(0);
 
   useEffect(() => {
     getData(urlAddOn, (err, res) => {
       if (err) {
-        console.log('err', err)
+        console.log('err', err);
       } else {
-        setProduct(res.data)
+        setProduct(res.data);
       }
-    })
+    });
 
     getData('reviews/meta?product_id=13023', (err, res) => {
       if (err) {
         console.log('err', err);
       } else {
-        console.log('res', res)
-        setReviewsMeta(res.data)
+        setReviewsMeta(res.data);
+        setReviewScore(averageReviewScore(res.data.ratings));
       }
-    })
-  }, [])
+    });
+  }, []);
 
-
-  let thing = sum(1,2)
-  return(
+  return (
     <>
-      <h3>Hello World</h3>
-      {product &&
-        <div>{product.id}</div>
-      }
+      <Overview />
+      <h3>Product Review Score: {reviewScore}</h3>
+      <QuestionsSection />
       <ReviewsSection reviewsMeta={reviewsMeta} />
     </>
-  )
+  );
 }
