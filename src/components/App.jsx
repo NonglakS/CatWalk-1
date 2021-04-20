@@ -8,12 +8,13 @@ import Overview from './Overview/overview.jsx';
 
 export default function App(props) {
   const { id } = useParams();
-  const urlAddOn = `products/13023`;
+  const urlAddOn = `products/${id}`;
   const [product, setProduct] = useState('');
   const [reviewsMeta, setReviewsMeta] = useState({});
   const [reviewScore, setReviewScore] = useState(0);
 
   useEffect(() => {
+    console.log('id', id)
     getData(urlAddOn, (err, res) => {
       if (err) {
         console.log('err', err);
@@ -22,7 +23,7 @@ export default function App(props) {
       }
     });
 
-    getData(`reviews/meta?product_id=13023`, (err, res) => {
+    getData(`reviews/meta?product_id=${id}`, (err, res) => {
       if (err) {
         console.log('err', err);
       } else {

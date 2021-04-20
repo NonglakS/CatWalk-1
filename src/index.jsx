@@ -11,21 +11,23 @@ import App from './components/App.jsx';
 export default function Routes() {
   return (
     <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/13023">Start</Link>
-            </li>
-          </ul>
-        </nav>
-
         <Switch>
+          <Route exact path="/public">
+            <Home />
+          </Route>
           <Route path="/:id" children={<App />} />
         </Switch>
-      </div>
     </Router>
   );
+}
+
+function Home() {
+  return (
+    <div>
+      <h2>Home</h2>
+      <Link to="/13023">Start</Link>
+    </div>
+  )
 }
 
 render(<Routes />, document.getElementById('app'));
