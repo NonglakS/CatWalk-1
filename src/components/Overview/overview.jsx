@@ -15,18 +15,19 @@ export default function Overview () {
   useEffect(()=>{
     let getStyleUrl = `products/13023/styles`;
     getData (getStyleUrl, (err, res) => {
-      err ? console.log('ERROR', err) :  setStyles(res.data.results);
+      if (err) {
+        console.log('ERROR', err)
+      } else {
+        setStyles(res.data.results);
+        setCurrentStyle(res.data.results[0]);
+      }
     })
   }, [])
 
 
-
-  useEffect(()=>{
-    let getStyleUrl = `products/13023/styles`
-    getData(getStyleUrl, (err, res) => {
-      err ? console.log('ERROR', err) :  setCurrentStyle(res.data.results[0]);
-    })
-  }, [])
+  function handleStyleChange (newStyle){
+    setCurrentStyle(newStyle)
+  }
 
 
   return (
@@ -36,11 +37,11 @@ export default function Overview () {
       <div className="row mainview">
         <div className="col-md-7 my-auto d-flex justify-content-center"><Gallery /></div>
         <div className="col">Product Information
-        <StyleSelector /></div>
+        <StyleSelector handleStyleChange={handleStyleChange} /></div>
       </div>
       </CurrentStyleContext.Provider>
       </StyleContext.Provider>
     </div>
-    );
+  );
 }
 

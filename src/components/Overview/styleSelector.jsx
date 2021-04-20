@@ -22,7 +22,7 @@ export default StyleSelector;
 
 function Circle ({styles}) {
 
-  const [select, setSelect] = useState(false)
+  // const [select, setSelect] = useState(false)
 
   var circleStyle = {
     width: '80px',
@@ -36,9 +36,9 @@ function Circle ({styles}) {
     right: '5px'
   }
 
-  var handleSelect = () => {
-    setSelect(!select)
-  }
+  // var handleSelect = () => {
+  //   setSelect(!select)
+  // }
 
   return (
     <div className="circle container">
@@ -51,7 +51,7 @@ function Circle ({styles}) {
                 <img src="https://img.icons8.com/pastel-glyph/64/000000/checked--v1.png" style={tickStyle}/>
               </div>
               }
-                <img src={style.photos[0].thumbnail_url} style={circleStyle} onClick={handleSelect}/>
+                <img src={style.photos[0].thumbnail_url} style={circleStyle} />
             </div>
           )
         }))}
