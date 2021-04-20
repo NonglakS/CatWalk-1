@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import getData from '../../helperFunctions/getData.js';
+import ReviewTile from './ReviewTile.jsx';
 
 export default function ReviewsSection({ reviewsMeta }) {
   const [reviews, setReviews] = useState([]);
@@ -15,22 +16,26 @@ export default function ReviewsSection({ reviewsMeta }) {
   }, []);
 
   return (
-    <div>
-      <h3>Review Summaries</h3>
-      {reviews.results
-        && reviews.results.map((review) => (
-          <div>{review.summary}</div>
-        ))}
-      <h3>Review Stats</h3>
-      {reviewsMeta.characteristics
-        && Object.keys(reviewsMeta.characteristics).map((key) => (
-          <div>
-            {key}
-            :
-            {' '}
-            {reviewsMeta.characteristics[key].value}
-          </div>
-        ))}
+    <div className="review-section">
+      <div className="ratings">
+        <h3>Review Stats</h3>
+        {reviewsMeta.characteristics
+          && Object.keys(reviewsMeta.characteristics).map((key) => (
+            <div>
+              {key}
+              :
+              {' '}
+              {reviewsMeta.characteristics[key].value}
+            </div>
+          ))}
+      </div>
+      <div className="reviews">
+        <h3>Review Summaries</h3>
+        {reviews.results
+          && reviews.results.map((review) => (
+            <ReviewTile review={review} />
+          ))}
+      </div>
     </div>
   );
 }

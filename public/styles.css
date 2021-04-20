@@ -8,3 +8,23 @@
 .thumbnails {
   left: 0px;
 }
+
+.review-section {
+  display: flex;
+}
+
+.review-tile {
+  display: flex;
+  border-bottom: 1px solid black;
+  margin: 20px;
+  flex-direction: column;
+}
+
+.review-summary {
+  font-weight: bold;
+}
+
+.rating-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
