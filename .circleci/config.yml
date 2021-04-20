@@ -4,13 +4,7 @@ orbs:
 workflows:
   node-tests:
     jobs:
-      - node/test
-
-      working_directory: /tmp
-        steps:
-          - store_artifacts:
-              path: /tmp/artifact-1
-              destination: artifact-file
-
+      steps:
+        run: node/test
           - store_artifacts:
               path: /tmp/artifacts
