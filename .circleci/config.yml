@@ -5,3 +5,12 @@ workflows:
   node-tests:
     jobs:
       - node/test
+
+      working_directory: /tmp
+        steps:
+          - store_artifacts:
+              path: /tmp/artifact-1
+              destination: artifact-file
+
+          - store_artifacts:
+              path: /tmp/artifacts
