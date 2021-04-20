@@ -1,12 +1,12 @@
 import React from 'react';
-import {render} from 'react-dom';
-import App from './components/App.jsx';
+import { render } from 'react-dom';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
 } from 'react-router-dom';
+import App from './components/App.jsx';
 
 export default function Routes() {
   return (
@@ -25,8 +25,7 @@ export default function Routes() {
         </Switch>
       </div>
     </Router>
-  )
-
+  );
 }
 
 render(<Routes />, document.getElementById('app'));

@@ -1,13 +1,46 @@
-import React from 'react';
-import sum from '../helperFunctions/sum';
-import {useParams} from 'react-router-dom'
-
-// const sum = require('../helperFunctions/sum')
+import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import getData from '../helperFunctions/getData.js';
+import averageReviewScore from '../helperFunctions/averageReviewScore.js';
+import QuestionsSection from './QA/QuestionsSection.jsx';
+import ReviewsSection from './Reviews/ReviewsSection.jsx';
+import Overview from './Overview/overview.jsx';
 
 export default function App(props) {
-  let {id} = useParams();
-  let thing = sum(1,2)
-  return(
-    <div>Hello World {id}</div>
-  )
+  const { id } = useParams();
+  const urlAddOn = `products/13023`;
+  const [product, setProduct] = useState('');
+  const [reviewsMeta, setReviewsMeta] = useState({});
+  const [reviewScore, setReviewScore] = useState(0);
+
+  useEffect(() => {
+    getData(urlAddOn, (err, res) => {
+      if (err) {
+        console.log('err', err);
+      } else {
+        setProduct(res.data);
+      }
+    });
+
+    getData(`reviews/meta?product_id=13023`, (err, res) => {
+      if (err) {
+        console.log('err', err);
+      } else {
+        setReviewsMeta(res.data);
+        setReviewScore(averageReviewScore(res.data.ratings));
+      }
+    });
+  }, []);
+
+  return (
+    <>
+      <Overview />
+      <h3>
+        Product Review Score:
+        {reviewScore}
+      </h3>
+      <QuestionsSection />
+      <ReviewsSection reviewsMeta={reviewsMeta} />
+    </>
+  );
 }
