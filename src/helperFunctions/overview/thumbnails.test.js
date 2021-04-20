@@ -13,11 +13,10 @@ it('renders without crashing', ()=> {
 
 })
 
-it('renders up to 7 thumbnails at a time', ()=> {
-
-})
-
 it('matches snapshot', ()=>{
   const tree = renderer.create(<Thumbnails />).toJSON();
   expect(tree).toMatchSnapshot();
 })
+
+
+//TODO: continue testing when the thumbnails are added event handler
