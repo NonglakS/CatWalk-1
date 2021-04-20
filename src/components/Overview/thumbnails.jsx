@@ -12,8 +12,7 @@ function Thumbnails () {
   useEffect(()=>{
     let getStyleUrl = `products/13023/styles`
     getData(getStyleUrl, (err, res) => {
-      console.log(res.data.results[0].photos)
-      err ? console.log('ERROR', err) : setThumbnails(res.data.results[4].photos);
+      err ? console.log('ERROR', err) : setThumbnails(res.data.results[0].photos);
       // if there's more 7 thumbnails, have arrow buttons to scroll up-down
       if (res.data.results[0].photos.length > 7) {
         setOffScale(true)
