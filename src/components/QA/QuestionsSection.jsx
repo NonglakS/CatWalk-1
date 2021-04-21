@@ -33,7 +33,7 @@ export default function QuestionsSection() {
       } else {
         console.log('res', res.data);
         setAllQuestions(res.data);
-        setDisplayedQuestions(res.data.results.slice(0, 2));
+        setDisplayedQuestions(res.data.results.slice(0, 4));
       }
     });
   }, []);
