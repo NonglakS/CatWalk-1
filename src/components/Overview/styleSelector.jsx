@@ -1,34 +1,33 @@
 import React, {useState, useContext} from 'react';
-import { StyleContext, CurrentStyleContext} from './overview.jsx'
+import { StyleContext, CurrentStyleContext, SelectContext} from './overview.jsx'
+import { CgCheckO } from 'react-icons/cg';
 
 
 function StyleSelector ({handleStyleChange}) {
 
-  const currentStyle = useContext(CurrentStyleContext)
+  const currentStyle = useContext(CurrentStyleContext);
+  const select = useContext(SelectContext);
 
   return (
 
     <StyleContext.Consumer>
       { styles => {
           return (
-            <div className="style-selector"> STYLE > {currentStyle.name}
+            <div className="style-selector"> <strong>STYLE ></strong> {currentStyle.name}
               <div className="style-selector row">
-                <Circle styles={styles} handleStyleChange={handleStyleChange}/>
+                <Circle styles={styles} select={select} handleStyleChange={handleStyleChange}/>
               </div>
             </div>)
         }
       }
     </StyleContext.Consumer>
-
   )
 }
 
 
 export default StyleSelector;
 
-function Circle ({styles, handleStyleChange}) {
-
-  const [select, setSelect] = useState('')
+function Circle ({styles, select, handleStyleChange}) {
 
   var circleStyle = {
     width: '80px',
@@ -37,16 +36,11 @@ function Circle ({styles, handleStyleChange}) {
   }
 
   var tickStyle = {
-    width: '30px',
     position: 'absolute',
-    borderRadius: '15px',
+    borderRadius: '12.5px',
     backgroundColor: 'white',
-    right: '5px'
+    right: '8px'
 
-  }
-
-  var handleSelect = (id) => {
-    setSelect(id)
   }
 
   return (
@@ -57,14 +51,13 @@ function Circle ({styles, handleStyleChange}) {
           return (
             <div className="col-md-3">
               { select === `tick_${style.style_id}` &&
-              <div className="tickmark">
-                <img id={`tick_${style.style_id}`} src="https://img.icons8.com/pastel-glyph/64/000000/checked--v1.png" style={tickStyle} />
-              </div>
+                <div className="tickmark">
+                  <CgCheckO style={tickStyle} size={25}/>
+                </div>
               }
-                <img id={style.style_id} src={style.photos[0].thumbnail_url} alt={style.name} style={circleStyle} onClick={()=> {
-                  handleStyleChange(style)
-                  handleSelect(`tick_${style.style_id}`)
-                }}/>
+              <img id={style.style_id} src={style.photos[0].thumbnail_url} alt={style.name} style={circleStyle} onClick={()=> {
+                handleStyleChange(style)
+              }}/>
             </div>
           )
         }))}

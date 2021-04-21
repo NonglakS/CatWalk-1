@@ -6,11 +6,14 @@ import StyleSelector from './styleSelector.jsx'
 
 export const StyleContext = React.createContext();
 export const CurrentStyleContext = React.createContext();
+export const SelectContext = React.createContext();
 
 export default function Overview () {
 
   const [styles, setStyles] = useState('');
   const [currentStyle, setCurrentStyle] = useState('');
+  const [select, setSelect] = useState('');
+
 
   useEffect(()=>{
     let getStyleUrl = `products/13023/styles`;
@@ -20,6 +23,9 @@ export default function Overview () {
       } else {
         setStyles(res.data.results);
         setCurrentStyle(res.data.results[0]);
+        setSelect(`tick_${res.data.results[0].style_id}`)
+
+
       }
     })
   }, [])
@@ -27,19 +33,24 @@ export default function Overview () {
 
   function handleStyleChange (newStyle){
     setCurrentStyle(newStyle)
+    setSelect(`tick_${newStyle.style_id}`)
   }
+
+
 
 
   return (
     <div className="overview container ">
       <StyleContext.Provider value={styles}>
       <CurrentStyleContext.Provider value={currentStyle}>
+      <SelectContext.Provider value={select}>
       <div className="row mainview">
         <div className="col-md-7 my-auto d-flex justify-content-center"><Gallery /></div>
         <div className="col product-information">
           <StyleSelector handleStyleChange={handleStyleChange} />
         </div>
       </div>
+      </SelectContext.Provider>
       </CurrentStyleContext.Provider>
       </StyleContext.Provider>
     </div>
