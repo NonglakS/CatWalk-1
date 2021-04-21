@@ -1,11 +1,32 @@
 import React from 'react';
-import { FaCheck } from 'react-icons/fa';
+import { FaCheck, FaRegStar, FaStar } from 'react-icons/fa';
 
 export default function ReviewTile({ review }) {
+  const buildStars = (rating) => {
+    let total = 5;
+    let stars = []
+    for (let i = 0; i < rating; i++) {
+      stars.push(true);
+    }
+    for (let i = 0; i < total - rating; i++) {
+      stars.push(false);
+    }
+    return stars;
+  };
+
+  const stars = buildStars(review.rating);
+
   return (
     <div className="review-tile">
       <div className="rating-wrapper">
-        <div className="user">rating: {review.rating}</div>
+        <div style={{display: 'flex', justifyContent: 'start'}}>
+          {stars.map((star) => {
+            if (star) {
+              return <FaStar color="gold" />;
+            }
+            return <FaRegStar />;
+          })}
+        </div>
         <div className="user">{review.reviewer_name}, {review.date} </div>
       </div>
       <div className="review-summary">{review.summary}</div>
@@ -19,7 +40,7 @@ export default function ReviewTile({ review }) {
       {review.response && (
         <div className="response">
           <div style={{fontWeight: 'bold', marginBottom: '10px'}}>Response: </div>
-          <div>this is the response {review.response}</div>
+          <div>{review.response}</div>
         </div>
       )}
     </div>
