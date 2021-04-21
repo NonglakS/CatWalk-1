@@ -1,11 +1,14 @@
+/* eslint-disable react/jsx-one-expression-per-line */
+/* eslint-disable react/prop-types */
+/* eslint-disable no-plusplus */
 import React from 'react';
 import Moment from 'moment';
 import { FaCheck, FaRegStar, FaStar } from 'react-icons/fa';
 
 export default function ReviewTile({ review }) {
   const buildStars = (rating) => {
-    let total = 5;
-    let stars = []
+    const total = 5;
+    const stars = [];
     for (let i = 0; i < rating; i++) {
       stars.push(true);
     }
@@ -28,7 +31,7 @@ export default function ReviewTile({ review }) {
             return <FaRegStar />;
           })}
         </div>
-        <div className="user">{review.reviewer_name}, {Moment(review.date).format("MMMM Do, YYYY")} </div>
+        <div className="user">{review.reviewer_name}, {Moment(review.date).format('MMMM Do, YYYY')} </div>
       </div>
       <div className="review-summary">{review.summary}</div>
       <div className="review-body">{review.body}</div>
