@@ -1,4 +1,8 @@
 
+#app {
+  margin: 0 100px;
+}
+
 .mainview, .col{
   border: 2px solid red;
   padding: 10px;
