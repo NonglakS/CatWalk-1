@@ -1,4 +1,5 @@
 import React from 'react';
+import Moment from 'moment';
 import { FaCheck, FaRegStar, FaStar } from 'react-icons/fa';
 
 export default function ReviewTile({ review }) {
@@ -27,7 +28,7 @@ export default function ReviewTile({ review }) {
             return <FaRegStar />;
           })}
         </div>
-        <div className="user">{review.reviewer_name}, {review.date} </div>
+        <div className="user">{review.reviewer_name}, {Moment(review.date).format("MMMM Do, YYYY")} </div>
       </div>
       <div className="review-summary">{review.summary}</div>
       <div className="review-body">{review.body}</div>
