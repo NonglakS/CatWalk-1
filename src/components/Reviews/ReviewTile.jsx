@@ -11,13 +11,16 @@ export default function ReviewTile({ review }) {
       <div className="review-summary">{review.summary}</div>
       <div className="review-body">{review.body}</div>
       {review.recommend && (
-        <div style={{ display: 'flex', alignItems: 'center' }}>
+        <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
           <FaCheck size={12} color="green" />
           <div style={{ marginLeft: '5px', fontSize: 'small' }}>I recommend this product</div>
         </div>
       )}
       {review.response && (
-        <div className="response">{review.response}</div>
+        <div className="response">
+          <div style={{fontWeight: 'bold', marginBottom: '10px'}}>Response: </div>
+          <div>this is the response {review.response}</div>
+        </div>
       )}
     </div>
   );
