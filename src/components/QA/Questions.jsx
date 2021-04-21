@@ -22,8 +22,6 @@ function Questions({ question }) {
     setAnswersRendered(answersRendered + 2);
     const newAnswersRendered = answerArr.slice(0, answersRendered);
     setDisplayedAnswers(newAnswersRendered);
-    console.log(allAnswers);
-    console.log(newAnswersRendered);
   };
 
   useEffect(() => {
