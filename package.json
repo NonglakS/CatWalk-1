@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "live": "live-server",
-    "build": "webpack -d eval-source-map --mode production --watch"
+    "build": "webpack -d eval-source-map --mode production --watch",
+    "start": "nodemon ./server/index.js"
   },
   "repository": {
     "type": "git",
@@ -22,11 +23,14 @@
   "dependencies": {
     "axios": "^0.21.1",
     "babel-loader": "^8.2.2",
+    "body-parser": "^1.19.0",
     "bootstrap": "^4.6.0",
+    "express": "^4.17.1",
     "jest": "^26.6.3",
     "jquery": "^3.6.0",
     "live-server": "^1.2.1",
     "moment": "^2.29.1",
+    "nodemon": "^2.0.7",
     "react": "^17.0.2",
     "react-bootstrap": "^1.5.2",
     "react-dom": "^17.0.2",
