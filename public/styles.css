@@ -20,11 +20,22 @@
   flex-direction: column;
 }
 
-.review-summary {
-  font-weight: bold;
-}
-
 .rating-wrapper {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 11px;
+  color: rgb(160, 158, 158);
+}
+
+.review-summary {
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.review-body {
+  font-size: 11px;
+  color: rgb(83, 82, 82);
+  margin-bottom: 10px;
 }

@@ -19,15 +19,15 @@ export default function ReviewsSection({ reviewsMeta }) {
     <div className="review-section">
       <div className="ratings">
         <h3>Review Stats</h3>
-        {reviewsMeta.characteristics
-          && Object.keys(reviewsMeta.characteristics).map((key) => (
+        {reviewsMeta.characteristics && (
+          Object.keys(reviewsMeta.characteristics).map((key) => (
             <div>
               {key}
               :
               {' '}
               {reviewsMeta.characteristics[key].value}
             </div>
-          ))}
+          )))}
       </div>
       <div className="reviews">
         <h3>Review Summaries</h3>

@@ -1,6 +1,7 @@
 import React from 'react';
+import { FaCheck } from 'react-icons/fa';
 
-export default function ReviewTile({review}) {
+export default function ReviewTile({ review }) {
   return (
     <div className="review-tile">
       <div className="rating-wrapper">
@@ -9,6 +10,15 @@ export default function ReviewTile({review}) {
       </div>
       <div className="review-summary">{review.summary}</div>
       <div className="review-body">{review.body}</div>
+      {review.recommend && (
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <FaCheck size={12} color="green" />
+          <div style={{ marginLeft: '5px', fontSize: 'small' }}>I recommend this product</div>
+        </div>
+      )}
+      {review.response && (
+        <div className="response">{review.response}</div>
+      )}
     </div>
-  )
-}
+  );
+};
