@@ -5,6 +5,6 @@ workflows:
   node-tests:
     jobs:
       steps:
-        run: node/test
-          - store_artifacts:
-              path: /tmp/artifacts
+        node/test
+        - store_artifacts:
+            path: /tmp/artifacts
