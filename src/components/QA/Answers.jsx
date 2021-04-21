@@ -8,10 +8,6 @@ function Answers({ answer }) {
     textDecoration: 'underline',
   };
 
-  const dateConverter = function (date) {
-
-  };
-
   return (
     <div>
       <text>
