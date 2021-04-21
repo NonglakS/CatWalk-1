@@ -7,7 +7,7 @@ import Questions from './Questions.jsx';
 import Answers from './Answers.jsx';
 
 export default function QuestionsSection() {
-  const urlAddOn = 'qa/questions?product_id=13025';
+  const urlAddOn = 'qa/questions?product_id=13024';
   const [allQuestions, setAllQuestions] = useState('');
   const [questionsRendered, setQuestionsRendered] = useState(4);
   const [displayedQuestions, setDisplayedQuestions] = useState('');
@@ -18,7 +18,9 @@ export default function QuestionsSection() {
       if (questionArray[i] === undefined) {
         return;
       }
-      questions.push(questionArray[i]);
+      if (questionArray[i].answers !== {}) {
+        questions.push(questionArray[i]);
+      }
       setDisplayedQuestions(questions);
     }
     setQuestionsRendered(questionsRendered + 2);
