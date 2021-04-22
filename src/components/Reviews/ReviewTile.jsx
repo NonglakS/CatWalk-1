@@ -5,6 +5,7 @@ import React from 'react';
 import Moment from 'moment';
 import { FaCheck, FaRegStar, FaStar } from 'react-icons/fa';
 import ReviewBody from './ReviewBody.jsx';
+import Helpful from './Helpful.jsx';
 
 export default function ReviewTile({ review }) {
   const buildStars = (rating) => {
@@ -48,6 +49,7 @@ export default function ReviewTile({ review }) {
           <div>{review.response}</div>
         </div>
       )}
+      <Helpful id={review.review_id} helpfulness={review.helpfulness} />
     </div>
   );
 }
