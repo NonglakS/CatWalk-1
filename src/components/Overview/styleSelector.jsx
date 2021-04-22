@@ -1,27 +1,15 @@
-import React, {useState, useContext} from 'react';
-import { StyleContext, CurrentStyleContext, SelectContext} from './overview.jsx'
-import { CgCheckO } from 'react-icons/cg';
+import React from 'react';
+import {CgCheckO} from 'react-icons/cg';
 
 
-function StyleSelector ({handleStyleChange}) {
-
-  const currentStyle = useContext(CurrentStyleContext);
-  const select = useContext(SelectContext);
+function StyleSelector ({handleStyleChange, currentStyle, select, styles}) {
 
   return (
-
-    <StyleContext.Consumer>
-      { styles => {
-          return (
-            <div className="style-selector"> <strong>STYLE ></strong> {currentStyle.name}
-              <div className="style-selector row">
-                <Circle styles={styles} select={select} handleStyleChange={handleStyleChange}/>
-              </div>
-            </div>)
-        }
-      }
-    </StyleContext.Consumer>
-  )
+    <div className="style-selector"> <strong>STYLE ></strong> {currentStyle.name}
+      <div className="style-selector row">
+        <Circle styles={styles} select={select} handleStyleChange={handleStyleChange}/>
+      </div>
+    </div>)
 }
 
 
@@ -37,7 +25,7 @@ function Circle ({styles, select, handleStyleChange}) {
 
   var tickStyle = {
     position: 'absolute',
-    borderRadius: '12.5px',
+    borderRadius: '12px',
     backgroundColor: 'white',
     right: '8px'
 
