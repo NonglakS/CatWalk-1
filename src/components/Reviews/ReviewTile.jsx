@@ -24,7 +24,7 @@ export default function ReviewTile({ review }) {
   return (
     <div className="review-tile">
       <div className="rating-wrapper">
-        <div style={{display: 'flex', justifyContent: 'start'}}>
+        <div style={{ display: 'flex', justifyContent: 'start' }}>
           {stars.map((star) => {
             if (star) {
               return <FaStar color="gold" />;
@@ -44,10 +44,10 @@ export default function ReviewTile({ review }) {
       )}
       {review.response && (
         <div className="response">
-          <div style={{fontWeight: 'bold', marginBottom: '10px'}}>Response: </div>
+          <div style={{ fontWeight: 'bold', marginBottom: '10px' }}>Response: </div>
           <div>{review.response}</div>
         </div>
       )}
     </div>
   );
-};
+}

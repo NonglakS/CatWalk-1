@@ -24,7 +24,7 @@ export default function ReviewsSection({ reviewsMeta }) {
   };
 
   return (
-    <div className="review-section">
+    <div className="ratings-and-reviews">
       <div className="ratings">
         <h3>Review Stats</h3>
         {reviewsMeta.characteristics && (
@@ -37,15 +37,17 @@ export default function ReviewsSection({ reviewsMeta }) {
             </div>
           )))}
       </div>
-      <div className="reviews">
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
         <h3>Review Summaries</h3>
-        {reviews.results
-          && renderedReviews.map((review) => (
-            <ReviewTile review={review} />
-          ))}
-        {reviews.results && reviewCount < reviews.results.length && (
-          <button className="show-more-btn" type="button" onClick={() => rerenderReviews()}>More Reviews</button>
-        )}
+        <div className="reviews">
+          {reviews.results
+            && renderedReviews.map((review) => (
+              <ReviewTile review={review} />
+            ))}
+          {reviews.results && reviewCount < reviews.results.length && (
+            <button className="show-more-btn" type="button" onClick={() => rerenderReviews()}>More Reviews</button>
+          )}
+        </div>
       </div>
     </div>
   );
