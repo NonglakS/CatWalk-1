@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
 import Answers from './Answers.jsx';
-import Helpful from './Helpful.jsx';
+import QuestionHelpful from './QuestionHelpful.jsx';
 
 function Questions({ question }) {
   const [allAnswers, setAllAnswers] = useState('');
@@ -46,8 +46,10 @@ function Questions({ question }) {
         {question.question_body}
       </div>
       Helpful?
-      <Helpful questionHelpfulness={question.question_helpfulness} />
-      ({question.question_helpfulness})
+      <QuestionHelpful
+        questionHelpfulness={question.question_helpfulness}
+        questionId={question.question_id}
+      />
       {displayedAnswers
       && displayedAnswers.map((data) => <Answers key={data.toString()} answer={data} />)}
       {displayedAnswers && displayedAnswers < allAnswers && (
