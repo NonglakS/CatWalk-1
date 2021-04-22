@@ -43,7 +43,9 @@ export default function ReviewsSection({ reviewsMeta }) {
           && renderedReviews.map((review) => (
             <ReviewTile review={review} />
           ))}
-        <button className="show-more-btn" type="button" onClick={() => rerenderReviews()}>More Reviews</button>
+        {reviews.results && reviewCount < reviews.results.length && (
+          <button className="show-more-btn" type="button" onClick={() => rerenderReviews()}>More Reviews</button>
+        )}
       </div>
     </div>
   );

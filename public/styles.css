@@ -15,7 +15,11 @@
 
 .review-section {
   display: flex;
-  width: 90%;
+  width: 100%;
+}
+
+.ratings {
+  min-width: 250px;
 }
 
 .reviews {
