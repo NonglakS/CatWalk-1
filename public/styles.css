@@ -8,7 +8,16 @@
 
 .review-section {
   display: flex;
-  width: 90%;
+  width: 100%;
+}
+
+.ratings {
+  min-width: 250px;
+}
+
+.reviews {
+  display: flex;
+  flex-direction: column;
 }
 
 .review-tile {
@@ -49,7 +58,6 @@
 }
  .show-more-btn {
   margin-top: 5px;
-  width: 90px;
   align-self: center;
   background-color: white;
  }
@@ -78,5 +86,4 @@
  #fb-icon:hover, #twitter-icon:hover, #pinterest-icon:hover {
   opacity: .5;
 }
-
 
