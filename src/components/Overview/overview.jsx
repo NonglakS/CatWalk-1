@@ -4,6 +4,7 @@ import Gallery from './gallery.jsx';
 import StyleSelector from './styleSelector.jsx';
 import ProductInfo from './productInfo.jsx';
 import ProductOverview from './productOverview.jsx'
+import ShareIcon from './shareIcon.jsx'
 
 
 export default function Overview ({product}) {
@@ -49,6 +50,7 @@ export default function Overview ({product}) {
             currentStyle={currentStyle}
             select={select}
              />
+            <ShareIcon />
         </div>
       </div>
       <div className="product-overview">

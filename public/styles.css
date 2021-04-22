@@ -71,3 +71,12 @@
    padding-left: 10px;
  }
 
+ #fb-icon, #twitter-icon, #pinterest-icon {
+   padding: 10px;
+ }
+
+ #fb-icon:hover, #twitter-icon:hover, #pinterest-icon:hover {
+  opacity: .5;
+}
+
+
