@@ -7,6 +7,7 @@ function AddQuestion(props) {
     <>
       <button className="add-question" type="button" onClick={() => modal.current.open()}>ADD A QUESTION +</button>
       <Modal ref={modal} fade>
+        Text
         <input type="text" name="name" />
       </Modal>
     </>

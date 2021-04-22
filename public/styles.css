@@ -34,9 +34,6 @@ span#sale-price {
   opacity: .5;
 }
 
-
-
-
 /* Review Styles */
 
 .review-section {
@@ -149,17 +146,15 @@ span#sale-price {
   background-color: white;
  }
 
-
  span#sale-price {
   color: red;
   padding-left: 15px;
+ }
 
  .thumbnail {
   height: 75px;
   width: 75px;
  }
-
-
 
  /* Modal Styles */
 
@@ -183,7 +178,8 @@ span#sale-price {
 
  #fb-icon:hover, #twitter-icon:hover, #pinterest-icon:hover {
   opacity: .5;
-};
+}
+
 .modal.modal-fade {
   animation: fade-in 1s 1 linear;
   animation-fill-mode: forwards;
@@ -237,7 +233,6 @@ span#sale-price {
   padding: 15px 20px;
   color: #c3c0c0;
 }
-
 
 @keyframes fade-in {
   0% {
