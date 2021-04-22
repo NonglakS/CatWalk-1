@@ -5,12 +5,10 @@ function ProductInfo({product, currentStyle}) {
 
   return (
     <div>
-      <span id="category">{product.category
-        && product.category.toUpperCase()}</span>
-      <br/>
-      <span id="product-name">{product.name}</span>
-      <br/>
-      <span id="price"><Price currentStyle={currentStyle} /></span>
+      <div id="category">{product.category
+        && product.category.toUpperCase()}</div>
+      <div id="product-name">{product.name}</div>
+      <div className="price"><Price currentStyle={currentStyle} /></div>
     </div>
   )
 }
