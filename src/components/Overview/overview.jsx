@@ -1,13 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import getData from '../../helperFunctions/getData.js';
-import Gallery from './gallery.jsx'
-import StyleSelector from './styleSelector.jsx'
+import Gallery from './gallery.jsx';
+import StyleSelector from './styleSelector.jsx';
+import ProductInfo from './productInfo.jsx';
 
 
 export const StyleContext = React.createContext();
 export const CurrentStyleContext = React.createContext();
 
-export default function Overview () {
+export default function Overview ({product}) {
 
   const [styles, setStyles] = useState('');
   const [currentStyle, setCurrentStyle] = useState('');
@@ -22,7 +23,7 @@ export default function Overview () {
         setCurrentStyle(res.data.results[0]);
       }
     })
-  }, [])
+  }, []);
 
 
   function handleStyleChange (newStyle){
@@ -37,6 +38,7 @@ export default function Overview () {
       <div className="row mainview">
         <div className="col-md-7 my-auto d-flex justify-content-center"><Gallery /></div>
         <div className="col product-information">
+          <ProductInfo product={product} currentStyle={currentStyle}/>
           <StyleSelector handleStyleChange={handleStyleChange} />
         </div>
       </div>

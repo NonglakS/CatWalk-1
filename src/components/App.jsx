@@ -32,7 +32,7 @@ export default function App(props) {
 
   return (
     <>
-      <Overview />
+      <Overview product={product}/>
       <h3>Product Review Score: {reviewScore}</h3>
       <QuestionsSection />
       <ReviewsSection reviewsMeta={reviewsMeta} />
