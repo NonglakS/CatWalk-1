@@ -18,6 +18,11 @@
   width: 90%;
 }
 
+.reviews {
+  display: flex;
+  flex-direction: column;
+}
+
 .review-tile {
   display: flex;
   border-bottom: 1px solid black;
@@ -52,3 +57,8 @@
   margin-bottom: 10px;
   padding: 10px 15px;
 }
+ .show-more-btn {
+  margin-top: 5px;
+  align-self: center;
+  background-color: white;
+ }
