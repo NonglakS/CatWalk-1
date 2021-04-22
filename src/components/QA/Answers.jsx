@@ -27,16 +27,18 @@ function Answers({ answer }) {
         </text>
         {strReplace(answer.body)}
         <br />
-        <text>
-          {answer.answerer_name}
-          {' '}
-          {Moment(answer.date).format('MMMM Do YYYY')}
-        </text>
-        <FaGripLinesVertical /> Helpful?
-        <Helpful answerData={{ answer }} />
-        <text>
-          ({answer.helpfulness})
-        </text>
+        <div className="response-text">
+          <text>
+            {answer.answerer_name}
+            {' '}
+            {Moment(answer.date).format('MMMM Do YYYY')}
+          </text>
+          <FaGripLinesVertical /> Helpful?
+          <Helpful answerHelpfulness={answer.helpfulness} />
+          <text>
+            ({answer.helpfulness})
+          </text>
+        </div>
         <button className="report-btn" type="submit">Report</button>
       </div>
       <br />

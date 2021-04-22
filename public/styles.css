@@ -95,6 +95,11 @@
   font-weight: bold;
 }
 
+.response-text {
+  font-size: 11px;
+  color:rgb(160, 158, 158)
+}
+
 .display-answers {
   margin-bottom: 20px;
   background-color: aliceblue;
