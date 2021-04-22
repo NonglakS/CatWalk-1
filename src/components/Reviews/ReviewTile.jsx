@@ -5,6 +5,7 @@ import React from 'react';
 import Moment from 'moment';
 import { FaCheck, FaRegStar, FaStar } from 'react-icons/fa';
 import ReviewBody from './ReviewBody.jsx';
+import Helpful from './Helpful.jsx';
 
 export default function ReviewTile({ review }) {
   const buildStars = (rating) => {
@@ -24,7 +25,7 @@ export default function ReviewTile({ review }) {
   return (
     <div className="review-tile">
       <div className="rating-wrapper">
-        <div style={{display: 'flex', justifyContent: 'start'}}>
+        <div style={{ display: 'flex', justifyContent: 'start' }}>
           {stars.map((star) => {
             if (star) {
               return <FaStar color="gold" />;
@@ -44,10 +45,11 @@ export default function ReviewTile({ review }) {
       )}
       {review.response && (
         <div className="response">
-          <div style={{fontWeight: 'bold', marginBottom: '10px'}}>Response: </div>
+          <div style={{ fontWeight: 'bold', marginBottom: '10px' }}>Response: </div>
           <div>{review.response}</div>
         </div>
       )}
+      <Helpful id={review.review_id} helpfulness={review.helpfulness} />
     </div>
   );
-};
+}
