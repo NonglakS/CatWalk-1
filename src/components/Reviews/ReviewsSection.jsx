@@ -4,6 +4,8 @@ import ReviewTile from './ReviewTile.jsx';
 
 export default function ReviewsSection({ reviewsMeta }) {
   const [reviews, setReviews] = useState([]);
+  const [reviewCount, setReviewCount] = useState(2);
+  const [renderedReviews, setRenderedReviews] = useState([]);
 
   useEffect(() => {
     getData('reviews?product_id=13023&count=10000', (err, res) => {
@@ -11,9 +13,15 @@ export default function ReviewsSection({ reviewsMeta }) {
         console.log('err', err);
       } else {
         setReviews(res.data);
+        setRenderedReviews(res.data.results.slice(0, reviewCount));
       }
     });
   }, []);
+
+  const rerenderReviews = () => {
+    setRenderedReviews(reviews.results.slice(0, reviewCount + 2));
+    setReviewCount(reviewCount + 2);
+  };
 
   return (
     <div className="review-section">
@@ -32,9 +40,12 @@ export default function ReviewsSection({ reviewsMeta }) {
       <div className="reviews">
         <h3>Review Summaries</h3>
         {reviews.results
-          && reviews.results.map((review) => (
+          && renderedReviews.map((review) => (
             <ReviewTile review={review} />
           ))}
+        {reviews.results && reviewCount < reviews.results.length && (
+          <button className="show-more-btn" type="button" onClick={() => rerenderReviews()}>More Reviews</button>
+        )}
       </div>
     </div>
   );
