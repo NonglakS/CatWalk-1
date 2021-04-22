@@ -51,6 +51,7 @@ span#sale-price {
 .reviews {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .review-tile {
