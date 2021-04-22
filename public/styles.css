@@ -109,5 +109,30 @@
   margin-top: 5px;
   align-self: center;
   background-color: white;
- };
+ }
 
+
+ span#sale-price {
+  color: red;
+  padding-left: 15px;
+ }
+
+ span#original-price-cross {
+  text-decoration: line-through;
+ }
+
+ .features {
+   border-left: solid;
+ }
+
+ .feature, .check-feature {
+   padding-left: 10px;
+ }
+
+ #fb-icon, #twitter-icon, #pinterest-icon {
+   padding: 10px;
+ }
+
+ #fb-icon:hover, #twitter-icon:hover, #pinterest-icon:hover {
+  opacity: .5;
+};
