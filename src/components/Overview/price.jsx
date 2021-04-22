@@ -3,8 +3,6 @@ import React from 'react';
 
 function Price({currentStyle}) {
 
-
-
   return (
     <div>
       {!currentStyle.sale_price &&
