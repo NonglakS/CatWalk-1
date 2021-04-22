@@ -1,51 +1,57 @@
 import React, { useEffect, useState } from 'react';
 import Select from "react-dropdown-select";
 
-const options = [
-  { value: 'chocolate', label: 'Chocolate' },
-  { value: 'strawberry', label: 'Strawberry' },
-  { value: 'vanilla', label: 'Vanilla' },
-];
-
-
 
 function Cart({ currentStyle }) {
 
-  const [size, setSize] = useState([]);
-  const [quantity, setQuantity] = useState([])
+  const [sizeOptions, setSizeOptions] = useState([]);
+  const [qtyOptions, setQtyOptions] = useState([]);
+  const [outOfStock, setOutOfStock] = useState(false);
 
   const tempSize = [];
-  const tempQty = [];
 
   useEffect(() => {
 
     for (const key in currentStyle.skus) {
-      tempSize.push({ value: currentStyle.skus[key].size, label: currentStyle.skus[key].size })
-      tempQty.push({ value: currentStyle.skus[key].quantity, label: currentStyle.skus[key].quantity })
+      if (Number(currentStyle.skus[key].quantity) > 0) {
+        tempSize.push({ value: currentStyle.skus[key].quantity, label: currentStyle.skus[key].size })
+      }
     }
 
-    setSize(tempSize)
-    setQuantity(tempQty)
+    tempSize.length === 0 ? setOutOfStock(true) : setSizeOptions(tempSize)
 
-  }, [])
+  }, [currentStyle])
 
+  var handleSizeChange = (e) => {
 
+    if (e[0].value < 15) {
+      setQtyOptions(updateRange(e[0].value));
+    } else {
+      setQtyOptions(updateRange(15))
+    }
 
-return (
-  <>
-    <div className="row  size-qty-selector">
-      <div className="col-8 select-size">
-        <Select options={size} placeholder="SELECT SIZE" />
+  }
+
+  var updateRange = (max) => {
+    var arr = Array.from({ length: max }, (val, index) => index + 1);
+    return arr.map((val) => { return { value: val, label: val } });
+  }
+
+  return (
+    <>
+      <div className="row  size-qty-selector">
+        <div className="col-8 select-size">
+          <Select options={sizeOptions} placeholder={outOfStock ? "Out of Stock" : "Select size"} onChange={handleSizeChange} />
+        </div>
+        <div className="col-4 select-quantity">
+          <Select options={qtyOptions} placeholder="-" /></div>
       </div>
-      <div className="col-4 select-quantity">
-        <Select options={size} placeholder="QTY" /></div>
-    </div>
-    <div className="row cart">
-      <div className="col-10 add-to-bag ">select-size</div>
-      <div className="col-2 add-to-collection">qty</div>
-    </div>
-  </>
-)
+      <div className="row cart">
+        <div className="col-10 add-to-bag ">select-size</div>
+        <div className="col-2 add-to-collection">qty</div>
+      </div>
+    </>
+  )
 }
 
 export default Cart;
