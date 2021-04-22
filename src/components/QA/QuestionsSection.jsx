@@ -38,18 +38,13 @@ export default function QuestionsSection() {
     });
   }, []);
 
-
   return (
     <>
       <h3>Questions and Answers</h3>
       <QuestionsSearch />
       {displayedQuestions
       && displayedQuestions.map((data) => <Questions key={data.toString()} question={data} />)}
-      {/* {displayedQuestions
-      && displayedAnswers.map((data) => <Answers key={data.toString()} answer={data} />)} */}
-      <button type="submit" onClick={() => renderQuestions(allQuestions.results)}> MORE ANSWERED QUESTIONS </button>
-      <br />
-
+      <button className="display-answers" type="submit" onClick={() => renderQuestions(allQuestions.results)}> MORE ANSWERED QUESTIONS </button>
       <AddQuestion />
     </>
   );

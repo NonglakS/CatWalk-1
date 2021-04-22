@@ -2,9 +2,7 @@ import React from 'react';
 
 function AddQuestion(props) {
   return (
-    <div>
-      <button type="submit">Add a Question</button>
-    </div>
+    <button className="add-question" type="submit">ADD A QUESTION +</button>
   );
 }
 

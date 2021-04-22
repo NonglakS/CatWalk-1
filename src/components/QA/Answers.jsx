@@ -22,22 +22,21 @@ function Answers({ answer }) {
   return (
     <div>
       <div>
-        <text>
-          A:
-          {' '}
-          {strReplace(answer.body)}
-          <br />
+        <text className="qa-header">
+          A:&nbsp;&nbsp;
         </text>
+        {strReplace(answer.body)}
+        <br />
         <text>
           {answer.answerer_name}
           {' '}
           {Moment(answer.date).format('MMMM Do YYYY')}
         </text>
         <FaGripLinesVertical /> Helpful?
-        <Helpful answerData={{ answer }}/>
+        <Helpful answerData={{ answer }} />
         <text>
           ({answer.helpfulness})
-        </text>s
+        </text>
         <button className="report-btn" type="submit">Report</button>
       </div>
       <br />

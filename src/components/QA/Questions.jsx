@@ -10,8 +10,6 @@ function Questions({ question }) {
   const [answerNumberDisplayed, setAnswerNumberDisplayed] = useState(2);
   const [allAnswersDisplayed, setAllAnswersDisplayed] = useState(false);
 
-
-
   const getAnswers = function (questionObject) {
     const answerKeys = Object.values(questionObject.answers);
     const sortedAnswers = answerKeys.sort((a, b) => b.helpfulness - a.helpfulness);
@@ -41,25 +39,23 @@ function Questions({ question }) {
     setDisplayedAnswers(allAnswers.slice(0, answerNumberDisplayed));
   });
 
-
   return (
-    <span>
-      <h4>
-        Q: {question.question_body}
-      </h4>
-      <p>
-        Helpful?
-        <Helpful questionHelpfulness={question.helpfulness} />
-      </p>
+    <div>
+      <div className="qa-header">
+        Q:&nbsp;&nbsp;
+        {question.question_body}
+      </div>
+      Helpful?
+      <Helpful questionHelpfulness={question.question_helpfulness} />
+      ({question.question_helpfulness})
       {displayedAnswers
       && displayedAnswers.map((data) => <Answers key={data.toString()} answer={data} />)}
-      <br />
       {displayedAnswers && displayedAnswers < allAnswers && (
-      <button type="submit" onClick={() => displayAllAnswers()}> MORE ANSWERS </button>)}
+        <button className="change-questions" type="submit" onClick={() => displayAllAnswers()}> MORE ANSWERS </button>)}
       {displayedAnswers && allAnswersDisplayed && (
-      <button type="submit" onClick={() => displayDefaultAnswers()}> COLLAPSE ANSWERS </button>)}
+        <button className="change-questions" type="submit" onClick={() => displayDefaultAnswers()}> COLLAPSE ANSWERS </button>)}
       <br />
-    </span>
+    </div>
   );
 }
 

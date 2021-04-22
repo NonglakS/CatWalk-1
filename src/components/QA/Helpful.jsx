@@ -3,9 +3,7 @@ import axios from 'axios';
 
 function Helpful({answerData}) {
   return (
-    <div>
-      <button className="helpful-btn" type="submit"> Yes </button>
-    </div>
+    <button className="helpful-btn" type="submit"> Yes </button>
   );
 }
 
