@@ -22,7 +22,7 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
-  font-size: 11px;
+  font-size: 12px;
   color: rgb(160, 158, 158);
 }
 
@@ -33,15 +33,23 @@
 }
 
 .review-body {
-  font-size: 11px;
+  font-size: 12px;
   color: rgb(83, 82, 82);
   margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
 .response {
-  font-size: 11px;
+  font-size: 12px;
   background-color: rgb(233, 232, 232);
   margin-top: 10px;
   margin-bottom: 10px;
   padding: 10px 15px;
 }
+ .show-more-btn {
+  margin-top: 5px;
+  width: 90px;
+  align-self: center;
+  background-color: white;
+ }
