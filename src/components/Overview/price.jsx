@@ -8,11 +8,11 @@ function Price({currentStyle}) {
   return (
     <div>
       {!currentStyle.sale_price &&
-        <div id="original-price">{`$${currentStyle.original_price}`}</div>}
+        <div id="original-price">{`$${Number(currentStyle.original_price).toFixed()}`}</div>}
       {currentStyle.sale_price &&
         <div>
-          <span id="original-price-cross">{`$${currentStyle.original_price}`}</span>
-          <span id="sale-price"> {`$${currentStyle.sale_price}`} </span>
+          <span id="original-price-cross">{`$${Number(currentStyle.original_price).toFixed()}`}</span>
+          <span id="sale-price"> {`$${Number(currentStyle.sale_price).toFixed()}`} </span>
         </div>}
     </div>
   )
