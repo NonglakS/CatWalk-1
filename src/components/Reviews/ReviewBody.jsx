@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ReviewPic from './ReviewPic.jsx';
 
 export default function ReviewBody({ body, photos }) {
   const [showMore, setShowMore] = useState(true);
@@ -21,6 +22,11 @@ export default function ReviewBody({ body, photos }) {
             {body}
           </div>
         )}
+      <div style={{display: 'flex'}}>
+        {photos.map((photo) => (
+          <ReviewPic url={photo.url} />
+        ))}
+      </div>
       {expandable && (
       <button className="show-more-btn" type="button" onClick={() => setShowMore(!showMore)}>{showMore ? 'Show More' : 'Show Less'}</button>
       )}
