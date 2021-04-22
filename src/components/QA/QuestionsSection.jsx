@@ -7,9 +7,9 @@ import Questions from './Questions.jsx';
 import Answers from './Answers.jsx';
 
 export default function QuestionsSection() {
-  const urlAddOn = 'qa/questions?product_id=13024';
+  const urlAddOn = 'qa/questions?product_id=13025';
   const [allQuestions, setAllQuestions] = useState('');
-  const [questionsRendered, setQuestionsRendered] = useState(4);
+  const [questionsRendered, setQuestionsRendered] = useState(6);
   const [displayedQuestions, setDisplayedQuestions] = useState('');
 
   const renderQuestions = function (questionArray) {
