@@ -55,11 +55,19 @@
  }
 
  span#sale-price {
-   color: red;
-   padding-left: 15px;
+  color: red;
+  padding-left: 15px;
  }
 
  span#original-price-cross {
   text-decoration: line-through;
+ }
+
+ .features {
+   border-left: solid;
+ }
+
+ .feature, .check-feature {
+   padding-left: 10px;
  }
 
