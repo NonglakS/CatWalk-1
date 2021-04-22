@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import Modal from '../../shared-components/Modal.jsx';
 
 function AddQuestion(props) {
+  const modal = useRef(null);
   return (
-    <button className="add-question" type="submit">ADD A QUESTION +</button>
+    <>
+      <button className="add-question" type="button" onClick={() => modal.current.open()}>ADD A QUESTION +</button>
+      <Modal ref={modal} fade>
+        <input type="text" name="name" />
+      </Modal>
+    </>
   );
 }
 
