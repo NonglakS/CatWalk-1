@@ -4,6 +4,7 @@
 import React from 'react';
 import Moment from 'moment';
 import { FaCheck, FaRegStar, FaStar } from 'react-icons/fa';
+import ReviewBody from './ReviewBody.jsx';
 
 export default function ReviewTile({ review }) {
   const buildStars = (rating) => {
@@ -34,7 +35,7 @@ export default function ReviewTile({ review }) {
         <div className="user">{review.reviewer_name}, {Moment(review.date).format('MMMM Do, YYYY')} </div>
       </div>
       <div className="review-summary">{review.summary}</div>
-      <div className="review-body">{review.body}</div>
+      <ReviewBody body={review.body} photos={review.photos} />
       {review.recommend && (
         <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
           <FaCheck size={12} color="green" />
