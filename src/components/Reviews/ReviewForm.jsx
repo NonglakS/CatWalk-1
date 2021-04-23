@@ -28,6 +28,7 @@ const ratingExplanations = ['', 'Poor', 'Fair', 'Average', 'Good', 'Great'];
 export default function ReveiwForm({ name, characteristics }) {
   const [rating, setRating] = useState(0);
   const [stars, setStars] = useState([false, false, false, false, false]);
+  const [recommends, setRecommends] = useState('');
   const startingCharacteristics = {};
 
   Object.keys(characteristics).forEach((key) => {
@@ -45,6 +46,12 @@ export default function ReveiwForm({ name, characteristics }) {
     setRating(currentRating);
     setStars(buildStars(currentRating));
   };
+
+  const handleRecommend = (e) => {
+    console.log('recommend: ', e.target.value)
+    setRecommends(e.target.value);
+  };
+
 
   const handleCharacteristicRating = (e) => {
     const key = e.target.name;
@@ -78,14 +85,14 @@ export default function ReveiwForm({ name, characteristics }) {
           <label className="form-label">
             Do you recommend this product?*
           </label>
-          <div className="radio">
+          <div className="radio" onChange={(e) => handleRecommend(e)}>
             <label htmlFor="yes" className="radio-label">
               Yes
               <input
                 type="radio"
                 name="recommend"
                 id="yes"
-                value="yes"
+                value={true}
                 style={{ marginLeft: '5px' }}
               />
             </label>
@@ -95,7 +102,7 @@ export default function ReveiwForm({ name, characteristics }) {
                 type="radio"
                 name="recommend"
                 id="no"
-                value="no"
+                value={false}
                 style={{ marginLeft: '5px' }}
               />
             </label>
