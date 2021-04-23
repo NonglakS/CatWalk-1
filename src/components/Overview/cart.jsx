@@ -50,12 +50,12 @@ function Cart({ currentStyle }) {
     <>
       <div className="row  size-qty-selector">
         <div className="col-8 select-size">
-          <Select options={sizeOptions} placeholder={outOfStock ? "Out of Stock" : "Select size"} onChange={handleSizeChange} />
+          <Select id="size-options" options={sizeOptions} placeholder={outOfStock ? "Out of Stock" : "Select size"} onChange={handleSizeChange} />
         </div>
         <div className="col-4 select-quantity">
           {!disable
-            ? <Select options={qtyOptions} value={currentVal} onChange={handleQtyChange} />
-            : <Select options={qtyOptions} placeholder="-" isDisabled={disable} />}
+            ? <Select id="qty-options" options={qtyOptions} value={currentVal} onChange={handleQtyChange} />
+            : <Select id="qty-options" options={qtyOptions} placeholder="-" isDisabled={disable} />}
         </div>
       </div>
       <div className="row cart">
