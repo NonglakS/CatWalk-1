@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import getData from '../../helperFunctions/getData.js';
 import ReviewTile from './ReviewTile.jsx';
 import Modal from '../../shared-components/Modal.jsx';
+import ReviewForm from './ReviewForm';
 
 export default function ReviewsSection({ reviewsMeta }) {
   const [reviews, setReviews] = useState([]);
@@ -52,13 +53,7 @@ export default function ReviewsSection({ reviewsMeta }) {
           Add Review
         </button>
         <Modal ref={modal} fade>
-        <form>
-          <label>
-            Name:
-            <input type="text" name="name" />
-          </label>
-          <input type="submit" value="Submit" />
-        </form>
+          <ReviewForm id={13023} />
         </Modal>
       </div>
     </div>
