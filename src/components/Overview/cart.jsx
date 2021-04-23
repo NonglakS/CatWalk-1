@@ -12,7 +12,7 @@ function Cart({ currentStyle }) {
   const [outOfStock, setOutOfStock] = useState(false);
   const [disable, setDisable] = useState(true);
   const [currentVal, setCurrentVal] = useState({ label: 1, value: 0, sku: "" });
-  const [clickAdd, setClickAdd] = useState(false)
+  const [clickAdd, setClickAdd] = useState(false);
 
   const tempSize = [];
 
@@ -24,25 +24,25 @@ function Cart({ currentStyle }) {
       }
     }
 
-    tempSize.length === 0 ? setOutOfStock(true) : setSizeOptions(tempSize)
+    tempSize.length === 0 ? setOutOfStock(true) : setSizeOptions(tempSize);
 
   }, [currentStyle])
 
   var handleSizeChange = (e) => {
     setDisable(false);
-    setClickAdd(false)
+    setClickAdd(false);
 
 
     setCurrentVal({ label: 1, value: 1, sku: e.sku });
     if (e.value < 15) {
       setQtyOptions(updateRange(e.value));
     } else {
-      setQtyOptions(updateRange(15))
+      setQtyOptions(updateRange(15));
     }
   }
 
   var handleQtyChange = (e) => {
-    setCurrentVal({ label: e.value, value: e.value, sku: currentVal.sku })
+    setCurrentVal({ label: e.value, value: e.value, sku: currentVal.sku });
   }
 
   var updateRange = (max) => {
@@ -52,7 +52,7 @@ function Cart({ currentStyle }) {
 
   var handleAddToCart = (e) => {
     if (!currentVal.value) {
-      setClickAdd(true)
+      setClickAdd(true);
 
     } else {
 
@@ -68,7 +68,7 @@ function Cart({ currentStyle }) {
 
       axios(options)
         .then(res => console.log("Added an item to cart! Response code : ", res.status))
-        .catch((err) => { console.log(err) })
+        .catch((err) => { console.log(err) });
 
     }
   }
