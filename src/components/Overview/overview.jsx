@@ -20,11 +20,11 @@ export default function Overview({ product }) {
     let getStyleUrl = `products/${product.id}/styles`;
     getData(getStyleUrl, (err, res) => {
       if (err) {
-        console.log('ERROR', err)
+        console.log('ERROR', err);
       } else {
         setStyles(res.data.results);
         setCurrentStyle(res.data.results[0]);
-        setSelect(`tick_${res.data.results[0].style_id}`)
+        setSelect(`tick_${res.data.results[0].style_id}`);
 
       }
     })
@@ -32,8 +32,8 @@ export default function Overview({ product }) {
 
 
   function handleStyleChange(newStyle) {
-    setCurrentStyle(newStyle)
-    setSelect(`tick_${newStyle.style_id}`)
+    setCurrentStyle(newStyle);
+    setSelect(`tick_${newStyle.style_id}`);
   }
 
   return (
