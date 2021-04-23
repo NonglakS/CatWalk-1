@@ -71,6 +71,11 @@ span#sale-price {
   color: rgb(160, 158, 158);
 }
 
+.stars {
+  display: 'flex';
+  justify-content: 'start';
+}
+
 .review-summary {
   font-weight: bold;
   margin-bottom: 10px;
@@ -128,6 +133,12 @@ span#sale-price {
   vertical-align: top;
 }
 
+.star-selector {
+  background-color: #3f3f3f;
+  border: none;
+  padding: 0;
+}
+
 .disclaimer {
   font-size: 11px;
   color: #c3c0c0;
@@ -143,6 +154,7 @@ span#sale-price {
   display: flex;
   justi
 }
+
 
 
  /* Modal Styles */
@@ -209,7 +221,7 @@ span#sale-price {
   z-index: 2;
   position: relative;
   margin: 0 auto;
-  background-color: #303030;
+  background-color: #3f3f3f;
   border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 3px;
   overflow-x: hidden;
