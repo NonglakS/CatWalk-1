@@ -22,9 +22,11 @@
   max-height: 650px;
 }
 
-span#sale-price {
+span#sale-price, div#select-size-reminder {
+
   color: red;
   padding-left: 15px;
+  padding-top: 10px;
  }
 
  span#original-price-cross {
@@ -39,8 +41,21 @@ span#sale-price {
    padding-left: 10px;
  }
 
- #fb-icon, #twitter-icon, #pinterest-icon {
+ #fb-icon, #twitter-icon, #pinterest-icon,
+ #size-options, #add-cart {
    padding: 10px;
+ }
+
+ #qty-options {
+   padding-top: 10px;
+ }
+
+ #add, button.ui.basic.button{
+   padding-left: 25px;
+ }
+
+ button.ui.basic.icon.right.labeled.button {
+   width: 160%;
  }
 
  #fb-icon:hover, #twitter-icon:hover, #pinterest-icon:hover {

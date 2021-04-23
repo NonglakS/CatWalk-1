@@ -3,8 +3,9 @@ import getData from '../../helperFunctions/getData.js';
 import Gallery from './gallery.jsx';
 import StyleSelector from './styleSelector.jsx';
 import ProductInfo from './productInfo.jsx';
-import ProductOverview from './productOverview.jsx'
-import ShareIcon from './shareIcon.jsx'
+import ProductOverview from './productOverview.jsx';
+import ShareIcon from './shareIcon.jsx';
+import Cart from './cart.jsx';
 
 
 export default function Overview({ product }) {
@@ -19,11 +20,11 @@ export default function Overview({ product }) {
     let getStyleUrl = `products/${product.id}/styles`;
     getData(getStyleUrl, (err, res) => {
       if (err) {
-        console.log('ERROR', err)
+        console.log('ERROR', err);
       } else {
         setStyles(res.data.results);
         setCurrentStyle(res.data.results[0]);
-        setSelect(`tick_${res.data.results[0].style_id}`)
+        setSelect(`tick_${res.data.results[0].style_id}`);
 
       }
     })
@@ -31,8 +32,8 @@ export default function Overview({ product }) {
 
 
   function handleStyleChange(newStyle) {
-    setCurrentStyle(newStyle)
-    setSelect(`tick_${newStyle.style_id}`)
+    setCurrentStyle(newStyle);
+    setSelect(`tick_${newStyle.style_id}`);
   }
 
   return (
@@ -53,6 +54,9 @@ export default function Overview({ product }) {
             currentStyle={currentStyle}
             select={select}
           />
+          {currentStyle !== '' &&
+            <Cart currentStyle={currentStyle} />
+          }
           <ShareIcon />
         </div>
       </div>
