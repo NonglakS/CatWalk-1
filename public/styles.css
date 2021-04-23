@@ -3,12 +3,14 @@
 }
 
 /* Product Styles */
-@media (max-width: 650px) {
-  .carousel {
-    width:auto;
-    height:auto;
-  }
-}
+/* @media (max-width: 650px) {
+
+} */
+
+/* .carousel-item {
+  position: relative;
+  height:100%;
+} */
 
 .thumbnails {
   position: absolute;

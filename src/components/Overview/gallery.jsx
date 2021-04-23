@@ -2,7 +2,9 @@ import React from 'react';
 import Thumbnails from './thumbnails.jsx'
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import { Carousel } from 'react-bootstrap';
-import Vertical from './vertical.jsx'
+// import Vertical from './vertical.jsx'
+// import { Carousel } from 'react-responsive-carousel';
+// import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 function Gallery({ currentStyle }) {
 
@@ -15,13 +17,13 @@ function Gallery({ currentStyle }) {
 
   return (
     <div className="main-image" >
-      {/* <Vertical currentStyle={currentStyle} /> */}
-      <div className="thumbnails"><Thumbnails /></div>
+
+      {/* <div className="thumbnails"><Thumbnails /></div> */}
       <Carousel>
         {currentStyle.photos.map((photo) => {
           return (
             <Carousel.Item style={{ 'height': "600px" }}>
-              <div className="d-flex justify-content-center">
+              <div className="d-flex h-100 align-items-center justify-content-center">
                 <img
                   className="d-block w-100 align-middle"
                   src={photo.url}
