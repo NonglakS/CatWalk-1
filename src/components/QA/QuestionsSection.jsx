@@ -6,13 +6,13 @@ import AddQuestion from './AddQuestion.jsx';
 import Questions from './Questions.jsx';
 import Answers from './Answers.jsx';
 
-export default function QuestionsSection() {
+export default function QuestionsSection({productName}) {
   const urlAddOn = 'qa/questions?product_id=13025';
   const [allQuestions, setAllQuestions] = useState('');
   const [questionsRendered, setQuestionsRendered] = useState(6);
   const [displayedQuestions, setDisplayedQuestions] = useState('');
 
-  const renderQuestions = function (questionArray) {
+  const renderQuestions = function (productName) {
     const questions = [];
     for (let i = 0; i < questionsRendered; i++) {
       if (questionArray[i] === undefined) {
@@ -45,7 +45,7 @@ export default function QuestionsSection() {
       {displayedQuestions
       && displayedQuestions.map((data) => <Questions key={data.toString()} question={data} />)}
       <button className="display-answers" type="submit" onClick={() => renderQuestions(allQuestions.results)}> MORE ANSWERED QUESTIONS </button>
-      <AddQuestion />
+      <AddQuestion product={13025} productName={productName} />
     </>
   );
 }
