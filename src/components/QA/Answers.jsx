@@ -21,23 +21,20 @@ function Answers({ answer }) {
 
   return (
     <div>
-      <div>
-        <text className="qa-header">
-          A:&nbsp;&nbsp;
+      <text className="qa-header">
+        A:&nbsp;&nbsp;
+      </text>
+      {strReplace(answer.body)}
+      <br />
+      <div className="response-text">
+        <text>
+          {answer.answerer_name}
+          {Moment(answer.date).format('MMMM Do YYYY')}
         </text>
-        {strReplace(answer.body)}
-        <br />
-        <div className="response-text">
-          <text>
-            {answer.answerer_name}
-            {' '}
-            {Moment(answer.date).format('MMMM Do YYYY')}
-          </text>
-          <FaGripLinesVertical /> Helpful?
-          <AnswerHelpful answerId={answer.id} answerHelpfulness={answer.helpfulness} />
-        </div>
-        <button className="report-btn" type="submit">Report</button>
+        <FaGripLinesVertical /> Helpful?
+        <AnswerHelpful answerId={answer.id} answerHelpfulness={answer.helpfulness} />
       </div>
+      <button className="report-btn" type="submit">Report</button>
     </div>
   );
 }

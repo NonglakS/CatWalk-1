@@ -42,11 +42,11 @@ export default function QuestionsSection() {
     <>
       <h3>Questions and Answers</h3>
       <div className="questions-module">
+        <QuestionsSearch questions={allQuestions} />
         <div className="question-body">
-          <QuestionsSearch />
           {displayedQuestions
       && displayedQuestions.map((data) => <Questions key={data.toString()} question={data} />)}
-          <button className="display-answers" type="submit" onClick={() => renderQuestions(allQuestions.results)}> MORE ANSWERED QUESTIONS </button>
+          <button className="display-answers" type="submit" onClick={() => renderQuestions(allQuestions.results)}> MORE QUESTIONS </button>
         </div>
       </div>
       <AddQuestion />
