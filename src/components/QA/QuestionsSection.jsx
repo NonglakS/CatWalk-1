@@ -6,13 +6,13 @@ import AddQuestion from './AddQuestion.jsx';
 import Questions from './Questions.jsx';
 import Answers from './Answers.jsx';
 
-export default function QuestionsSection({productName}) {
-  const urlAddOn = 'qa/questions?product_id=13025';
+export default function QuestionsSection() {
+  const urlAddOn = 'qa/questions?product_id=13025&count=1000';
   const [allQuestions, setAllQuestions] = useState('');
   const [questionsRendered, setQuestionsRendered] = useState(6);
   const [displayedQuestions, setDisplayedQuestions] = useState('');
 
-  const renderQuestions = function (productName) {
+  const renderQuestions = function (questionArray) {
     const questions = [];
     for (let i = 0; i < questionsRendered; i++) {
       if (questionArray[i] === undefined) {
@@ -41,11 +41,15 @@ export default function QuestionsSection({productName}) {
   return (
     <>
       <h3>Questions and Answers</h3>
-      <QuestionsSearch />
-      {displayedQuestions
+      <div className="questions-module">
+        <div className="question-body">
+          <QuestionsSearch />
+          {displayedQuestions
       && displayedQuestions.map((data) => <Questions key={data.toString()} question={data} />)}
-      <button className="display-answers" type="submit" onClick={() => renderQuestions(allQuestions.results)}> MORE ANSWERED QUESTIONS </button>
-      <AddQuestion product={13025} productName={productName} />
+          <button className="display-answers" type="submit" onClick={() => renderQuestions(allQuestions.results)}> MORE ANSWERED QUESTIONS </button>
+        </div>
+      </div>
+      <AddQuestion />
     </>
   );
 }

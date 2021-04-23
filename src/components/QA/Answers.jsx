@@ -38,7 +38,6 @@ function Answers({ answer }) {
         </div>
         <button className="report-btn" type="submit">Report</button>
       </div>
-      <br />
     </div>
   );
 }
