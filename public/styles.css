@@ -3,6 +3,12 @@
 }
 
 /* Product Styles */
+@media (max-width: 650px) {
+  .carousel {
+    width:auto;
+    height:auto;
+  }
+}
 
 .thumbnails {
   position: absolute;
@@ -11,7 +17,7 @@
 
 .mainview, .col{
   padding: 10px;
-  height: 650px;
+  max-height: 650px;
 }
 
 span#sale-price {
