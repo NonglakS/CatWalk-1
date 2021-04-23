@@ -66,7 +66,9 @@ function Cart({ currentStyle }) {
         headers: { Authorization: process.env.TOKEN }
       };
 
-      axios(options).then(res => console.log("Added an item to cart! Response code : ", res.status))
+      axios(options)
+        .then(res => console.log("Added an item to cart! Response code : ", res.status))
+        .catch((err) => { console.log(err) })
 
     }
   }
