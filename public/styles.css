@@ -2,11 +2,16 @@
   margin: 0 100px;
 }
 
-
 /* Product Styles */
 
 .thumbnails {
+  position: absolute;
   left: 0px;
+}
+
+.mainview, .col{
+  padding: 10px;
+  height: 650px;
 }
 
 span#sale-price {
