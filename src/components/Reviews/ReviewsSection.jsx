@@ -2,16 +2,16 @@ import React, { useState, useEffect, useRef } from 'react';
 import getData from '../../helperFunctions/getData.js';
 import ReviewTile from './ReviewTile.jsx';
 import Modal from '../../shared-components/Modal.jsx';
-import ReviewForm from './ReviewForm';
+import ReviewForm from './ReviewForm.jsx';
 
-export default function ReviewsSection({ reviewsMeta }) {
+export default function ReviewsSection({ reviewsMeta, name }) {
   const [reviews, setReviews] = useState([]);
   const [reviewCount, setReviewCount] = useState(2);
   const [renderedReviews, setRenderedReviews] = useState([]);
   const modal = useRef(null);
 
   useEffect(() => {
-    getData('reviews?product_id=13023&count=10000', (err, res) => {
+    getData(`reviews?product_id=13023&count=10000`, (err, res) => {
       if (err) {
         console.log('err', err);
       } else {
@@ -27,7 +27,7 @@ export default function ReviewsSection({ reviewsMeta }) {
   };
 
   return (
-    <div className="review-section">
+    <div className="ratings-and-reviews">
       <div className="ratings">
         <h3>Review Stats</h3>
         {reviewsMeta.characteristics && (
@@ -40,20 +40,22 @@ export default function ReviewsSection({ reviewsMeta }) {
             </div>
           )))}
       </div>
-      <div className="reviews">
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
         <h3>Review Summaries</h3>
-        {reviews.results
-          && renderedReviews.map((review) => (
-            <ReviewTile review={review} />
-          ))}
-        {reviews.results && reviewCount < reviews.results.length && (
-          <button className="show-more-btn" type="button" onClick={() => rerenderReviews()}>More Reviews</button>
-        )}
-        <button type="button" onClick={() => modal.current.open()}>
+        <div className="reviews">
+          {reviews.results
+            && renderedReviews.map((review) => (
+              <ReviewTile review={review} />
+            ))}
+          {reviews.results && reviewCount < reviews.results.length && (
+            <button className="show-more-btn" type="button" onClick={() => rerenderReviews()}>More Reviews</button>
+          )}
+        </div>
+        <button className="show-more-btn" type="button" onClick={() => modal.current.open()}>
           Add Review
         </button>
         <Modal ref={modal} fade>
-          <ReviewForm id={13023} />
+          <ReviewForm name={name} />
         </Modal>
       </div>
     </div>

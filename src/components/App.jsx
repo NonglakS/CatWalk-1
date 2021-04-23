@@ -36,7 +36,7 @@ export default function App(props) {
       <Overview product={product}/>}
       <h3>Product Review Score: {reviewScore}</h3>
       <QuestionsSection />
-      <ReviewsSection reviewsMeta={reviewsMeta} />
+      <ReviewsSection reviewsMeta={reviewsMeta} name={product.name} />
     </>
   );
 }
