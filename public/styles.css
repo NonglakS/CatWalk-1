@@ -26,7 +26,8 @@ span#sale-price {
    padding-left: 10px;
  }
 
- #fb-icon, #twitter-icon, #pinterest-icon, #size-options, #qty-options{
+ #fb-icon, #twitter-icon, #pinterest-icon,
+ #size-options, #qty-options, #add-cart, #add, #fav{
    padding: 10px;
  }
 

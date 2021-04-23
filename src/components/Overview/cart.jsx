@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Select from "react-select";
-
+import { Button, Icon } from 'semantic-ui-react';
 
 
 function Cart({ currentStyle }) {
@@ -50,7 +50,7 @@ function Cart({ currentStyle }) {
     <>
       <div className="row  size-qty-selector">
         <div className="col-8 select-size">
-          <Select id="size-options" options={sizeOptions} placeholder={outOfStock ? "Out of Stock" : "Select size"} onChange={handleSizeChange} />
+          <Select id="size-options" options={sizeOptions} placeholder={outOfStock ? "Out of Stock" : "SELECT SIZE"} onChange={handleSizeChange} />
         </div>
         <div className="col-4 select-quantity">
           {!disable
@@ -59,8 +59,13 @@ function Cart({ currentStyle }) {
         </div>
       </div>
       <div className="row cart">
-        <div className="col-10 add-to-bag ">select-size</div>
-        <div className="col-2 add-to-collection">qty</div>
+        <div className="col-9 add-to-bag " id="add">
+          <Button basic icon='plus' content='ADD TO CART       ' labelPosition='right' />
+        </div>
+        <div className="col add-to-collection" id="fav">
+          <Button basic>
+            <Icon name='star outline' />
+          </Button></div>
       </div>
     </>
   )
