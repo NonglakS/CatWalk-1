@@ -19,7 +19,7 @@ function Gallery({ currentStyle }) {
     <div className="main-image" >
 
       {/* <div className="thumbnails"><Thumbnails /></div> */}
-      <Carousel>
+      <Carousel interval={null}>
         {currentStyle.photos.map((photo) => {
           return (
             <Carousel.Item style={{ 'height': "600px" }}>
