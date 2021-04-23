@@ -55,7 +55,7 @@ export default function ReviewsSection({ reviewsMeta, name }) {
           Add Review
         </button>
         <Modal ref={modal} fade>
-          <ReviewForm name={name} />
+          <ReviewForm name={name} characteristics={reviewsMeta.characteristics} />
         </Modal>
       </div>
     </div>

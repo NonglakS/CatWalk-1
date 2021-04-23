@@ -132,6 +132,13 @@ span#sale-price {
 
 .form-label {
   margin-right: 10px;
+  margin-bottom: 0px;
+  vertical-align: top;
+}
+
+.radio-label {
+  margin-right: 40px;
+  margin-bottom: 0px;
   vertical-align: top;
 }
 
@@ -154,7 +161,14 @@ span#sale-price {
 
 .radio {
   display: flex;
-  justi
+  align-items: center;
+  margin-bottom: 10px;
+  height: 30px;
+}
+.radio-btns {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
 }
 
 
