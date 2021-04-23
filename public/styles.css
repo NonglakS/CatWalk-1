@@ -2,24 +2,10 @@
   margin: 0 100px;
 }
 
-/* Product Styles */
-/* @media (max-width: 650px) {
-
-} */
-
-/* .carousel-item {
-  position: relative;
-  height:100%;
-} */
-
 .thumbnails {
   position: absolute;
   left: 0px;
-}
-
-.mainview, .col{
-  padding: 10px;
-  max-height: 650px;
+  z-index: 99999;
 }
 
 span#sale-price, div#select-size-reminder {
