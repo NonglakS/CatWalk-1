@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Select from "react-select";
 import { Button, Icon } from 'semantic-ui-react';
+import axios from 'axios';
 
 
 function Cart({ currentStyle }) {
@@ -9,7 +10,7 @@ function Cart({ currentStyle }) {
   const [qtyOptions, setQtyOptions] = useState([]);
   const [outOfStock, setOutOfStock] = useState(false);
   const [disable, setDisable] = useState(true);
-  const [currentVal, setCurrentVal] = useState({ label: 1, value: 1 })
+  const [currentVal, setCurrentVal] = useState({ label: 1, value: 0, sku: "" })
 
   const tempSize = [];
 
@@ -17,7 +18,7 @@ function Cart({ currentStyle }) {
 
     for (const key in currentStyle.skus) {
       if (Number(currentStyle.skus[key].quantity) > 0) {
-        tempSize.push({ value: currentStyle.skus[key].quantity, label: currentStyle.skus[key].size })
+        tempSize.push({ value: currentStyle.skus[key].quantity, label: currentStyle.skus[key].size, sku: key })
       }
     }
 
@@ -27,7 +28,7 @@ function Cart({ currentStyle }) {
 
   var handleSizeChange = (e) => {
     setDisable(false);
-    setCurrentVal({ label: 1, value: 1 });
+    setCurrentVal({ label: 1, value: 1, sku: e.sku });
     if (e.value < 15) {
       setQtyOptions(updateRange(e.value));
     } else {
@@ -36,7 +37,7 @@ function Cart({ currentStyle }) {
   }
 
   var handleQtyChange = (e) => {
-    setCurrentVal(e)
+    setCurrentVal({ label: e.value, value: e.value, sku: currentVal.sku })
   }
 
   var updateRange = (max) => {
@@ -44,6 +45,26 @@ function Cart({ currentStyle }) {
     return arr.map((val) => { return { value: val, label: val } });
   }
 
+  var handleAddToCart = (e) => {
+    if (!currentVal.value) {
+      console.log('Please select size above the dropdown.')
+      //trigger drop down to open
+    } else {
+
+      const options = {
+        method: 'post',
+        url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/cart',
+        data: {
+          sku_id: currentVal.sku,
+          count: currentVal.value
+        },
+        headers: { Authorization: process.env.TOKEN }
+      };
+
+      axios(options).then(res => console.log("response", res.status))
+
+    }
+  }
 
 
   return (
@@ -60,7 +81,8 @@ function Cart({ currentStyle }) {
       </div>
       <div className="row cart">
         <div className="col-9 add-to-bag " id="add">
-          <Button basic icon='plus' content='ADD TO CART       ' labelPosition='right' />
+
+          <Button basic icon='plus' content='ADD TO CART' labelPosition='right' onClick={handleAddToCart} disabled={outOfStock ? true : false} />
         </div>
         <div className="col add-to-collection" id="fav">
           <Button basic>
