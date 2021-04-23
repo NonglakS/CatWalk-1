@@ -72,8 +72,10 @@ span#sale-price {
 }
 
 .stars {
-  display: 'flex';
-  justify-content: 'start';
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  height: 15px;
 }
 
 .review-summary {

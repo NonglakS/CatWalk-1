@@ -5,6 +5,7 @@ import buildStars from '../../helperFunctions/buildStars.js';
 export default function ReveiwForm({ name }) {
   const [rating, setRating] = useState(0);
   const [stars, setStars] = useState([false, false, false, false, false]);
+  const ratingExplanations = ['', 'Poor', 'Fair', 'Average', 'Good', 'Great'];
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,18 +21,22 @@ export default function ReveiwForm({ name }) {
   return (
     <>
       <h5>Write Your Review</h5>
-      <h6>
-        About the
+      <h6 style={{ marginBottom: '20px' }}>
+        About the&nbsp;
         {name}
       </h6>
       <form onSubmit={handleSubmit}>
-        <div className="stars">
-          {stars.map((star, index) => {
-            if (star) {
-              return <button className="star-selector" type="button" onClick={() => handleStarClick(index)}><FaStar color="gold" /></button>;
-            }
-            return <button className="star-selector" type="button" onClick={() => handleStarClick(index)}><FaRegStar /></button>;
-          })}
+        <div className="form-row">
+          <label className="form-label">Select your rating*:</label>
+          <div className="stars">
+            {stars.map((star, index) => {
+              if (star) {
+                return <button className="star-selector" type="button" onClick={() => handleStarClick(index)}><FaStar color="gold" /></button>;
+              }
+              return <button className="star-selector" type="button" onClick={() => handleStarClick(index)}><FaRegStar /></button>;
+            })}
+            <div style={{ marginLeft: '5px' }}>{ratingExplanations[rating]}</div>
+          </div>
         </div>
 
         <div className="form-row">
