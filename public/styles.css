@@ -8,6 +8,11 @@
   z-index: 99999;
 }
 
+button.button-thumbnail {
+  border: none;
+}
+
+
 span#sale-price, div#select-size-reminder {
 
   color: red;
