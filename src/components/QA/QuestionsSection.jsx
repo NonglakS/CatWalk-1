@@ -7,9 +7,9 @@ import Questions from './Questions.jsx';
 import Answers from './Answers.jsx';
 
 export default function QuestionsSection() {
-  const urlAddOn = 'qa/questions?product_id=13024';
+  const urlAddOn = 'qa/questions?product_id=13025';
   const [allQuestions, setAllQuestions] = useState('');
-  const [questionsRendered, setQuestionsRendered] = useState(4);
+  const [questionsRendered, setQuestionsRendered] = useState(6);
   const [displayedQuestions, setDisplayedQuestions] = useState('');
 
   const renderQuestions = function (questionArray) {
@@ -38,18 +38,13 @@ export default function QuestionsSection() {
     });
   }, []);
 
-
   return (
     <>
       <h3>Questions and Answers</h3>
       <QuestionsSearch />
       {displayedQuestions
       && displayedQuestions.map((data) => <Questions key={data.toString()} question={data} />)}
-      {/* {displayedQuestions
-      && displayedAnswers.map((data) => <Answers key={data.toString()} answer={data} />)} */}
-      <button type="submit" onClick={() => renderQuestions(allQuestions.results)}> MORE ANSWERED QUESTIONS </button>
-      <br />
-
+      <button className="display-answers" type="submit" onClick={() => renderQuestions(allQuestions.results)}> MORE ANSWERED QUESTIONS </button>
       <AddQuestion />
     </>
   );
