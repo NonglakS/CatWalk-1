@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import Thumbnails from './thumbnails.jsx'
-import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import { Carousel } from 'react-bootstrap';
 
 
@@ -10,7 +9,6 @@ function Gallery({ currentStyle }) {
 
   const handleSelect = (selectedIndex, e) => {
     setActiveIndex(selectedIndex);
-    console.log("active item change")
   };
 
   return (
