@@ -7,7 +7,7 @@ import Overview from './Overview/overview.jsx'
 
 
 export default function App(props) {
-  const urlAddOn = 'products/13028';
+  const urlAddOn = 'products/13023';
   const [product, setProduct] = useState('');
   const [reviewsMeta, setReviewsMeta] = useState({});
   const [reviewScore, setReviewScore] = useState(0);
@@ -21,7 +21,7 @@ export default function App(props) {
       }
     });
 
-    getData('reviews/meta?product_id=13023', (err, res) => {
+    getData('reviews/meta?product_id=13032', (err, res) => {
       if (err) {
         console.log('err', err);
       } else {
