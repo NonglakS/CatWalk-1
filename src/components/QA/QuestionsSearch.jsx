@@ -1,9 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function QuestionsSearch(props) {
+  const [inputText, setInputText] = useState('');
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setInputText({ ...values, [name]: value });
+  };
+
   return (
     <div>
-      <input type="text" placeholder="Have a question? Search for answers..." />
+      <form>
+        <input
+          className="search-input"
+          type="text"
+          placeholder="Have a question? Search for answers..."
+          onChange={handleInputChange}
+          name="search"
+        />
+      </form>
     </div>
   );
 }

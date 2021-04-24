@@ -10,7 +10,7 @@ export default function ReactPic({ url }) {
         <img className="thumbnail" src={url} alt="associated with review" style={{ height: '75px', width: '75px' }} />
       </button>
       <Modal ref={modal} fade>
-        <img src={url} alt="" style={{ display: 'block', marginLeft: 'auto', marginRight: 'auto' }}/>
+        <img src={url} alt="" style={{ display: 'block', marginLeft: 'auto', marginRight: 'auto' }} />
       </Modal>
     </>
   );
