@@ -8,7 +8,8 @@ import ShareIcon from './shareIcon.jsx';
 import Cart from './cart.jsx';
 
 
-export default function Overview({ product }) {
+
+export default function Overview({ product, reviewScore }) {
 
   const [styles, setStyles] = useState('');
   const [currentStyle, setCurrentStyle] = useState('');
@@ -38,10 +39,18 @@ export default function Overview({ product }) {
 
   return (
     <div className="overview container ">
+      <div className="row">
+        <div className="col logo-bar">LOGO</div>
+      </div>
+      <div><br/></div>
       <div className="row mainview">
-        <div className="col-md-7 my-auto d-flex justify-content-center"><Gallery /></div>
+        <div className="col-md-7 my-auto d-flex justify-content-center">
+          {currentStyle &&
+            <Gallery currentStyle={currentStyle} />}
+        </div>
         <div className="col product-information">
           <ProductInfo
+            reviewScore={reviewScore}
             product={product}
             styles={styles}
             currentStyle={currentStyle} />

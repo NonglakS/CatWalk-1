@@ -1,73 +1,82 @@
-import React,  {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import getData from '../../helperFunctions/getData.js';
+import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md'
+
+
+function Thumbnails({ currentStyle, handleSelect, activeIndexArray, activeIndex, scrollUp, scrollDown }) {
 
 
 
-// future inplementation,  pass style id as a props.
-function Thumbnails () {
-
-  const [thumbnails, setThumbnails] =  useState([]);
-  const [offScale, setOffScale] = useState(false);
-
-  useEffect(()=>{
-    let getStyleUrl = `products/13023/styles`
-    getData(getStyleUrl, (err, res) => {
-      err ? console.log('ERROR', err) : setThumbnails(res.data.results[0].photos);
-      // if there's more 7 thumbnails, have arrow buttons to scroll up-down
-      if (res.data.results[0].photos.length > 7) {
-        setOffScale(true)
-      }
-    })
-  }, [])
-
-
+  const N = currentStyle.photos.length;
+  
   var style_img = {
-    height: '75px',
-    width: '75px'
-  }
+    height: '60px',
+    width: '60px'
+  };
 
   var style_thumbnail = {
     listStyleType: 'none',
     border: '0'
+  };
+
+  var show = (arr) => {
+
+    for (var i = 0; i < currentStyle.photos.length; i++) {
+      document.querySelector(`#index_${i}`).style.display = 'none';
+    }
+    for (var i = 0; i < 7; i++) {
+      document.querySelector(`#index_${arr[i]}`).style.display = 'list-item';
+    }
   }
 
+  useEffect(() => {
+
+    if (N > 7) {
+    show(activeIndexArray);
+    var arr = activeIndexArray.slice(0, 7);
+    if (arr[0] === 0) {
+      document.querySelector('div#arrow-up').style.display = "none";
+    } else if (arr[6] === currentStyle.photos.length - 1) {
+      document.querySelector('div#arrow-down').style.display = "none";
+    } else {
+      document.querySelector('div#arrow-up').style.display = "";
+      document.querySelector('div#arrow-down').style.display = "";
+    }
+  }
+
+  }, [currentStyle, activeIndexArray]);
+
+  const style = { fontSize: "3em" }
 
   return (
     <div>
-      { offScale && <UpButton /> }
-      <ul>
-        {thumbnails.slice(0,6).map(photo => {
-          return (
-            <li style={style_thumbnail}>
-              <button className="button-thumbnail">
-                <img src={photo.thumbnail_url} alt="" style={style_img}/>
-              </button>
-            </li>
+      {currentStyle.photos !== undefined &&
+        <ul>
+          {currentStyle.photos.length > 7
+            ? <div className="col justify-content-center"
+              id="arrow-up" aria-hidden={true} >
+              <MdKeyboardArrowUp style={style} onClick={scrollUp} /></div>
+            : null
+          }
+          {currentStyle.photos.map((photo, index) => {
+            return (
+              <li style={style_thumbnail}>
+                <button id={`index_${index}`} className="button-thumbnail"
+                  onClick={(e) => { handleSelect(index, e) }}>
+                  <img src={photo.thumbnail_url} alt="thumbnail" style={style_img} />
+                </button>
+              </li>
             )
-        })}
-      </ul>
-      { offScale && <DownButton /> }
+          })}
+          {currentStyle.photos.length > 7
+            ? <div className="col justify-content-center" id="arrow-down" >
+              <MdKeyboardArrowDown style={style} onClick={scrollDown} /></div>
+            : null
+          }
+        </ul>
+      }
     </div>
   )
 }
-
-
-function UpButton () {
-  return (
-    <button id="button-up">
-      <img src="https://img.icons8.com/android/24/000000/sort-up.png"/>
-    </button>
-  )
-}
-
-
-function DownButton () {
-  return (
-    <button id="button-up">
-      <img src="https://img.icons8.com/android/24/000000/sort-up.png"/>
-    </button>
-  )
-}
-
 
 export default Thumbnails;
