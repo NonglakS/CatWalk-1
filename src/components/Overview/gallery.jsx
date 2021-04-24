@@ -7,6 +7,7 @@ import { FaCheck } from 'react-icons/fa';
 function Gallery({ currentStyle }) {
 
   const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndexArray, setActiveIndexArray] = useState([0, 1, 2, 3, 4, 5, 6]);
 
   const highLightThumbnail = (index) => {
     var elem = document.getElementsByClassName('button-thumbnail');
@@ -32,19 +33,35 @@ function Gallery({ currentStyle }) {
     var nextIcon = document.querySelector('.carousel-control-next-icon');
 
     if (activeIndex === 0) {
-
       prevIcon.style.display = 'none';
-
     } else if (activeIndex === currentStyle.photos.length - 1) {
-
       nextIcon.style.display = 'none';
-
     } else {
-
       prevIcon.style.display = 'inline-block';
       nextIcon.style.display = 'inline-block';
-
     }
+
+    // active Index array for show / hide thumbnail
+    if (currentStyle.photos.length < 7) {
+      setActiveIndexArray(Array.from(Array(currentStyle.photos.length).keys()));
+    }
+
+    if (activeIndexArray.indexOf(activeIndex) === -1
+      && activeIndex !== activeIndexArray.length - 1) {
+      if (activeIndex > activeIndexArray[activeIndexArray.length - 1]
+        && activeIndex > activeIndexArray[0]) {
+        var arr = activeIndexArray.slice(0, activeIndexArray.length);
+        arr.shift();
+        arr.push(activeIndex);
+        setActiveIndexArray(arr);
+      } else {
+        var arr = activeIndexArray.slice(0, activeIndexArray.length);
+        arr.pop();
+        arr.unshift(activeIndex);
+        setActiveIndexArray(arr);
+      }
+    }
+
 
   }, [activeIndex]);
 
@@ -54,6 +71,7 @@ function Gallery({ currentStyle }) {
       <div className="thumbnails d-flex h-100 align-items-center justify-content-center align-middle ">
         <Thumbnails currentStyle={currentStyle}
           activeIndex={activeIndex}
+          activeIndexArray={activeIndexArray}
           handleSelect={handleSelect} />
       </div>
       <Carousel
@@ -80,4 +98,3 @@ function Gallery({ currentStyle }) {
 }
 
 export default Gallery;
-{/* <img src="https://img.icons8.com/material-sharp/24/000000/zoom-in--v1.png"/> */}

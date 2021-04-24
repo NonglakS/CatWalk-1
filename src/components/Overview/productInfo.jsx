@@ -32,7 +32,6 @@ function ProductInfo({ product, currentStyle, reviewScore }) {
           })}
           <a id="read-all-reviews">Read all reviews</a>
         </div>
-        {/* <span className="col" id="readd-all-review">Read all reviews</span> */}
       </div>
       <div id="category">{product.category
         && product.category.toUpperCase()}</div>
