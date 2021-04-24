@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Answers from './Answers.jsx';
 import QuestionHelpful from './QuestionHelpful.jsx';
+import AddAnswer from './AddAnswer.jsx'
 
 function Questions({ question }) {
   const [allAnswers, setAllAnswers] = useState('');
@@ -49,6 +50,10 @@ function Questions({ question }) {
       <QuestionHelpful
         questionHelpfulness={question.question_helpfulness}
         questionId={question.question_id}
+      />
+      <AddAnswer
+        questionId={question.question_id}
+        questionBody={question.question_body}
       />
       {displayedAnswers
       && displayedAnswers.map((data) => <Answers key={data.toString()} answer={data} />)}
