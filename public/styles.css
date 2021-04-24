@@ -47,6 +47,10 @@ button.button-thumbnail {
   border: none;
 }
 
+div#arrow-up, div#arrow-down {
+  opacity: 0.5;
+}
+
 .carousel-control-prev {
   left: 17%;
 }

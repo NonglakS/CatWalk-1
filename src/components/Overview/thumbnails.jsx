@@ -5,6 +5,8 @@ import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md'
 
 function Thumbnails({ currentStyle, handleSelect, activeIndexArray, activeIndex, scrollUp, scrollDown }) {
 
+
+  const N = currentStyle.photos.length;
   var style_img = {
     height: '60px',
     width: '60px'
@@ -26,9 +28,23 @@ function Thumbnails({ currentStyle, handleSelect, activeIndexArray, activeIndex,
   }
 
   useEffect(() => {
+
+    if (N > 7) {
     show(activeIndexArray);
+    var arr = activeIndexArray.slice(0, 7);
+    if (arr[0] === 0) {
+      document.querySelector('div#arrow-up').style.display = "none";
+    } else if (arr[6] === currentStyle.photos.length - 1) {
+      document.querySelector('div#arrow-down').style.display = "none";
+    } else {
+      document.querySelector('div#arrow-up').style.display = "";
+      document.querySelector('div#arrow-down').style.display = "";
+    }
+  }
+
   }, [currentStyle, activeIndexArray]);
 
+  const style = { fontSize: "3em" }
 
   return (
     <div>
@@ -37,7 +53,7 @@ function Thumbnails({ currentStyle, handleSelect, activeIndexArray, activeIndex,
           {currentStyle.photos.length > 7
             ? <div className="col justify-content-center"
               id="arrow-up" aria-hidden={true} >
-              <MdKeyboardArrowUp size={25} onClick={scrollUp} /></div>
+              <MdKeyboardArrowUp style={style} onClick={scrollUp} /></div>
             : null
           }
           {currentStyle.photos.map((photo, index) => {
@@ -52,7 +68,7 @@ function Thumbnails({ currentStyle, handleSelect, activeIndexArray, activeIndex,
           })}
           {currentStyle.photos.length > 7
             ? <div className="col justify-content-center" id="arrow-down" >
-              <MdKeyboardArrowDown size={25} onClick={scrollDown} /></div>
+              <MdKeyboardArrowDown style={style} onClick={scrollDown} /></div>
             : null
           }
         </ul>
