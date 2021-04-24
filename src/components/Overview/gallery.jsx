@@ -1,22 +1,60 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import Thumbnails from './thumbnails.jsx'
 import { Carousel } from 'react-bootstrap';
+import { FaCheck } from 'react-icons/fa';
 
 
 function Gallery({ currentStyle }) {
 
   const [activeIndex, setActiveIndex] = useState(0);
 
+  const highLightThumbnail = (index) => {
+    var elem = document.getElementsByClassName('button-thumbnail');
+
+    for (var i = 0; i < elem.length; i++) {
+      elem[i].style.border = 'none';
+    }
+
+    elem = document.querySelector(`button#index_${index}`);
+    elem.style.border = '5px solid black';
+  };
+
+
   const handleSelect = (selectedIndex, e) => {
     setActiveIndex(selectedIndex);
+    highLightThumbnail(selectedIndex);
   };
+
+  useEffect(() => {
+    highLightThumbnail(activeIndex);
+
+    var prevIcon = document.querySelector('.carousel-control-prev-icon');
+    var nextIcon = document.querySelector('.carousel-control-next-icon');
+
+    if (activeIndex === 0) {
+
+      prevIcon.style.display = 'none';
+
+    } else if (activeIndex === currentStyle.photos.length - 1) {
+
+      nextIcon.style.display = 'none';
+
+    } else {
+
+      prevIcon.style.display = 'inline-block';
+      nextIcon.style.display = 'inline-block';
+
+    }
+
+  }, [activeIndex]);
 
   return (
     <div className="main-image container" >
 
       <div className="thumbnails d-flex h-100 align-items-center justify-content-center align-middle ">
         <Thumbnails currentStyle={currentStyle}
-        activeIndex={activeIndex} handleSelect={handleSelect} />
+          activeIndex={activeIndex}
+          handleSelect={handleSelect} />
       </div>
       <Carousel
         activeIndex={activeIndex}
@@ -42,3 +80,4 @@ function Gallery({ currentStyle }) {
 }
 
 export default Gallery;
+{/* <img src="https://img.icons8.com/material-sharp/24/000000/zoom-in--v1.png"/> */}

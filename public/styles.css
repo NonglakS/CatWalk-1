@@ -12,6 +12,13 @@ button.button-thumbnail {
   border: none;
 }
 
+.carousel-control-prev {
+  left: 17%;
+}
+
+img.d-block.w-100.align-middle {
+  cursor: url("https://img.icons8.com/material-sharp/24/000000/zoom-in--v1.png"), zoom-in;
+}
 
 span#sale-price, div#select-size-reminder {
 
