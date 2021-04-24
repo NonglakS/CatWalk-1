@@ -1,3 +1,4 @@
+/* eslint-disable no-else-return */
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
@@ -20,12 +21,6 @@ function AddAnswer({ questionId, questionBody }) {
     return re.test(String(email).toLowerCase());
   };
 
-  // const clearForm = () => {
-  //   setValues({
-  //     nickname: '', email: '', question: '', productId: 13025,
-  //   });
-  // };
-
   const postAnswer = (params, callback) => {
     axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/qa/questions/${questionId}/answers`, params, {
       headers: { Authorization: process.env.TOKEN },
@@ -36,7 +31,6 @@ function AddAnswer({ questionId, questionBody }) {
 
   const addItem = (e) => {
     e.preventDefault();
-    console.log(values)
     const { name, email, body } = values;
     if (!name || !email || !body || !validateEmail(email)) {
       setInvalidEntry(true);
@@ -44,11 +38,11 @@ function AddAnswer({ questionId, questionBody }) {
     }
     postAnswer(values, (err, res) => {
       if (err) {
-        console.log('error', err);
+        // eslint-disable-next-line no-useless-return
+        return
       } else {
-        console.log('res', res.data);
+        alert('Answer Submitted');
         setInvalidEntry(false);
-        console.log('valid entry', values);
       }
     });
   };
@@ -57,7 +51,7 @@ function AddAnswer({ questionId, questionBody }) {
     <>
       <button className="add-answer" type="button" onClick={() => modal.current.open()}>ADD AN ANSWER</button>
       <Modal ref={modal} fade>
-        <form id="answer-form">
+        <form id="answer-form" className="submit-answer">
           <text>Submit Your Answer</text>
           <div>Product Name: {questionBody}</div>
           <br />

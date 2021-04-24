@@ -1,3 +1,5 @@
+/* eslint-disable no-useless-return */
+/* eslint-disable no-else-return */
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
@@ -20,11 +22,12 @@ function AddQuestion({ product, productName }) {
     return re.test(String(email).toLowerCase());
   };
 
-  // const clearForm = () => {
-  //   setValues({
-  //     nickname: '', email: '', question: '', productId: 13025,
-  //   });
-  // };
+  const clearForm = (e) => {
+    e.preventDefault();
+    setValues({
+      nickname: '', email: '', question: '',
+    });
+  };
 
   const postQuestion = (params, callback) => {
     axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/qa/questions', params, {
@@ -44,11 +47,11 @@ function AddQuestion({ product, productName }) {
     }
     postQuestion(values, (err, res) => {
       if (err) {
-        console.log('error', err);
+        return;
       } else {
-        console.log('res', res.data);
+        alert('Question Submitted');
         setInvalidEntry(false);
-        console.log('valid entry', values);
+        clearForm();
       }
     });
   };
