@@ -9,7 +9,6 @@ export default function Ratings({ reviewsMeta, reviewScore }) {
   const starRating = makeAverageStars(reviewScore);
   const reviewCount = getReviewCount(reviewsMeta.ratings);
   const recommendPercent = reviewsMeta.recommended ? getRecommendPercent(reviewsMeta.recommended.true, reviewCount) : 0;
-  console.log('recommendPercent', recommendPercent);
   return (
     <>
       <div style={{ display: 'flex' }}>
