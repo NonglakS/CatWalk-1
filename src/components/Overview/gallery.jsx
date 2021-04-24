@@ -95,7 +95,7 @@ function Gallery({ currentStyle }) {
     <div className="main-image container" >
 
       <div className="thumbnails d-flex h-100 align-items-center justify-content-center align-middle ">
-        {currentStyle && <Thumbnails currentStyle={currentStyle}
+        {currentStyle !== undefined && <Thumbnails currentStyle={currentStyle}
           activeIndex={activeIndex}
           activeIndexArray={activeIndexArray}
           handleSelect={handleSelect}
