@@ -8,6 +8,7 @@ import ShareIcon from './shareIcon.jsx';
 import Cart from './cart.jsx';
 
 
+
 export default function Overview({ product, reviewScore }) {
 
   const [styles, setStyles] = useState('');

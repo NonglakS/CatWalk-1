@@ -95,12 +95,12 @@ function Gallery({ currentStyle }) {
     <div className="main-image container" >
 
       <div className="thumbnails d-flex h-100 align-items-center justify-content-center align-middle ">
-        <Thumbnails currentStyle={currentStyle}
+        {currentStyle && <Thumbnails currentStyle={currentStyle}
           activeIndex={activeIndex}
           activeIndexArray={activeIndexArray}
           handleSelect={handleSelect}
           scrollUp={scrollUp}
-          scrollDown={scrollDown} />
+          scrollDown={scrollDown} />}
       </div>
       <Carousel
         activeIndex={activeIndex}

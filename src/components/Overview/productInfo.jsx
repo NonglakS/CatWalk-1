@@ -1,22 +1,10 @@
 import React from 'react';
 import Price from './price.jsx'
 import { FaRegStar, FaStar } from 'react-icons/fa';
+import buildStars from '../../helperFunctions/buildStars.js';
 
 
 function ProductInfo({ product, currentStyle, reviewScore }) {
-
-
-  const buildStars = (rating) => {
-    const total = 5;
-    const stars = [];
-    for (let i = 0; i < rating; i++) {
-      stars.push(true);
-    }
-    for (let i = 0; i < total - rating; i++) {
-      stars.push(false);
-    }
-    return stars;
-  };
 
   const stars = buildStars(reviewScore);
 

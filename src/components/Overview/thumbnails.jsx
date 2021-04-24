@@ -6,7 +6,9 @@ import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md'
 function Thumbnails({ currentStyle, handleSelect, activeIndexArray, activeIndex, scrollUp, scrollDown }) {
 
 
+
   const N = currentStyle.photos.length;
+  
   var style_img = {
     height: '60px',
     width: '60px'
