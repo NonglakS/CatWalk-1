@@ -21,7 +21,7 @@ export default function App(props) {
       }
     });
 
-    getData('reviews/meta?product_id=13032', (err, res) => {
+    getData('reviews/meta?product_id=13023', (err, res) => {
       if (err) {
         console.log('err', err);
       } else {
