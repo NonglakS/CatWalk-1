@@ -27,7 +27,7 @@ export default function QuestionsSection() {
     if (searchQ.length > 0) {
       setSearchedQuestions(searchQ);
     } else {
-      setSearchedQuestions([])
+      setSearchedQuestions([]);
     }
   };
 
@@ -36,24 +36,16 @@ export default function QuestionsSection() {
     if (e.target.value.length > 2) {
       searchQuestions(e.target.value);
       setSearchActivated(true);
+      if (searchedQuestions.length === 0) {
+        setNoResults(true);
+      }
+      setNoResults(false);
     } else {
       setSearchedQuestions([]);
       setSearchActivated(false);
+      setNoResults(false);
     }
   };
-
-  // const handleInputChange = (e) => {
-  //   setInputText(e.target.value);
-  //   if (e.target.value.length > 2) {
-  //     searchQuestions(e.target.value);
-  //     setSearchActivated(true);
-  //   } else if ( e.target.value.length > 2 && searchQuestions()) {
-  //     do soemthing
-  //   } else {
-  //     setSearchedQuestions([]);
-  //     setSearchActivated(false);
-  //   }
-  // };
 
   const renderQuestions = function (questionArray) {
     const questions = [];
@@ -97,6 +89,9 @@ export default function QuestionsSection() {
       </div>
       <div className="questions-module">
         <div className="question-body">
+          {noResults
+            ? <span>No Results Found</span>
+            : null}
           {displayedQuestions && searchedQuestions.length < 1
             ? displayedQuestions.map((data) => <Questions key={data.toString()} question={data} />)
             : searchedQuestions.map((data) => <Questions key={data.toString()} question={data} />)}
