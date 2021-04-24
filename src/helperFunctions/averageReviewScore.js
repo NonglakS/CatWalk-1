@@ -7,6 +7,6 @@ export default function averageReviewScore(scores) {
     totalVotes += Number(scores[score]);
   });
 
-  const average = (totalScore / totalVotes)
+  const average = (totalScore / totalVotes);
   return totalVotes ? Number(average.toFixed(1)) : 0;
 }
