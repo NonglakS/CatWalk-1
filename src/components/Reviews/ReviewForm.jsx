@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FaRegStar, FaStar } from 'react-icons/fa';
 import buildStars from '../../helperFunctions/buildStars.js';
+import axios from 'axios';
 
 const characteristicsExplanations = {
   Size: {
@@ -28,7 +29,7 @@ const ratingExplanations = ['', 'Poor', 'Fair', 'Average', 'Good', 'Great'];
 export default function ReveiwForm({ name, characteristics }) {
   const [stars, setStars] = useState([true, true, true, false, false]);
   const [rating, setRating] = useState(3);
-  const [recommends, setRecommends] = useState('');
+  const [recommend, setRecommend] = useState('');
   const [summary, setSummary] = useState('');
   const [body, setBody] = useState('');
   const [bodyCharsLeft, setBodyCharsLeft] = useState(50);
@@ -41,8 +42,37 @@ export default function ReveiwForm({ name, characteristics }) {
   });
   const [characteristicRatings, setCharacteristicRatings] = useState(startingCharacteristics);
 
+  const createCharacteristicsObj = () => {
+    const result = {};
+    Object.keys(characteristics).forEach((key) => {
+      let thing = characteristics[key];
+      result[thing.id] = Number(characteristicRatings[key]);
+    });
+    return result;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const postCharacteristics = createCharacteristicsObj();
+    const data = {
+      product_id: 13023,
+      rating,
+      summary,
+      body,
+      recommend,
+      name: nickname,
+      email,
+      characteristics: postCharacteristics,
+    };
+    axios({
+      method: 'post',
+      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews',
+      data,
+      headers: { Authorization: process.env.TOKEN },
+    })
+      .then((res) => console.log('successfully posted a new review', res))
+      .catch((err) => console.log('err', err));
   };
 
   const handleStarClick = (index) => {
@@ -52,7 +82,8 @@ export default function ReveiwForm({ name, characteristics }) {
   };
 
   const handleRecommend = (e) => {
-    setRecommends(e.target.value);
+    const value = e.target.value === 'true';
+    setRecommend(value);
   };
 
   const handleCharacteristicRating = (e) => {
@@ -63,8 +94,9 @@ export default function ReveiwForm({ name, characteristics }) {
   };
 
   const handleBodyEntry = (e) => {
+    const text = e.target.value
     if (bodyCharsLeft > 0) {
-      setBodyCharsLeft(bodyCharsLeft - 1);
+      setBodyCharsLeft(50 - text.length);
     }
     setBody(e.target.value);
   };
