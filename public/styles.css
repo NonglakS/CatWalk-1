@@ -155,9 +155,9 @@ span#sale-price, div#select-size-reminder {
   font-weight: 400;
 }
 
-.submit-answer {
+/* .submit-answer {
   display: flex;
-}
+} */
 
 .add-question {
   margin-bottom: 20px;
