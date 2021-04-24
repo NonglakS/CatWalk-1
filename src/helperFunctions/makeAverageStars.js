@@ -1,5 +1,5 @@
 export default function makeAverageStars(score) {
-  const wholeScores = [1, 2, 3, 4, 5];
+  const wholeScores = [0, 1, 2, 3, 4, 5];
   let roundedScore = Math.round(score * 2) / 2;
   const result = [];
   if (wholeScores.includes(roundedScore)) {
