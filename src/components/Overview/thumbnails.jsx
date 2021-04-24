@@ -3,7 +3,7 @@ import getData from '../../helperFunctions/getData.js';
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md'
 
 
-function Thumbnails({ currentStyle, handleSelect, activeIndexArray, activeIndex }) {
+function Thumbnails({ currentStyle, handleSelect, activeIndexArray, activeIndex, scrollUp, scrollDown }) {
 
   var style_img = {
     height: '60px',
@@ -28,7 +28,7 @@ function Thumbnails({ currentStyle, handleSelect, activeIndexArray, activeIndex 
   useEffect(() => {
     show(activeIndexArray);
   }, [currentStyle, activeIndexArray]);
-  
+
 
   return (
     <div>
@@ -37,7 +37,7 @@ function Thumbnails({ currentStyle, handleSelect, activeIndexArray, activeIndex 
           {currentStyle.photos.length > 7
             ? <div className="col justify-content-center"
               id="arrow-up" aria-hidden={true} >
-              <MdKeyboardArrowUp size={25} onClick={() => { console.log("scroll up") }} /></div>
+              <MdKeyboardArrowUp size={25} onClick={scrollUp} /></div>
             : null
           }
           {currentStyle.photos.map((photo, index) => {
@@ -52,7 +52,7 @@ function Thumbnails({ currentStyle, handleSelect, activeIndexArray, activeIndex 
           })}
           {currentStyle.photos.length > 7
             ? <div className="col justify-content-center" id="arrow-down" >
-              <MdKeyboardArrowDown size={25} onClick={() => { console.log("scroll down") }} /></div>
+              <MdKeyboardArrowDown size={25} onClick={scrollDown} /></div>
             : null
           }
         </ul>

@@ -26,6 +26,32 @@ function Gallery({ currentStyle }) {
     highLightThumbnail(selectedIndex);
   };
 
+  const scrollUp = () => {
+    var n = currentStyle.photos.length;
+    var arr = activeIndexArray.slice(0, 7);
+    if (activeIndexArray[0] !== 0) {
+      arr.unshift(arr[0] - 1);
+      arr.pop();
+      setActiveIndexArray(arr);
+      if (arr.indexOf(activeIndex) === -1) {
+        setActiveIndex(arr[6]);
+      }
+    }
+  }
+
+  const scrollDown = () => {
+    var n = currentStyle.photos.length;
+    var arr = activeIndexArray.slice(0, 7);
+    if (activeIndexArray[6] !== n - 1) {
+      arr.shift();
+      arr.push(arr[5] + 1);
+      setActiveIndexArray(arr);
+      if (arr.indexOf(activeIndex) === -1) {
+        setActiveIndex(arr[0]);
+      }
+    }
+  }
+
   useEffect(() => {
     highLightThumbnail(activeIndex);
 
@@ -72,7 +98,9 @@ function Gallery({ currentStyle }) {
         <Thumbnails currentStyle={currentStyle}
           activeIndex={activeIndex}
           activeIndexArray={activeIndexArray}
-          handleSelect={handleSelect} />
+          handleSelect={handleSelect}
+          scrollUp={scrollUp}
+          scrollDown={scrollDown} />
       </div>
       <Carousel
         activeIndex={activeIndex}
