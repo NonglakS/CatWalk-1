@@ -26,7 +26,7 @@ const characteristicsExplanations = {
 
 const ratingExplanations = ['', 'Poor', 'Fair', 'Average', 'Good', 'Great'];
 
-export default function ReveiwForm({ name, characteristics }) {
+export default function ReveiwForm({ name, characteristics, modal }) {
   const [stars, setStars] = useState([true, true, true, false, false]);
   const [rating, setRating] = useState(3);
   const [recommend, setRecommend] = useState('');
@@ -35,6 +35,7 @@ export default function ReveiwForm({ name, characteristics }) {
   const [bodyCharsLeft, setBodyCharsLeft] = useState(50);
   const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
+  const [images, setImages] = useState([]);
   const startingCharacteristics = {};
 
   Object.keys(characteristics).forEach((key) => {
@@ -63,6 +64,7 @@ export default function ReveiwForm({ name, characteristics }) {
       recommend,
       name: nickname,
       email,
+      photos: images,
       characteristics: postCharacteristics,
     };
     axios({
@@ -71,7 +73,9 @@ export default function ReveiwForm({ name, characteristics }) {
       data,
       headers: { Authorization: process.env.TOKEN },
     })
-      .then((res) => console.log('successfully posted a new review', res))
+      .then(() => {
+        modal.current.close();
+      })
       .catch((err) => console.log('err', err));
   };
 
@@ -99,6 +103,11 @@ export default function ReveiwForm({ name, characteristics }) {
       setBodyCharsLeft(50 - text.length);
     }
     setBody(e.target.value);
+  };
+
+  const handleImageInput = (e) => {
+    const newImages = e.target.value.split(',');
+    setImages(newImages);
   };
 
   return (
@@ -283,6 +292,18 @@ export default function ReveiwForm({ name, characteristics }) {
             style={{ width: '75%', marginBottom: '5px' }}
           />
           <div className="disclaimer">For authentication reasons, you will not be emailed</div>
+        </div>
+
+        <div className="form-row">
+          <label className="form-label">upload images (separated by commas)</label>
+          <input
+            type="text"
+            name="image"
+            id="image"
+            placeholder="add image url here"
+            onChange={(e) => handleImageInput(e)}
+            style={{ width: '75%', marginBottom: '5px' }}
+          />
         </div>
 
         <input type="submit" value="Submit" />
