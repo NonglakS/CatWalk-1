@@ -7,7 +7,7 @@ import Questions from './Questions.jsx';
 import Answers from './Answers.jsx';
 
 export default function QuestionsSection() {
-  const urlAddOn = 'qa/questions?product_id=13025';
+  const urlAddOn = 'qa/questions?product_id=13025&count=1000';
   const [allQuestions, setAllQuestions] = useState('');
   const [questionsRendered, setQuestionsRendered] = useState(6);
   const [displayedQuestions, setDisplayedQuestions] = useState('');
@@ -41,10 +41,14 @@ export default function QuestionsSection() {
   return (
     <>
       <h3>Questions and Answers</h3>
-      <QuestionsSearch />
-      {displayedQuestions
+      <div className="questions-module">
+        <QuestionsSearch questions={allQuestions} />
+        <div className="question-body">
+          {displayedQuestions
       && displayedQuestions.map((data) => <Questions key={data.toString()} question={data} />)}
-      <button className="display-answers" type="submit" onClick={() => renderQuestions(allQuestions.results)}> MORE ANSWERED QUESTIONS </button>
+          <button className="display-answers" type="submit" onClick={() => renderQuestions(allQuestions.results)}> MORE QUESTIONS </button>
+        </div>
+      </div>
       <AddQuestion />
     </>
   );

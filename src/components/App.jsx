@@ -33,11 +33,11 @@ export default function App(props) {
 
   return (
     <>
-      {product &&
-      <Overview product={product}/>}
-      <h3>Product Review Score: {reviewScore}</h3>
-      <QuestionsSection />
-      <ReviewsSection reviewsMeta={reviewsMeta} name={product.name} />
+      {product && (
+        <Overview product={product}/>}
+        <QuestionsSection productName={product.name} />
+        <ReviewsSection reviewsMeta={reviewsMeta} name={product.name} />
+      )
     </>
   );
 }
