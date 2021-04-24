@@ -1,4 +1,4 @@
-import averageReviewScore from './averageReviewScore';
+import makeAverageStars from './makeAverageStars';
 
 describe('makeAverageStars', () => {
   it('returns handles whole number scores', () => {
