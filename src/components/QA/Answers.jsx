@@ -25,11 +25,11 @@ function Answers({ answer }) {
       <text className="qa-header">
         A:&nbsp;&nbsp;
       </text>
-      {(answer.body)}
+      {strReplace(answer.body)}
       <br />
       <div className="response-text">
         <text>
-          {answer.answerer_name}
+          {answer.answerer_name}&nbsp;
           {Moment(answer.date).format('MMMM Do YYYY')}
         </text>
         <FaGripLinesVertical /> Helpful?

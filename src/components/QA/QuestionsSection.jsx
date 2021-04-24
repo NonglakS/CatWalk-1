@@ -12,6 +12,7 @@ export default function QuestionsSection() {
   const [displayedQuestions, setDisplayedQuestions] = useState('');
   const [searchedQuestions, setSearchedQuestions] = useState([]);
   const [inputText, setInputText] = useState('');
+  const [searchActivated, setSearchActivated] = useState(false);
 
   const searchQuestions = (input) => {
     const searchQ = [];
@@ -27,6 +28,10 @@ export default function QuestionsSection() {
     setInputText(e.target.value);
     if (e.target.value.length > 2) {
       searchQuestions(e.target.value);
+      setSearchActivated(true);
+    } else {
+      setSearchedQuestions([]);
+      setSearchActivated(false);
     }
   };
 
@@ -74,10 +79,13 @@ export default function QuestionsSection() {
       <div className="questions-module">
         <div className="question-body">
           {displayedQuestions && searchedQuestions.length < 1
-      && displayedQuestions.map((data) => <Questions key={data.toString()} question={data} />)}
-          <button className="display-answers" type="submit" onClick={() => renderQuestions(allQuestions)}> MORE QUESTIONS </button>
+            ? displayedQuestions.map((data) => <Questions key={data.toString()} question={data} />)
+            : searchedQuestions.map((data) => <Questions key={data.toString()} question={data} />)}
+          {searchActivated
+            ? null
+            : <button className="display-questions" type="submit" onClick={() => renderQuestions(allQuestions)}> MORE QUESTIONS </button>}
+          <AddQuestion />
         </div>
-        <AddQuestion />
       </div>
     </>
   );
