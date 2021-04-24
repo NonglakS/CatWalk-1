@@ -38,7 +38,7 @@ export default function App(props) {
         <>
           <Overview product={product} reviewScore={reviewScore} />
           <QuestionsSection productName={product.name} />
-          <ReviewsSection reviewsMeta={reviewsMeta} name={product.name} />
+          <ReviewsSection reviewsMeta={reviewsMeta} name={product.name} reviewScore={reviewScore}/>
         </>
       )}
     </div>
