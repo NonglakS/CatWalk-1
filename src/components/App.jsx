@@ -7,7 +7,7 @@ import Overview from './Overview/overview.jsx'
 
 
 export default function App(props) {
-  const urlAddOn = 'products/13023';
+  const urlAddOn = 'products/13028';
   const [product, setProduct] = useState('');
   const [reviewsMeta, setReviewsMeta] = useState({});
   const [reviewScore, setReviewScore] = useState(0);
@@ -32,14 +32,16 @@ export default function App(props) {
   }, []);
 
   return (
+
     <div>
       {product && (
         <>
-          <Overview product={product} />
+          <Overview product={product} reviewScore={reviewScore} />
           <QuestionsSection productName={product.name} />
           <ReviewsSection reviewsMeta={reviewsMeta} name={product.name} reviewScore={reviewScore}/>
         </>
       )}
     </div>
+
   );
 }
