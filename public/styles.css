@@ -1,6 +1,35 @@
 #app {
   margin: 0 100px;
 }
+.col.logo-bar {
+  background-color: gray;
+  height: 50px;
+  padding: 10px;
+  margin-top: 2.5%;
+  margin-left: 2.5%;
+  font: italic 2em -webkit-xxx-large;
+  text-decoration: underline;
+  color: white;
+  }
+
+div#product-name {
+  font-size: xx-large;
+  font-weight: bold;
+  margin-bottom: 1%;
+}
+
+.col-md-3.style-icon, .share-icon{
+  margin-top: 3%;
+}
+
+
+.product-overview {
+  margin: 2%;
+}
+
+.style-selector, .price {
+  font-size: large;
+}
 
 .thumbnails {
   position: absolute;

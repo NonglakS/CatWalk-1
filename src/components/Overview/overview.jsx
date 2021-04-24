@@ -38,6 +38,10 @@ export default function Overview({ product }) {
 
   return (
     <div className="overview container ">
+      <div className="row">
+        <div className="col logo-bar">LOGO</div>
+      </div>
+      <div><br/></div>
       <div className="row mainview">
         <div className="col-md-7 my-auto d-flex justify-content-center">
           {currentStyle &&
