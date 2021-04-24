@@ -1,15 +1,66 @@
 #app {
   margin: 0 100px;
 }
+.col.logo-bar {
+  background-color: gray;
+  height: 50px;
+  padding: 10px;
+  margin-top: 2.5%;
+  margin-left: 2.5%;
+  font: italic 2em -webkit-xxx-large;
+  text-decoration: underline;
+  color: white;
+}
+
+a#read-all-reviews {
+  margin-left: 5%;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+div#product-name {
+  font-size: xx-large;
+  font-weight: bold;
+  margin-bottom: 1%;
+}
+
+.col-md-3.style-icon, .share-icon{
+  margin-top: 3%;
+}
 
 
-/* Product Styles */
+.product-overview {
+  margin: 2%;
+}
+
+.style-selector, .price {
+  font-size: large;
+}
 
 .thumbnails {
+  position: absolute;
   left: 0px;
+  z-index: 99999;
+}
+
+button.button-thumbnail {
+  border: none;
+}
+
+div#arrow-up, div#arrow-down {
+  opacity: 0.5;
+}
+
+.carousel-control-prev {
+  left: 17%;
+}
+
+img.d-block.w-100.align-middle {
+  cursor: url("https://img.icons8.com/material-sharp/24/000000/zoom-in--v1.png"), zoom-in;
 }
 
 span#sale-price, div#select-size-reminder {
+
   color: red;
   padding-left: 15px;
   padding-top: 10px;
@@ -57,7 +108,7 @@ span#sale-price, div#select-size-reminder {
 }
 
 .ratings {
-  min-width: 250px;
+  min-width: 350px;
 }
 
 .reviews {
@@ -80,6 +131,13 @@ span#sale-price, div#select-size-reminder {
   margin-bottom: 10px;
   font-size: 12px;
   color: rgb(160, 158, 158);
+}
+
+.stars {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  height: 15px;
 }
 
 .review-summary {
@@ -214,6 +272,7 @@ span#sale-price, div#select-size-reminder {
 
  .show-more-btn {
   margin-top: 5px;
+  margin-bottom: 10px;
   align-self: center;
   background-color: white;
  }
@@ -242,6 +301,53 @@ span#sale-price, div#select-size-reminder {
   height: 30px;
   align-items: center;
 }
+
+
+
+
+/* Form Styles */
+
+.form-label {
+  margin-right: 10px;
+  margin-bottom: 0px;
+  vertical-align: top;
+}
+
+.radio-label {
+  margin-right: 40px;
+  margin-bottom: 0px;
+  vertical-align: top;
+}
+
+.star-selector {
+  background-color: #3f3f3f;
+  border: none;
+  padding: 0;
+}
+
+.disclaimer {
+  font-size: 11px;
+  color: #c3c0c0;
+}
+
+.form-row {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.radio {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  height: 30px;
+}
+.radio-btns {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+}
+
 
 
  /* Modal Styles */
@@ -312,7 +418,7 @@ span#sale-price, div#select-size-reminder {
   z-index: 2;
   position: relative;
   margin: 0 auto;
-  background-color: #303030;
+  background-color: #3f3f3f;
   border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 3px;
   overflow-x: hidden;
