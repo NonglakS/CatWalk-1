@@ -4,6 +4,7 @@ import React from 'react';
 import Moment from 'moment';
 import { FaGripLinesVertical } from 'react-icons/fa';
 import AnswerHelpful from './AnswerHelpful.jsx';
+import AnswerReport from './AnswerReport.jsx';
 
 function Answers({ answer }) {
   const strReplace = function (string) {
@@ -34,7 +35,7 @@ function Answers({ answer }) {
         <FaGripLinesVertical /> Helpful?
         <AnswerHelpful answerId={answer.id} answerHelpfulness={answer.helpfulness} />
       </div>
-      <button className="report-btn" type="submit">Report</button>
+      <AnswerReport answerId={answer.id} />
     </div>
   );
 }

@@ -112,6 +112,15 @@ span#sale-price, div#select-size-reminder {
   max-height: 100vh;
 }
 
+.search-bar{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50%;
+  padding: 10px;
+  font-size: 1.5em;
+}
+
 .question-body {
   display: flex;
   flex-direction: column;
@@ -136,6 +145,17 @@ span#sale-price, div#select-size-reminder {
 .qa-header {
   font-size: 18px;
   font-weight: bold;
+}
+
+.add-answer {
+  margin-left: 5px;
+  font-size: .8em;
+  background: none;
+  font-weight: 400;
+}
+
+.submit-answer {
+  display: flex;
 }
 
 .add-question {

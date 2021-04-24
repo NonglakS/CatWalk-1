@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import getData from '../../helperFunctions/getData.js';
-import QuestionsSearch from './QuestionsSearch.jsx';
 import AddQuestion from './AddQuestion.jsx';
 import Questions from './Questions.jsx';
 import Answers from './Answers.jsx';
@@ -11,6 +10,33 @@ export default function QuestionsSection() {
   const [allQuestions, setAllQuestions] = useState('');
   const [questionsRendered, setQuestionsRendered] = useState(6);
   const [displayedQuestions, setDisplayedQuestions] = useState('');
+  const [searchedQuestions, setSearchedQuestions] = useState([]);
+  const [inputText, setInputText] = useState('');
+  const testQuestion = [{
+    question_body: 'mango apple banana',
+  }];
+
+  const searchQuestions = (input) => {
+    const searchQ = [];
+    for (let i = 0; i < allQuestions.length; i++) {
+      if (allQuestions[i].question_body.includes(input)) {
+        searchQ.push(allQuestions[i]);
+      }
+    }
+    setSearchedQuestions(searchQ);
+  };
+
+  const handleInputChange = (e) => {
+    setInputText(e.target.value);
+    if (e.target.value.length > 2) {
+      searchQuestions(e.target.value);
+    }
+  };
+
+  // const test = async () => {
+  //   await searchQuestions(inputText);
+  //   console.log('searched', searchedQuestions);
+  // };
 
   const renderQuestions = function (questionArray) {
     const questions = [];
@@ -32,21 +58,39 @@ export default function QuestionsSection() {
         console.log('err', err);
       } else {
         console.log('res', res.data);
-        setAllQuestions(res.data);
+        setAllQuestions(res.data.results);
         setDisplayedQuestions(res.data.results.slice(0, 4));
       }
     });
   }, []);
 
+  // useEffect(() => {
+  //   // eslint-disable-next-line max-len
+  //   const results = testQuestion.filter((question) => question.question_body.toLowerCase().includes(inputText));
+  //   setSearchedQuestions(results);
+  // }, [inputText]);
+
   return (
     <>
       <h3>Questions and Answers</h3>
       <div className="questions-module">
-        <QuestionsSearch questions={allQuestions} />
+        <form className="search-bar">
+          <input
+            className="search-input"
+            type="text"
+            placeholder="Have a question? Search for answers..."
+            name="inputText"
+            onChange={handleInputChange}
+          />
+        </form>
+      </div>
+      <div>
         <div className="question-body">
-          {displayedQuestions
+          {displayedQuestions && searchedQuestions.length < 1
       && displayedQuestions.map((data) => <Questions key={data.toString()} question={data} />)}
-          <button className="display-answers" type="submit" onClick={() => renderQuestions(allQuestions.results)}> MORE QUESTIONS </button>
+          {inputText.length > 1
+      && searchedQuestions.map((data) => <Questions key={data.toString()} question={data} />)}
+          <button className="display-answers" type="submit" onClick={() => renderQuestions(allQuestions)}> MORE QUESTIONS </button>
         </div>
       </div>
       <AddQuestion />
