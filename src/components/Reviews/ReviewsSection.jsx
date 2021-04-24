@@ -40,20 +40,22 @@ export default function ReviewsSection({ reviewsMeta, name }) {
             </div>
           )))}
       </div>
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
         <h3>Review Summaries</h3>
         <div className="reviews">
           {reviews.results
             && renderedReviews.map((review) => (
               <ReviewTile review={review} />
             ))}
+        </div>
+        <div style={{ display: 'flex' }}>
+          <button className="show-more-btn" type="button" onClick={() => modal.current.open()}>
+            Add Review
+          </button>
           {reviews.results && reviewCount < reviews.results.length && (
             <button className="show-more-btn" type="button" onClick={() => rerenderReviews()}>More Reviews</button>
           )}
         </div>
-        <button className="show-more-btn" type="button" onClick={() => modal.current.open()}>
-          Add Review
-        </button>
         <Modal ref={modal} fade>
           <ReviewForm name={name} characteristics={reviewsMeta.characteristics} modal={modal} />
         </Modal>

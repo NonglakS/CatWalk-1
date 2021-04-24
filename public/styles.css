@@ -185,6 +185,7 @@ span#sale-price, div#select-size-reminder {
 
  .show-more-btn {
   margin-top: 5px;
+  margin-bottom: 10px;
   align-self: center;
   background-color: white;
  }

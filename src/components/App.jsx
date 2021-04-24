@@ -32,12 +32,14 @@ export default function App(props) {
   }, []);
 
   return (
-    <>
+    <div>
       {product && (
-        <Overview product={product}/>}
-        <QuestionsSection productName={product.name} />
-        <ReviewsSection reviewsMeta={reviewsMeta} name={product.name} />
-      )
-    </>
+        <>
+          <Overview product={product} />
+          <QuestionsSection productName={product.name} />
+          <ReviewsSection reviewsMeta={reviewsMeta} name={product.name} />
+        </>
+      )}
+    </div>
   );
 }
