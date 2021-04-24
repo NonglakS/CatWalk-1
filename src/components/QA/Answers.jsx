@@ -25,7 +25,7 @@ function Answers({ answer }) {
       <text className="qa-header">
         A:&nbsp;&nbsp;
       </text>
-      {strReplace(answer.body)}
+      {(answer.body)}
       <br />
       <div className="response-text">
         <text>

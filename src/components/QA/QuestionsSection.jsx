@@ -12,9 +12,6 @@ export default function QuestionsSection() {
   const [displayedQuestions, setDisplayedQuestions] = useState('');
   const [searchedQuestions, setSearchedQuestions] = useState([]);
   const [inputText, setInputText] = useState('');
-  const testQuestion = [{
-    question_body: 'mango apple banana',
-  }];
 
   const searchQuestions = (input) => {
     const searchQ = [];
@@ -32,11 +29,6 @@ export default function QuestionsSection() {
       searchQuestions(e.target.value);
     }
   };
-
-  // const test = async () => {
-  //   await searchQuestions(inputText);
-  //   console.log('searched', searchedQuestions);
-  // };
 
   const renderQuestions = function (questionArray) {
     const questions = [];
@@ -85,8 +77,8 @@ export default function QuestionsSection() {
       && displayedQuestions.map((data) => <Questions key={data.toString()} question={data} />)}
           <button className="display-answers" type="submit" onClick={() => renderQuestions(allQuestions)}> MORE QUESTIONS </button>
         </div>
+        <AddQuestion />
       </div>
-      <AddQuestion />
     </>
   );
 }
