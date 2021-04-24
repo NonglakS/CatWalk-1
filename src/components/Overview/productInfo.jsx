@@ -1,7 +1,7 @@
 import React from 'react';
 import Price from './price.jsx'
 
-function ProductInfo({product, currentStyle}) {
+function ProductInfo({ product, currentStyle }) {
 
   return (
     <div>

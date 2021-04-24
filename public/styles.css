@@ -9,9 +9,10 @@
   left: 0px;
 }
 
-span#sale-price {
+span#sale-price, div#select-size-reminder {
   color: red;
   padding-left: 15px;
+  padding-top: 10px;
  }
 
  span#original-price-cross {
@@ -26,16 +27,26 @@ span#sale-price {
    padding-left: 10px;
  }
 
- #fb-icon, #twitter-icon, #pinterest-icon {
+ #fb-icon, #twitter-icon, #pinterest-icon,
+ #size-options, #add-cart {
    padding: 10px;
+ }
+
+ #qty-options {
+   padding-top: 10px;
+ }
+
+ #add, button.ui.basic.button{
+   padding-left: 25px;
+ }
+
+ button.ui.basic.icon.right.labeled.button {
+   width: 160%;
  }
 
  #fb-icon:hover, #twitter-icon:hover, #pinterest-icon:hover {
   opacity: .5;
 }
-
-
-
 
 /* Review Styles */
 
@@ -99,10 +110,69 @@ span#sale-price {
   margin-bottom: 10px;
   padding: 10px 15px;
 }
+
+.helpful-btn {
+  border: none;
+  background: none;
+  text-decoration: underline;
+}
+
+.report-btn {
+  border: none;
+  background: none;
+  text-decoration: underline;
+  color:rgb(160, 158, 158);
+  margin-bottom: 10px;
+}
+
+.qa-header {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.add-question {
+  margin-bottom: 20px;
+  background-color: aliceblue;
+  font-weight: bold;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin-left: 10px;
+}
+
+.change-questions {
+  border: none;
+  text-decoration:underline;
+  background: none;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.response-text {
+  font-size: 11px;
+  color:rgb(160, 158, 158)
+}
+
+.display-answers {
+  margin-bottom: 20px;
+  background-color: aliceblue;
+  font-weight: bold;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
  .show-more-btn {
   margin-top: 5px;
   align-self: center;
   background-color: white;
+ }
+
+ span#sale-price {
+  color: red;
+  padding-left: 15px;
  }
 
  .thumbnail {
@@ -193,6 +263,10 @@ span#sale-price {
   box-sizing: border-box;
 }
 
+ #fb-icon:hover, #twitter-icon:hover, #pinterest-icon:hover {
+  opacity: .5;
+}
+
 .modal.modal-fade {
   animation: fade-in 1s 1 linear;
   animation-fill-mode: forwards;
@@ -246,7 +320,6 @@ span#sale-price {
   padding: 15px 20px;
   color: #c3c0c0;
 }
-
 
 @keyframes fade-in {
   0% {
