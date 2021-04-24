@@ -19,4 +19,22 @@ describe('makeAverageStars', () => {
     expect(actualArr.length).toEqual(5);
     expect(actualArr).toEqual(expectedArr);
   });
+  it('returns an array of 0s when score is 0', () => {
+    const score = 0;
+
+    const expectedArr = [0,0,0,0,0];
+    const actualArr = makeAverageStars(score);
+
+    expect(actualArr.length).toEqual(5);
+    expect(actualArr).toEqual(expectedArr);
+  });
+  it('returns an array of 0s when there are no reviews', () => {
+    const score = undefined;
+
+    const expectedArr = [0,0,0,0,0];
+    const actualArr = makeAverageStars(score);
+
+    expect(actualArr.length).toEqual(5);
+    expect(actualArr).toEqual(expectedArr);
+  });
 });
