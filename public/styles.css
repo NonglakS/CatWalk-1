@@ -110,6 +110,8 @@ span#sale-price, div#select-size-reminder {
   display: flex;
   width: 100%;
   max-height: 100vh;
+  overflow-y: scroll;
+
 }
 
 .search-bar{

@@ -34,8 +34,8 @@ function Answers({ answer }) {
         </text>
         <FaGripLinesVertical /> Helpful?
         <AnswerHelpful answerId={answer.id} answerHelpfulness={answer.helpfulness} />
+        <AnswerReport answerId={answer.id} />
       </div>
-      <AnswerReport answerId={answer.id} />
     </div>
   );
 }

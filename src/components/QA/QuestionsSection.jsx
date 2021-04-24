@@ -64,16 +64,11 @@ export default function QuestionsSection() {
     });
   }, []);
 
-  // useEffect(() => {
-  //   // eslint-disable-next-line max-len
-  //   const results = testQuestion.filter((question) => question.question_body.toLowerCase().includes(inputText));
-  //   setSearchedQuestions(results);
-  // }, [inputText]);
-
   return (
     <>
       <h3>Questions and Answers</h3>
-      <div className="questions-module">
+      <div className="questions-area">
+
         <form className="search-bar">
           <input
             className="search-input"
@@ -84,12 +79,10 @@ export default function QuestionsSection() {
           />
         </form>
       </div>
-      <div>
+      <div className="questions-module">
         <div className="question-body">
           {displayedQuestions && searchedQuestions.length < 1
       && displayedQuestions.map((data) => <Questions key={data.toString()} question={data} />)}
-          {inputText.length > 1
-      && searchedQuestions.map((data) => <Questions key={data.toString()} question={data} />)}
           <button className="display-answers" type="submit" onClick={() => renderQuestions(allQuestions)}> MORE QUESTIONS </button>
         </div>
       </div>
