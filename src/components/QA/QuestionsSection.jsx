@@ -1,3 +1,5 @@
+/* eslint-disable no-useless-return */
+/* eslint-disable no-else-return */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import getData from '../../helperFunctions/getData.js';
@@ -13,6 +15,7 @@ export default function QuestionsSection() {
   const [searchedQuestions, setSearchedQuestions] = useState([]);
   const [inputText, setInputText] = useState('');
   const [searchActivated, setSearchActivated] = useState(false);
+  const [noResults, setNoResults] = useState(false);
 
   const searchQuestions = (input) => {
     const searchQ = [];
@@ -21,7 +24,11 @@ export default function QuestionsSection() {
         searchQ.push(allQuestions[i]);
       }
     }
-    setSearchedQuestions(searchQ);
+    if (searchQ.length > 0) {
+      setSearchedQuestions(searchQ);
+    } else {
+      setSearchedQuestions([])
+    }
   };
 
   const handleInputChange = (e) => {
@@ -34,6 +41,19 @@ export default function QuestionsSection() {
       setSearchActivated(false);
     }
   };
+
+  // const handleInputChange = (e) => {
+  //   setInputText(e.target.value);
+  //   if (e.target.value.length > 2) {
+  //     searchQuestions(e.target.value);
+  //     setSearchActivated(true);
+  //   } else if ( e.target.value.length > 2 && searchQuestions()) {
+  //     do soemthing
+  //   } else {
+  //     setSearchedQuestions([]);
+  //     setSearchActivated(false);
+  //   }
+  // };
 
   const renderQuestions = function (questionArray) {
     const questions = [];
@@ -52,9 +72,8 @@ export default function QuestionsSection() {
   useEffect(() => {
     getData(urlAddOn, (err, res) => {
       if (err) {
-        console.log('err', err);
+        return;
       } else {
-        console.log('res', res.data);
         setAllQuestions(res.data.results);
         setDisplayedQuestions(res.data.results.slice(0, 4));
       }
