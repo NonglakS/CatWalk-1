@@ -26,9 +26,14 @@ const characteristicsExplanations = {
 const ratingExplanations = ['', 'Poor', 'Fair', 'Average', 'Good', 'Great'];
 
 export default function ReveiwForm({ name, characteristics }) {
-  const [rating, setRating] = useState(0);
-  const [stars, setStars] = useState([false, false, false, false, false]);
+  const [stars, setStars] = useState([true, true, true, false, false]);
+  const [rating, setRating] = useState(3);
   const [recommends, setRecommends] = useState('');
+  const [summary, setSummary] = useState('');
+  const [body, setBody] = useState('');
+  const [bodyCharsLeft, setBodyCharsLeft] = useState(50);
+  const [nickname, setNickname] = useState('');
+  const [email, setEmail] = useState('');
   const startingCharacteristics = {};
 
   Object.keys(characteristics).forEach((key) => {
@@ -38,7 +43,6 @@ export default function ReveiwForm({ name, characteristics }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('submitted');
   };
 
   const handleStarClick = (index) => {
@@ -48,16 +52,21 @@ export default function ReveiwForm({ name, characteristics }) {
   };
 
   const handleRecommend = (e) => {
-    console.log('recommend: ', e.target.value)
     setRecommends(e.target.value);
   };
-
 
   const handleCharacteristicRating = (e) => {
     const key = e.target.name;
     const newRating = {};
     newRating[key] = e.target.value;
     setCharacteristicRatings({ ...characteristicRatings, ...newRating });
+  };
+
+  const handleBodyEntry = (e) => {
+    if (bodyCharsLeft > 0) {
+      setBodyCharsLeft(bodyCharsLeft - 1);
+    }
+    setBody(e.target.value);
   };
 
   return (
@@ -70,7 +79,7 @@ export default function ReveiwForm({ name, characteristics }) {
       <form onSubmit={handleSubmit}>
         <div className="form-row">
           <label className="form-label">Select your rating*:</label>
-          <div className="stars">
+          <div className="stars" >
             {stars.map((star, index) => {
               if (star) {
                 return <button className="star-selector" type="button" onClick={() => handleStarClick(index)}><FaStar color="gold" /></button>;
@@ -94,6 +103,7 @@ export default function ReveiwForm({ name, characteristics }) {
                 id="yes"
                 value={true}
                 style={{ marginLeft: '5px' }}
+                required
               />
             </label>
             <label htmlFor="no" className="radio-label">
@@ -112,17 +122,19 @@ export default function ReveiwForm({ name, characteristics }) {
         <div className="form-row">
           {Object.keys(characteristics).map((key) => (
             <>
-              <label className="form-label">
-                Describe the
-                {' '}
-                {key}
-                *
-              </label>
-              <div style={{ marginLeft: '20px', fontSize: '12px' }}>
-                {characteristicsExplanations[key][characteristicRatings[key]]}
+              <div style={{ display: 'flex', alignItems: 'baseline' }}>
+                <label className="form-label">
+                  Describe the
+                  {' '}
+                  {key}
+                  * &nbsp;&nbsp;-
+                </label>
+                <div style={{ fontSize: '12px' }}>
+                  {characteristicsExplanations[key][characteristicRatings[key]]}
+                </div>
               </div>
               <div className="radio">
-                <div style={{ marginRight: '10px', fontSize: '12px' }}>{characteristicsExplanations[key]['1']}</div>
+                <div style={{ width: '100px', marginRight: '20px', textAlign: 'right', fontSize: '12px' }}>{characteristicsExplanations[key]['1']}</div>
                 <div className="radio-btns" onChange={(e) => handleCharacteristicRating(e)}>
                   <label htmlFor={key} style={{ marginBottom: '0px' }}>
                     1
@@ -131,6 +143,7 @@ export default function ReveiwForm({ name, characteristics }) {
                       name={key}
                       value={1}
                       style={{ marginLeft: '5px' }}
+                      required
                     />
                   </label>
                   <label htmlFor={key} style={{ marginBottom: '0px' }}>
@@ -184,6 +197,7 @@ export default function ReveiwForm({ name, characteristics }) {
             id="summary"
             placeholder="Example: Best purchase ever!"
             maxLength={60}
+            onChange={(e) => setSummary(e.target.value)}
             required
             style={{ width: '75%', height: '30px' }}
           />
@@ -196,10 +210,13 @@ export default function ReveiwForm({ name, characteristics }) {
           <textarea
             id="body"
             placeholder="Example: Best purchase ever!"
+            minLength={50}
             maxLength={1000}
+            onChange={(e) => handleBodyEntry(e)}
             required
             style={{ width: '75%' }}
           />
+          <div>minimum required characters left:&nbsp;{bodyCharsLeft}</div>
         </div>
 
         <div className="form-row">
@@ -212,6 +229,7 @@ export default function ReveiwForm({ name, characteristics }) {
             id="nickname"
             maxLength={60}
             placeholder="Example: Jackson11"
+            onChange={(e) => setNickname(e.target.value)}
             required
             style={{ width: '75%', marginBottom: '5px' }}
           />
@@ -228,6 +246,7 @@ export default function ReveiwForm({ name, characteristics }) {
             id="email"
             maxLength={60}
             placeholder="Example: Jackson11@gmail.com"
+            onChange={(e) => setEmail(e.target.value)}
             required
             style={{ width: '75%', marginBottom: '5px' }}
           />
