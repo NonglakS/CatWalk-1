@@ -10,7 +10,13 @@
   font: italic 2em -webkit-xxx-large;
   text-decoration: underline;
   color: white;
-  }
+}
+
+a#read-all-reviews {
+  margin-left: 5%;
+  text-decoration: underline;
+  cursor: pointer;
+}
 
 div#product-name {
   font-size: xx-large;

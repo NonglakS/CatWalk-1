@@ -8,7 +8,7 @@ import ShareIcon from './shareIcon.jsx';
 import Cart from './cart.jsx';
 
 
-export default function Overview({ product }) {
+export default function Overview({ product, reviewScore }) {
 
   const [styles, setStyles] = useState('');
   const [currentStyle, setCurrentStyle] = useState('');
@@ -49,6 +49,7 @@ export default function Overview({ product }) {
         </div>
         <div className="col product-information">
           <ProductInfo
+            reviewScore={reviewScore}
             product={product}
             styles={styles}
             currentStyle={currentStyle} />
