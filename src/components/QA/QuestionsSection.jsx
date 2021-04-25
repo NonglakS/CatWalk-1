@@ -10,7 +10,7 @@ import Answers from './Answers.jsx';
 export default function QuestionsSection() {
   const urlAddOn = 'qa/questions?product_id=13025&count=1000';
   const [allQuestions, setAllQuestions] = useState('');
-  const [questionsRendered, setQuestionsRendered] = useState(6);
+  const [questionsRendered, setQuestionsRendered] = useState(4);
   const [displayedQuestions, setDisplayedQuestions] = useState('');
   const [searchedQuestions, setSearchedQuestions] = useState([]);
   const [inputText, setInputText] = useState('');
@@ -67,7 +67,7 @@ export default function QuestionsSection() {
         return;
       } else {
         setAllQuestions(res.data.results);
-        setDisplayedQuestions(res.data.results.slice(0, 4));
+        setDisplayedQuestions(res.data.results.slice(0, 2));
       }
     });
   }, []);
@@ -98,8 +98,9 @@ export default function QuestionsSection() {
           {searchActivated
             ? null
             : <button className="display-questions" type="submit" onClick={() => renderQuestions(allQuestions)}> MORE QUESTIONS </button>}
-          <AddQuestion />
+
         </div>
+        <AddQuestion />
       </div>
     </>
   );

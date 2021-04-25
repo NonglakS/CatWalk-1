@@ -166,8 +166,9 @@ span#sale-price, div#select-size-reminder {
 
 .questions-module {
   display: flex;
+  flex-direction: column;
   width: 100%;
-  max-height: 100vh;
+  max-height: 90vh;
 }
 
 .search-bar{
@@ -226,6 +227,7 @@ span#sale-price, div#select-size-reminder {
   padding-top: 8px;
   padding-bottom: 8px;
   margin-left: 10px;
+  width: 220px;
 }
 
 .change-questions {
@@ -267,7 +269,7 @@ span#sale-price, div#select-size-reminder {
   padding-right: 12px;
   padding-top: 8px;
   padding-bottom: 8px;
-
+  width: 220px
 }
 
  .show-more-btn {
