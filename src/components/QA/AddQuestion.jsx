@@ -22,13 +22,6 @@ function AddQuestion({ product, productName }) {
     return re.test(String(email).toLowerCase());
   };
 
-  const clearForm = (e) => {
-    e.preventDefault();
-    setValues({
-      nickname: '', email: '', question: '',
-    });
-  };
-
   const postQuestion = (params, callback) => {
     axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/qa/questions', params, {
       headers: { Authorization: process.env.TOKEN },
@@ -51,7 +44,6 @@ function AddQuestion({ product, productName }) {
       } else {
         alert('Question Submitted');
         setInvalidEntry(false);
-        clearForm();
       }
     });
   };
