@@ -4,7 +4,7 @@ import { FaRegStar, FaStar, FaStarHalfAlt } from 'react-icons/fa';
 import makeAverageStars from '../../helperFunctions/makeAverageStars.js';
 import getReviewCount from '../../helperFunctions/getReviewCount.js';
 import getRecommendPercent from '../../helperFunctions/getRecommendPercent.js';
-import RatingBar from './Ratingbar.jsx';
+import RatingBar from './RatingBar.jsx';
 
 export default function Ratings({ reviewsMeta, reviewScore, onFilter }) {
   const {ratings, recommended} = reviewsMeta;
