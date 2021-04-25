@@ -25,7 +25,7 @@ function Home() {
   return (
     <div>
       <h2>Home</h2>
-      <Link to="/13023">Start</Link>
+      <Link to="/13025">Start</Link>
     </div>
   )
 }
