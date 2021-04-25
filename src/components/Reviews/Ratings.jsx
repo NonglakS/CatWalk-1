@@ -31,15 +31,6 @@ export default function Ratings({ reviewsMeta, reviewScore }) {
         </div>
       </div>
       <div>{recommendPercent}% of reviews recommend this product</div>
-      {reviewsMeta.characteristics && (
-        Object.keys(reviewsMeta.characteristics).map((key) => (
-          <div>
-            {key}
-            :
-            {' '}
-            {reviewsMeta.characteristics[key].value}
-          </div>
-        )))}
     </>
   );
 }

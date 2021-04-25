@@ -1,9 +1,11 @@
+/* eslint-disable max-len */
 import React, { useState, useEffect, useRef } from 'react';
 import getData from '../../helperFunctions/getData.js';
 import ReviewTile from './ReviewTile.jsx';
 import Ratings from './Ratings.jsx';
 import Modal from '../../shared-components/Modal.jsx';
 import ReviewForm from './ReviewForm.jsx';
+import Characteristic from './Characteristic.jsx';
 
 export default function ReviewsSection({ reviewsMeta, name, reviewScore }) {
   const [reviews, setReviews] = useState([]);
@@ -33,6 +35,10 @@ export default function ReviewsSection({ reviewsMeta, name, reviewScore }) {
       <div className="ratings-and-reviews">
         <div className="ratings">
           <Ratings reviewsMeta={reviewsMeta} reviewScore={reviewScore} />
+          {reviewsMeta.characteristics && (
+            Object.keys(reviewsMeta.characteristics).map((key) => (
+              <Characteristic average={reviewsMeta.characteristics[key].value} characteristic={key} />
+            )))}
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
