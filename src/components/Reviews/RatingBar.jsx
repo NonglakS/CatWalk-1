@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function RatingBar({ rating, ratingCount, totalRatings }) {
+export default function RatingBar({ rating, ratingCount, totalRatings, onFilter }) {
   const ratingPercent = (ratingCount / totalRatings) * 100;
 
   const containerStyles = {
@@ -15,13 +15,13 @@ export default function RatingBar({ rating, ratingCount, totalRatings }) {
     backgroundColor: '#2c9948',
   };
 
-  const handleSort = () => {
-    console.log(rating);
+  const handleFilterClick = () => {
+    onFilter(Number(rating));
   };
 
   return (
-    <div className="ratings-breakdown">
-      <button type="button" className="help-btn" style={{ width: '44px', paddingLeft: '0', textAlign: 'left' }} onClick={handleSort}>
+    <div className="rating-breakdown">
+      <button type="button" className="help-btn" style={{ width: '44px', paddingLeft: '0', textAlign: 'left' }} onClick={handleFilterClick}>
         {rating}
         {' '}
         stars

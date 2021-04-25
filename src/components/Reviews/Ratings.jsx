@@ -6,7 +6,7 @@ import getReviewCount from '../../helperFunctions/getReviewCount.js';
 import getRecommendPercent from '../../helperFunctions/getRecommendPercent.js';
 import RatingBar from './Ratingbar.jsx';
 
-export default function Ratings({ reviewsMeta, reviewScore }) {
+export default function Ratings({ reviewsMeta, reviewScore, onFilter }) {
   const {ratings, recommended, characteristics} = reviewsMeta;
   const starRating = makeAverageStars(reviewScore);
   const reviewCount = getReviewCount(ratings);
@@ -33,9 +33,9 @@ export default function Ratings({ reviewsMeta, reviewScore }) {
         </div>
       </div>
       <div>{recommendPercent}% of reviews recommend this product</div>
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '20px' }}>
         {ratings && Object.keys(ratings).map((rating) => (
-          <RatingBar rating={rating} ratingCount={ratings[rating]} totalRatings={reviewCount} />
+          <RatingBar rating={rating} ratingCount={ratings[rating]} totalRatings={reviewCount} onFilter={onFilter} />
         ))}
       </div>
       {reviewsMeta.characteristics && (
