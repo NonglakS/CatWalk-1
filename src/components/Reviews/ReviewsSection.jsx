@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 import React, { useState, useEffect, useRef } from 'react';
+import { useParams } from 'react-router-dom'
 import getData from '../../helperFunctions/getData.js';
 import ReviewTile from './ReviewTile.jsx';
 import Ratings from './Ratings.jsx';
@@ -13,9 +14,10 @@ export default function ReviewsSection({ reviewsMeta, name, reviewScore }) {
   const [renderedReviews, setRenderedReviews] = useState([]);
   const [filters, setFilters] = useState([]);
   const modal = useRef(null);
+  const { id } = useParams();
 
   useEffect(() => {
-    getData(`reviews?product_id=13023&count=10000`, (err, res) => {
+    getData(`reviews?product_id=${id}&count=10000`, (err, res) => {
       if (err) {
         console.log('err', err);
       } else {
