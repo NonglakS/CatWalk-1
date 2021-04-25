@@ -92,7 +92,7 @@ function Cart({ currentStyle }) {
       <div className="row cart">
         <div className="col add-to-bag " id="add">
 
-          <Button basic icon='plus' content='ADD TO CART' labelPosition='right' onClick={handleAddToCart} disabled={outOfStock ? true : false} />
+          <Button basic icon='plus' id="add-to-cart" content='ADD TO CART' labelPosition='right' onClick={handleAddToCart} disabled={outOfStock ? true : false} />
         </div>
         <div className="col d-flex flex-row-reverse add-to-collection" id="fav">
           <Button basic>

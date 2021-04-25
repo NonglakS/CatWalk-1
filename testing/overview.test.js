@@ -88,16 +88,19 @@ describe('product information', () => {
 
 })
 
-
 //TODO: test add to cart button 1) valid / 2) invalid
 
 describe('cart', () => {
 
-  it('should not send post request if size and quantity are not selected', () => {
+
+
+  xit('should not send post request if size and quantity are not selected', () => {
+    const { getByText } = render(<Cart currentStyle={currentStyle}/>)
+    
 
   })
 
-  it('should send POST request to cart API when size and quantity is selected', ()=>{
+  xit('should send POST request to cart API when size and quantity is selected', ()=>{
 
   })
 
