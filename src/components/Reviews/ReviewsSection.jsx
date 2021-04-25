@@ -5,9 +5,9 @@ import ReviewTile from './ReviewTile.jsx';
 import Ratings from './Ratings.jsx';
 import Modal from '../../shared-components/Modal.jsx';
 import ReviewForm from './ReviewForm.jsx';
+import Characteristic from './Characteristic.jsx';
 
 export default function ReviewsSection({ reviewsMeta, name, reviewScore }) {
-  //add a filter array and check if ratings include any number in the array
   const [reviews, setReviews] = useState([]);
   const [reviewCount, setReviewCount] = useState(2);
   const [renderedReviews, setRenderedReviews] = useState([]);
@@ -48,6 +48,10 @@ export default function ReviewsSection({ reviewsMeta, name, reviewScore }) {
       <div className="ratings-and-reviews">
         <div className="ratings">
           <Ratings reviewsMeta={reviewsMeta} reviewScore={reviewScore} onFilter={handleFilter} />
+          {reviewsMeta.characteristics && (
+            Object.keys(reviewsMeta.characteristics).map((key) => (
+              <Characteristic average={reviewsMeta.characteristics[key].value} characteristic={key} />
+            )))}
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
