@@ -85,6 +85,7 @@ function AddAnswer({ questionId, questionBody }) {
           />
           <br />
           <text>* mandatory field</text>
+          <br />
           <button type="submit" onClick={addItem}>Submit answer</button>
         </form>
       </Modal>
