@@ -69,3 +69,7 @@ describe('product information', () => {
   })
 
 })
+
+
+//TODO:test conditional rendering the star review
+//TODO: test add to cart button 1) valid / 2) invalid
