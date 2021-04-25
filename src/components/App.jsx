@@ -6,6 +6,7 @@ import QuestionsSection from './QA/QuestionsSection.jsx';
 import ReviewsSection from './Reviews/ReviewsSection.jsx';
 import Overview from './Overview/overview.jsx';
 
+
 export default function App(props) {
   const { id } = useParams();
   const urlAddOn = `products/${id}`;
@@ -34,14 +35,16 @@ export default function App(props) {
   }, []);
 
   return (
-    <>
-      <Overview />
-      <h3>
-        Product Review Score:
-        {reviewScore}
-      </h3>
-      <QuestionsSection />
-      <ReviewsSection reviewsMeta={reviewsMeta} />
-    </>
+
+    <div>
+      {product && (
+        <>
+          <Overview product={product} reviewScore={reviewScore} />
+          <QuestionsSection productName={product.name} />
+          <ReviewsSection reviewsMeta={reviewsMeta} name={product.name} reviewScore={reviewScore}/>
+        </>
+      )}
+    </div>
+
   );
 }
