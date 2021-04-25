@@ -2,13 +2,13 @@
 /* eslint-disable no-else-return */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import getData from '../../helperFunctions/getData.js';
 import AddQuestion from './AddQuestion.jsx';
 import Questions from './Questions.jsx';
 import Answers from './Answers.jsx';
 
 export default function QuestionsSection() {
-  const urlAddOn = 'qa/questions?product_id=13025&count=1000';
   const [allQuestions, setAllQuestions] = useState('');
   const [questionsRendered, setQuestionsRendered] = useState(4);
   const [displayedQuestions, setDisplayedQuestions] = useState('');
@@ -16,6 +16,9 @@ export default function QuestionsSection() {
   const [inputText, setInputText] = useState('');
   const [searchActivated, setSearchActivated] = useState(false);
   const [noResults, setNoResults] = useState(false);
+
+  const { id } = useParams();
+  const urlAddOn = `qa/questions?product_id=${id}&count=1000`;
 
   const searchQuestions = (input) => {
     const searchQ = [];

@@ -4,11 +4,13 @@ import { FaRegStar, FaStar, FaStarHalfAlt } from 'react-icons/fa';
 import makeAverageStars from '../../helperFunctions/makeAverageStars.js';
 import getReviewCount from '../../helperFunctions/getReviewCount.js';
 import getRecommendPercent from '../../helperFunctions/getRecommendPercent.js';
+import RatingBar from './Ratingbar.jsx';
 
-export default function Ratings({ reviewsMeta, reviewScore }) {
+export default function Ratings({ reviewsMeta, reviewScore, onFilter }) {
+  const {ratings, recommended} = reviewsMeta;
   const starRating = makeAverageStars(reviewScore);
-  const reviewCount = getReviewCount(reviewsMeta.ratings);
-  const recommendPercent = reviewsMeta.recommended ? getRecommendPercent(reviewsMeta.recommended.true, reviewCount) : 0;
+  const reviewCount = getReviewCount(ratings);
+  const recommendPercent = recommended ? getRecommendPercent(recommended.true, reviewCount) : 0;
   return (
     <>
       <div style={{ display: 'flex' }}>
@@ -31,15 +33,11 @@ export default function Ratings({ reviewsMeta, reviewScore }) {
         </div>
       </div>
       <div>{recommendPercent}% of reviews recommend this product</div>
-      {reviewsMeta.characteristics && (
-        Object.keys(reviewsMeta.characteristics).map((key) => (
-          <div>
-            {key}
-            :
-            {' '}
-            {reviewsMeta.characteristics[key].value}
-          </div>
-        )))}
+      <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '20px' }}>
+        {ratings && Object.keys(ratings).map((rating) => (
+          <RatingBar rating={rating} ratingCount={ratings[rating]} totalRatings={reviewCount} onFilter={onFilter} />
+        ))}
+      </div>
     </>
   );
 }
