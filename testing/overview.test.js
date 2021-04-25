@@ -68,4 +68,23 @@ describe('product information', () => {
 
   })
 
+  it('should hide ratings if there is no review', () => {
+    const { container } = render(
+      <ProductInfo product={product} reviewScore={0} currentStyle={currentStyle} />
+    );
+    const ratings = container.querySelector('div.row.review');
+    expect(ratings).toBeNull();
+
+  })
+
+  it('should show ratings if there is at least one review', () => {
+    const { container } = render(
+      <ProductInfo product={product} reviewScore={1} currentStyle={currentStyle} />
+    );
+    const ratings = container.querySelector('div.row.review');
+    expect(ratings).toBeDefined();
+
+  })
+
 })
+

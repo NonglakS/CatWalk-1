@@ -38,7 +38,7 @@ export default function Overview({ product, reviewScore }) {
   }
 
   return (
-    <div className="overview container ">
+    <div className="overview">
       <div className="row">
         <div className="col logo-bar">LOGO</div>
       </div>
@@ -48,7 +48,7 @@ export default function Overview({ product, reviewScore }) {
           {currentStyle &&
             <Gallery currentStyle={currentStyle} />}
         </div>
-        <div className="col product-information">
+        <div className="col-3 product-information">
           <ProductInfo
             reviewScore={reviewScore}
             product={product}
