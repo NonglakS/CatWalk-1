@@ -42,7 +42,7 @@ const currentStyle =
       "size": "XS"
     }
   }
-};
+}; 3
 
 const reviewScore = 5;
 
@@ -68,8 +68,37 @@ describe('product information', () => {
 
   })
 
+  it('should hide ratings if there is no review', () => {
+    const { container } = render(
+      <ProductInfo product={product} reviewScore={0} currentStyle={currentStyle} />
+    );
+    const ratings = container.querySelector('div.row.review');
+    expect(ratings).toBeNull();
+
+  })
+
+  it('should show ratings if there is at least one review', () => {
+    const { container } = render(
+      <ProductInfo product={product} reviewScore={1} currentStyle={currentStyle} />
+    );
+    const ratings = container.querySelector('div.row.review');
+    expect(ratings).toBeDefined();
+
+  })
+
 })
 
 
-//TODO:test conditional rendering the star review
 //TODO: test add to cart button 1) valid / 2) invalid
+
+describe('cart', () => {
+
+  it('should not send post request if size and quantity are not selected', () => {
+
+  })
+
+  it('should send POST request to cart API when size and quantity is selected', ()=>{
+
+  })
+
+})
