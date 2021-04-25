@@ -1,22 +1,24 @@
 import React from 'react';
 import Price from './price.jsx'
-import { FaRegStar, FaStar } from 'react-icons/fa';
-import buildStars from '../../helperFunctions/buildStars.js';
+import { FaRegStar, FaStar, FaStarHalfAlt } from 'react-icons/fa';
+import makeAverageStars from '../../helperFunctions/makeAverageStars.js';
 
 
 function ProductInfo({ product, currentStyle, reviewScore }) {
 
-  const stars = buildStars(reviewScore);
+  const stars = makeAverageStars(reviewScore);
 
   return (
     <div>
       <div className=" row review">
         <div className="col d-flex h-100 align-items-center align-middle " id="overview-star-review" style={{ display: 'flex', justifyContent: 'start' }}>
           {stars.map((star) => {
-            if (star) {
-              return <FaStar color="gold" />;
+            if (star === 0) {
+              return <FaRegStar />;
+            } if (star === 1) {
+              return <FaStar/>;
             }
-            return <FaRegStar />;
+            return <FaStarHalfAlt/>;
           })}
           <a id="read-all-reviews">Read all reviews</a>
         </div>
