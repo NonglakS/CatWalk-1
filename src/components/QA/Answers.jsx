@@ -4,6 +4,7 @@ import React from 'react';
 import Moment from 'moment';
 import { FaGripLinesVertical } from 'react-icons/fa';
 import AnswerHelpful from './AnswerHelpful.jsx';
+import AnswerReport from './AnswerReport.jsx';
 
 function Answers({ answer }) {
   const strReplace = function (string) {
@@ -28,13 +29,13 @@ function Answers({ answer }) {
       <br />
       <div className="response-text">
         <text>
-          {answer.answerer_name}
+          {answer.answerer_name}&nbsp;
           {Moment(answer.date).format('MMMM Do YYYY')}
         </text>
         <FaGripLinesVertical /> Helpful?
         <AnswerHelpful answerId={answer.id} answerHelpfulness={answer.helpfulness} />
+        <AnswerReport answerId={answer.id} />
       </div>
-      <button className="report-btn" type="submit">Report</button>
     </div>
   );
 }

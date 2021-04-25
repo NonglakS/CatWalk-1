@@ -12,7 +12,6 @@ function QuestionHelpful({ questionId, questionHelpfulness }) {
     axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/qa/questions/${questionId}/helpful`, null, {
       headers: { Authorization: process.env.TOKEN },
     })
-      .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };
   return (
