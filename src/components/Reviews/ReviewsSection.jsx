@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { useState, useEffect, useRef } from 'react';
 import getData from '../../helperFunctions/getData.js';
 import ReviewTile from './ReviewTile.jsx';
@@ -6,9 +7,11 @@ import Modal from '../../shared-components/Modal.jsx';
 import ReviewForm from './ReviewForm.jsx';
 
 export default function ReviewsSection({ reviewsMeta, name, reviewScore }) {
+  //add a filter array and check if ratings include any number in the array
   const [reviews, setReviews] = useState([]);
   const [reviewCount, setReviewCount] = useState(2);
   const [renderedReviews, setRenderedReviews] = useState([]);
+  const [filters, setFilters] = useState([]);
   const modal = useRef(null);
 
   useEffect(() => {
@@ -16,29 +19,41 @@ export default function ReviewsSection({ reviewsMeta, name, reviewScore }) {
       if (err) {
         console.log('err', err);
       } else {
-        setReviews(res.data);
+        setReviews(res.data.results);
         setRenderedReviews(res.data.results.slice(0, reviewCount));
       }
     });
   }, []);
 
   const rerenderReviews = () => {
-    setRenderedReviews(reviews.results.slice(0, reviewCount + 2));
+    setRenderedReviews(reviews.slice(0, reviewCount + 2));
     setReviewCount(reviewCount + 2);
+  };
+
+  const handleFilter = (filterBy) => {
+    let currentFilters = filters.slice();
+    if (currentFilters.includes(filterBy)) {
+      currentFilters.splice(currentFilters.indexOf(filterBy), 1);
+    } else {
+      currentFilters = [...filters, filterBy];
+    }
+    const filteredReviews = currentFilters.length ? reviews.slice().filter((review) => currentFilters.includes(review.rating)) : reviews;
+    setRenderedReviews(filteredReviews);
+    setFilters(currentFilters);
   };
 
   return (
     <>
-      <h5>Ratings and Reviews</h5>
+      <h5>Ratings & Reviews</h5>
       <div className="ratings-and-reviews">
         <div className="ratings">
-          <Ratings reviewsMeta={reviewsMeta} reviewScore={reviewScore} />
+          <Ratings reviewsMeta={reviewsMeta} reviewScore={reviewScore} onFilter={handleFilter} />
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
           <h3>Review Summaries</h3>
           <div className="reviews">
-            {reviews.results
+            {reviews
               && renderedReviews.map((review) => (
                 <ReviewTile review={review} />
               ))}
@@ -47,7 +62,7 @@ export default function ReviewsSection({ reviewsMeta, name, reviewScore }) {
             <button className="show-more-btn" type="button" onClick={() => modal.current.open()}>
               Add Review
             </button>
-            {reviews.results && reviewCount < reviews.results.length && (
+            {!filters.length && reviewCount < reviews.length && (
               <button className="show-more-btn" type="button" onClick={() => rerenderReviews()}>More Reviews</button>
             )}
           </div>
