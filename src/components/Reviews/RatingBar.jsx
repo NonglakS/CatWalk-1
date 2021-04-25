@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export default function RatingBar({ rating, ratingCount, totalRatings, onFilter }) {
+  const [isFiltered, setIsFiltered] = useState(false);
+
   const ratingPercent = (ratingCount / totalRatings) * 100;
 
   const containerStyles = {
@@ -17,11 +19,12 @@ export default function RatingBar({ rating, ratingCount, totalRatings, onFilter 
 
   const handleFilterClick = () => {
     onFilter(Number(rating));
+    setIsFiltered(!isFiltered);
   };
 
   return (
     <div className="rating-breakdown">
-      <button type="button" className="help-btn" style={{ width: '44px', paddingLeft: '0', textAlign: 'left' }} onClick={handleFilterClick}>
+      <button type="button" className="filter-btn" style={isFiltered ? {fontWeight: 'bolder'} : {}} onClick={handleFilterClick}>
         {rating}
         {' '}
         stars
