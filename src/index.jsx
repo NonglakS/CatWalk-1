@@ -12,7 +12,7 @@ export default function Routes() {
   return (
     <Router>
         <Switch>
-          <Route exact path="/public">
+          <Route exact path="/">
             <Home />
           </Route>
           <Route path="/:id" children={<App />} />

@@ -15,7 +15,6 @@ export default function App(props) {
   const [reviewScore, setReviewScore] = useState(0);
 
   useEffect(() => {
-    console.log('id', id)
     getData(urlAddOn, (err, res) => {
       if (err) {
         console.log('err', err);

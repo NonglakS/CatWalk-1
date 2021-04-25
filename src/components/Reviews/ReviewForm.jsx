@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { FaRegStar, FaStar } from 'react-icons/fa';
 import buildStars from '../../helperFunctions/buildStars.js';
 import axios from 'axios';
@@ -36,7 +37,10 @@ export default function ReveiwForm({ name, characteristics, modal }) {
   const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
   const [images, setImages] = useState([]);
+
   const startingCharacteristics = {};
+  const { id } = useParams();
+  console.log(typeof id)
 
   Object.keys(characteristics).forEach((key) => {
     startingCharacteristics[key] = 0;
@@ -57,7 +61,7 @@ export default function ReveiwForm({ name, characteristics, modal }) {
 
     const postCharacteristics = createCharacteristicsObj();
     const data = {
-      product_id: 13023,
+      product_id: Number(id),
       rating,
       summary,
       body,
