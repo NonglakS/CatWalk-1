@@ -36,10 +36,9 @@ function AddAnswer({ questionId, questionBody }) {
       setInvalidEntry(true);
       return;
     }
-    postAnswer(values, (err, res) => {
+    postAnswer(values, (err) => {
       if (err) {
-        // eslint-disable-next-line no-useless-return
-        return
+        console.log('err', err);
       } else {
         alert('Answer Submitted');
         setInvalidEntry(false);

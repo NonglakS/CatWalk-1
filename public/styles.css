@@ -294,6 +294,18 @@ span#sale-price, div#select-size-reminder {
   color: rgb(99, 98, 98);
   background-color: white;
   text-decoration: underline;
+  font-size: 11px;
+}
+
+.filter-btn {
+  border: none;
+  color: rgb(99, 98, 98);
+  background-color: white;
+  text-decoration: underline;
+  font-size: 11px;
+  width: 45px;
+  padding-left: 0;
+  text-align: left;
 }
 
 .help-section {
@@ -304,6 +316,18 @@ span#sale-price, div#select-size-reminder {
   align-items: center;
 }
 
+.rating-bar {
+  border: 4px solid rgb(211, 211, 211);
+  height: 8px;
+  width: 60%;
+}
+
+.rating-breakdown {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  color: rgb(99, 98, 98);
+}
 
 
 

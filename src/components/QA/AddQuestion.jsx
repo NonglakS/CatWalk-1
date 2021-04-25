@@ -2,15 +2,18 @@
 /* eslint-disable no-else-return */
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { useState, useRef } from 'react';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Modal from '../../shared-components/Modal.jsx';
 
 function AddQuestion({ product, productName }) {
   const modal = useRef(null);
+  const { id } = useParams();
   const [values, setValues] = useState({
-    name: '', email: '', body: '', product_id: 13025,
+    name: '', email: '', body: '', product_id: Number(id),
   });
   const [invalidEntry, setInvalidEntry] = useState(false);
+
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -38,9 +41,9 @@ function AddQuestion({ product, productName }) {
       setInvalidEntry(true);
       return;
     }
-    postQuestion(values, (err, res) => {
+    postQuestion(values, (err) => {
       if (err) {
-        return;
+        console.log('err', err);
       } else {
         alert('Question Submitted');
         setInvalidEntry(false);
