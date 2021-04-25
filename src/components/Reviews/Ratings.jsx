@@ -35,7 +35,7 @@ export default function Ratings({ reviewsMeta, reviewScore }) {
       <div>{recommendPercent}% of reviews recommend this product</div>
       <div style={{ display: 'flex', flexDirection: 'column' }}>
         {ratings && Object.keys(ratings).map((rating) => (
-          <RatingBar rating={rating} ratingCount={ratings[rating]} />
+          <RatingBar rating={rating} ratingCount={ratings[rating]} totalRatings={reviewCount} />
         ))}
       </div>
       {reviewsMeta.characteristics && (
