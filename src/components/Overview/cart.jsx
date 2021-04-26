@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import { Button, Icon } from 'semantic-ui-react';
 import axios from 'axios';
+import AddButton from './addButton.jsx'
 
 function Cart({ currentStyle }) {
   const [sizeOptions, setSizeOptions] = useState([]);
@@ -11,6 +12,7 @@ function Cart({ currentStyle }) {
   const [disable, setDisable] = useState(true);
   const [currentVal, setCurrentVal] = useState({ label: 1, value: 0, sku: '' });
   const [clickAdd, setClickAdd] = useState(false);
+
 
   const tempSize = [];
 
@@ -82,10 +84,7 @@ function Cart({ currentStyle }) {
       </div>
       <div className="row cart">
         <div className="col add-to-bag " id="add">
-
-
-          <Button basic icon='plus' id="add-to-cart" content="ADD TO CART" labelPosition="right" onClick={handleAddToCart} disabled={!!outOfStock} />
-
+          <AddButton handleAddToCart={handleAddToCart} outOfStock={!!outOfStock} />
         </div>
         <div className="col d-flex flex-row-reverse add-to-collection" id="fav">
           <Button basic>

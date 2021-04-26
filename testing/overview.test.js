@@ -2,7 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ProductInfo from '../src/components/Overview/productInfo.jsx';
-import Cart from '../src/components/Overview/cart.jsx';
+import AddButton from '../src/components/Overview/addButton.jsx';
 import { render, cleanup, fireEvent } from '@testing-library/react';
 import renderer from 'react-test-renderer';
 
@@ -90,17 +90,25 @@ describe('product information', () => {
 
 //TODO: test add to cart button 1) valid / 2) invalid
 
-describe('cart', () => {
+describe('Add to cart button', () => {
 
+  it('If there\s no stock available ,add to cart button should be disable', () => {
 
+    const handleClick = jest.fn()
+    const { getByText, getByTestId } = render(<AddButton outOfStock={false} handleAddToCart={handleClick} />)
 
-  xit('should not send post request if size and quantity are not selected', () => {
-    const { getByText } = render(<Cart currentStyle={currentStyle}/>)
-
+    fireEvent.click(getByTestId('add-to-cart'));
+    expect(handleClick).toHaveBeenCalledTimes(1)
 
   })
 
-  xit('should send POST request to cart API when size and quantity is selected', ()=>{
+  it('If there\s stock available ,add to cart button should invoke click handler function', () => {
+
+    const handleClick = jest.fn()
+    const { getByText, getByTestId } = render(<AddButton outOfStock={true} handleAddToCart={handleClick} />)
+
+    fireEvent.click(getByTestId('add-to-cart'));
+    expect(handleClick).toHaveBeenCalledTimes(0)
 
   })
 
