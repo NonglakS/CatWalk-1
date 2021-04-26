@@ -15,11 +15,11 @@ function ProductInfo({ product, currentStyle, reviewScore }) {
           <div className="col d-flex h-100 align-items-center align-middle " id="overview-star-review" style={{ display: 'flex', justifyContent: 'start' }}>
             {stars.map((star) => {
               if (star === 0) {
-                return <FaRegStar key={Math.random()} />;
+                return <FaRegStar />;
               } if (star === 1) {
-                return <FaStar key={Math.random()}/>;
+                return <FaStar />;
               }
-              return <FaStarHalfAlt key={Math.random()}/>;
+              return <FaStarHalfAlt />;
             })}
             <a id="read-all-reviews" onClick={() => {
               document.querySelector('div.ratings-and-reviews').scrollIntoView()

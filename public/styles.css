@@ -1,12 +1,10 @@
 #app {
   margin: 0 200px;
 }
-.col.logo-bar {
+.logo-bar {
   background-color: gray;
   height: 50px;
-  padding: 10px;
   margin-top: 2.5%;
-  margin-left: 2%;
   font: italic 2em -webkit-xxx-large;
   text-decoration: underline;
   color: white;
@@ -24,14 +22,11 @@ div#product-name {
   margin-bottom: 1%;
 }
 
-.col-md-3.style-icon, .share-icon{
+.col-md-3.style-icon, .share-icon, .product-overview {
   margin-top: 3%;
 }
 
 
-.product-overview {
-  margin: 2%;
-}
 
 .style-selector, .price {
   font-size: large;
