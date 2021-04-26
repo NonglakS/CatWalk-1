@@ -109,7 +109,7 @@ function Gallery({ currentStyle }) {
       >
         {currentStyle.photos.map((photo) => {
           return (
-            <Carousel.Item style={{ 'height': "650px" }}>
+            <Carousel.Item style={{ 'height': "650px"}}>
               <div className="d-flex h-100 align-items-center justify-content-center">
                 <img onClick={() => console.log("should expand image")}
                   className="d-block w-100 align-middle"
