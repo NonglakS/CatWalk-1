@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import React, { useState, useEffect, useRef } from 'react';
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom';
 import getData from '../../helperFunctions/getData.js';
 import ReviewTile from './ReviewTile.jsx';
 import Ratings from './Ratings.jsx';
@@ -17,7 +17,7 @@ export default function ReviewsSection({ reviewsMeta, name, reviewScore }) {
   const { id } = useParams();
 
   useEffect(() => {
-    getData(`reviews?product_id=${id}&count=10000`, (err, res) => {
+    getData(`reviews?product_id=${id}&count=10000&sort=relevant`, (err, res) => {
       if (err) {
         console.log('err', err);
       } else {
@@ -30,6 +30,19 @@ export default function ReviewsSection({ reviewsMeta, name, reviewScore }) {
   const rerenderReviews = () => {
     setRenderedReviews(reviews.slice(0, reviewCount + 2));
     setReviewCount(reviewCount + 2);
+  };
+
+  const handleSort = (sortBy) => {
+    console.log('sortBy', sortBy);
+    getData(`reviews?product_id=${id}&count=10000&sort=${sortBy}`, (err, res) => {
+      if (err) {
+        console.log('err', err);
+      } else {
+        console.log('res', res)
+        setReviews(res.data.results);
+        setRenderedReviews(res.data.results.slice(0, reviewCount));
+      }
+    });
   };
 
   const handleFilter = (filterBy) => {
@@ -57,7 +70,18 @@ export default function ReviewsSection({ reviewsMeta, name, reviewScore }) {
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
-          <h3>Review Summaries</h3>
+          <div style={{ display: 'flex' }}>
+            <label style={{ marginRight: '5px' }} className="review-summary">
+              {reviews.length}
+              {' '}
+              reviews, sorted by
+              <select className="review-summary" style={{ border: 'none', textDecoration: 'underline' }} onChange={(e) => handleSort(e.target.value)}>
+                <option value="relevant">relevance</option>
+                <option value="helpful">helpfulness</option>
+                <option value="newest">newest</option>
+              </select>
+            </label>
+          </div>
           <div className="reviews">
             {reviews
               && renderedReviews.map((review) => (
