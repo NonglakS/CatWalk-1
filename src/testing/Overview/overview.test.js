@@ -1,29 +1,18 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ProductInfo from '../src/components/Overview/productInfo.jsx';
-import AddButton from '../src/components/Overview/addButton.jsx';
+import ProductInfo from '../../components/Overview/productInfo.jsx';
+import AddButton from '../../components/Overview/addButton.jsx';
 import { render, cleanup, fireEvent } from '@testing-library/react';
 import renderer from 'react-test-renderer';
+import data from '../dummy-data'
 
 
 afterEach(cleanup);
 
-const product = {
-  "name": "BEEact",
-  "slogan": "Blend in to your crowd",
-  "description": "Bee Bee Bees",
-  "category": "Animal Engineering",
-  "default_price": "140.00",
-  "features": [
-    {
-      "feature": "Fabric",
-      "value": "Canvas"
-    }
-  ]
-}
+const product = data.product;
 
-const currentStyle =
+const currentStyle = 
 {
   "style_id": 64131,
   "name": "Forest Green & Black",
@@ -64,7 +53,7 @@ describe('product information', () => {
     const productCategory = container.querySelector("div#category");
 
     expect(productName.textContent).toEqual('BEEact');
-    expect(productCategory.textContent).toEqual('Animal Engineering'.toUpperCase());
+    expect(productCategory.textContent).toEqual('Bee Engineers'.toUpperCase());
 
   })
 
@@ -90,7 +79,7 @@ describe('product information', () => {
 
 //TODO: test add to cart button 1) valid / 2) invalid
 
-describe('Add to cart button', () => {
+describe('add to cart button', () => {
 
   it('If there\s no stock available ,add to cart button should be disable', () => {
 
@@ -102,7 +91,7 @@ describe('Add to cart button', () => {
 
   })
 
-  it('If there\s stock available ,add to cart button should invoke click handler function', () => {
+  it('If there\s stock available ,clicking on add to cart button should invoke click handler function', () => {
 
     const handleClick = jest.fn()
     const { getByText, getByTestId } = render(<AddButton outOfStock={true} handleAddToCart={handleClick} />)
