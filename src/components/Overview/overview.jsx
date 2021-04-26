@@ -14,6 +14,9 @@ export default function Overview({ product, reviewScore }) {
   const [styles, setStyles] = useState('');
   const [currentStyle, setCurrentStyle] = useState('');
   const [select, setSelect] = useState('');
+  const [view, changeView] = useState(7)
+
+
 
 
   useEffect(() => {
@@ -31,10 +34,17 @@ export default function Overview({ product, reviewScore }) {
     })
   }, []);
 
-
   function handleStyleChange(newStyle) {
     setCurrentStyle(newStyle);
     setSelect(`tick_${newStyle.style_id}`);
+  }
+
+  function handleViewChange() {
+   if (view === 12) {
+     changeView(7);
+   } else {
+     changeView(12)
+   }
   }
 
   return (
@@ -44,11 +54,13 @@ export default function Overview({ product, reviewScore }) {
       </div>
       <div><br/></div>
       <div className="row mainview">
-        <div className="col-md-7 my-auto d-flex justify-content-center">
+        <div className={`col-md-${view} my-auto d-flex justify-content-center`} >
           {currentStyle &&
-            <Gallery currentStyle={currentStyle} />}
+            <Gallery currentStyle={currentStyle}
+            handleViewChange={handleViewChange} />}
         </div>
-        <div className="col-3 product-information">
+        {view !== 12
+        ? <div className="col-3 product-information">
           <ProductInfo
             reviewScore={reviewScore}
             product={product}
@@ -65,6 +77,7 @@ export default function Overview({ product, reviewScore }) {
           }
           <ShareIcon />
         </div>
+        : null}
       </div>
       <div className="product-overview">
         <ProductOverview

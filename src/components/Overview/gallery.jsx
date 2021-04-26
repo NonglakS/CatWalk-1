@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Thumbnails from './thumbnails.jsx'
 import { Carousel } from 'react-bootstrap';
 import { FaCheck } from 'react-icons/fa';
+import Modal from '../../shared-components/Modal.jsx';
 
 
-function Gallery({ currentStyle }) {
 
+function Gallery({ currentStyle, handleViewChange }) {
+  const modal = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [activeIndexArray, setActiveIndexArray] = useState([0, 1, 2, 3, 4, 5, 6]);
 
@@ -111,7 +113,7 @@ function Gallery({ currentStyle }) {
           return (
             <Carousel.Item style={{ 'height': "650px" }}>
               <div className="d-flex h-100 align-items-center justify-content-center">
-                <img onClick={() => console.log("should expand image")}
+                <img onClick={() => { modal.current.open() }}
                   className="d-block w-100 align-middle"
                   src={photo.url}
                   alt={`image of ${currentStyle.name}`}
@@ -121,7 +123,30 @@ function Gallery({ currentStyle }) {
           )
         })}
       </Carousel>
-    </div>
+      <Modal ref={modal} fade>
+        <div className="col-7 justify-content-center">
+      <Carousel
+        activeIndex={activeIndex}
+        interval={null}
+        onSelect={handleSelect}
+      >
+        {currentStyle.photos.map((photo) => {
+          return (
+            <Carousel.Item style={{ 'height': "650px" }}>
+              <div className="d-flex align-items-center justify-content-center">
+                <img
+                  className="d-block align-middle"
+                  src={photo.url}
+                  alt={`image of ${currentStyle.name}`}
+                />
+              </div>
+            </Carousel.Item>
+          )
+        })}
+      </Carousel>
+      </div>
+      </Modal>
+    </div >
   )
 }
 
