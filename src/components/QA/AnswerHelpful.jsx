@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 function AnswerHelpful({ answerId, answerHelpfulness }) {
-  console.log('qa', answerId);
   const [helpScore, setHelpScore] = useState(answerHelpfulness);
   const [foundHelpful, setFoundHelpful] = useState(false);
   const updateHelpfulness = () => {
