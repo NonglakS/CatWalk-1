@@ -74,6 +74,17 @@ app.put('/qa/answers/:id/helpful', async (req, res) => {
   }
 });
 
+app.put('/qa/answers/:id/report', async (req, res) => {
+  try {
+    await axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/qa/answers/${req.params.id}/report`, null, {
+      headers: { Authorization: process.env.TOKEN },
+    });
+    res.send('successfully reported answer');
+  } catch (err) {
+    res.send(err);
+  }
+});
+
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'), (err) => {
     if (err) {
