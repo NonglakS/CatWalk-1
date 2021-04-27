@@ -2,7 +2,7 @@ const express = require('express');
 const axios = require('axios');
 const path = require('path');
 const bodyParser = require('body-parser');
-require("dotenv").config();
+require('dotenv').config();
 
 const app = express();
 app.use(bodyParser.json());
@@ -10,6 +10,7 @@ const port = 3000;
 
 app.use(express.static(path.join(__dirname, '../public')));
 
+// product requests
 app.get('/products/:id', async (req, res) => {
   try {
     const apiRes = await axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/products/${req.params.id}`, {
@@ -32,9 +33,7 @@ app.get('/products/:id/styles', async (req, res) => {
   }
 });
 
-
-
-
+// Questions requests
 app.get('/qa/questions', async (req, res) => {
   try {
     const apiRes = await axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/qa/questions?product_id=${req.query.product_id}&count=${req.query.count}`, {
@@ -68,6 +67,7 @@ app.post('/qa/questions/:id/answers', async (req, res) => {
   }
 });
 
+// Answers requests
 app.put('/qa/answers/:id/helpful', async (req, res) => {
   try {
     await axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/qa/answers/${req.params.id}/helpful`, null, {
@@ -90,11 +90,18 @@ app.put('/qa/answers/:id/report', async (req, res) => {
   }
 });
 
+app.post('/qa/questions', async (req, res) => {
+  try {
+    await axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/qa/questions', req.body, {
+      headers: { Authorization: process.env.TOKEN },
+    });
+    res.send('successfully posted a new question');
+  } catch (err) {
+    res.send(err);
+  }
+});
 
-
-
-
-
+// Reviews requests
 app.get('/reviews/meta', async (req, res) => {
   try {
     const apiRes = await axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews/meta?product_id=${req.query.product_id}`, {
@@ -139,7 +146,17 @@ app.put('/reviews/:id/report', async (req, res) => {
   }
 });
 
-
+app.post('/reviews', async (req, res) => {
+  try {
+    console.log('post review')
+    await axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews', req.body, {
+      headers: { Authorization: process.env.TOKEN },
+    });
+    res.send('successfully posted new reivew');
+  } catch (err) {
+    res.send(err);
+  }
+});
 
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'), (err) => {

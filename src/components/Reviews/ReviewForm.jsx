@@ -20,7 +20,6 @@ export default function ReveiwForm({ name, characteristics, modal }) {
 
   const startingCharacteristics = {};
   const { id } = useParams();
-  console.log(typeof id)
 
   Object.keys(characteristics).forEach((key) => {
     startingCharacteristics[key] = 0;
@@ -30,13 +29,13 @@ export default function ReveiwForm({ name, characteristics, modal }) {
   const createCharacteristicsObj = () => {
     const result = {};
     Object.keys(characteristics).forEach((key) => {
-      let thing = characteristics[key];
-      result[thing.id] = Number(characteristicRatings[key]);
+      let charVal = characteristics[key];
+      result[charVal.id] = Number(characteristicRatings[key]);
     });
     return result;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const postCharacteristics = createCharacteristicsObj();
@@ -51,16 +50,23 @@ export default function ReveiwForm({ name, characteristics, modal }) {
       photos: images,
       characteristics: postCharacteristics,
     };
-    axios({
-      method: 'post',
-      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews',
-      data,
-      headers: { Authorization: process.env.TOKEN },
-    })
-      .then(() => {
-        modal.current.close();
-      })
-      .catch((err) => console.log('err', err));
+
+    try {
+      await axios.post('/reviews', data);
+      modal.current.close();
+    } catch (err) {
+      console.log(err);
+    }
+    // axios({
+    //   method: 'post',
+    //   url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews',
+    //   data,
+    //   headers: { Authorization: process.env.TOKEN },
+    // })
+    //   .then(() => {
+    //     modal.current.close();
+    //   })
+    //   .catch((err) => console.log('err', err));
   };
 
   const handleStarClick = (index) => {
