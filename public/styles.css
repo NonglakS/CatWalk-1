@@ -176,6 +176,21 @@ span#sale-price, div#select-size-reminder {
   margin-left: 1px
 }
 
+.no-results{
+  font-weight: bold;
+  color:#3f3f3f;
+  font-size: 1.6em;
+  margin-left: 30px;
+  margin-top: 6px;
+}
+
+.helpful-questions{
+  color:#3f3f3f;
+  font-size: 1.2em;
+  margin-left: 10px;
+  margin-top: 4px;
+}
+
 .question-body {
   display: flex;
   flex-direction: column;
