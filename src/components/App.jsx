@@ -15,13 +15,12 @@ export default function App(props) {
   const [reviewScore, setReviewScore] = useState(0);
 
   useEffect(async () => {
-    getData(urlAddOn, (err, res) => {
-      if (err) {
-        console.log('err', err);
-      } else {
-        setProduct(res.data);
-      }
-    });
+    try {
+      const res = await axios.get(`/products/${id}`);
+      setProduct(res.data);
+    } catch (err) {
+      console.log('get product err', err);
+    }
 
     try {
       const res = await axios.get(`/reviews/meta?product_id=${id}`, {
@@ -32,15 +31,6 @@ export default function App(props) {
     } catch (err) {
       console.log('err', err);
     }
-    // getData(`reviews/meta?product_id=${id}`, (err, res) => {
-    //   if (err) {
-    //     console.log('err', err);
-    //   } else {
-    //     console.log(res);
-    //     setReviewsMeta(res.data);
-    //     setReviewScore(averageReviewScore(res.data.ratings));
-    //   }
-    // });
   }, []);
 
   return (

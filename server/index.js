@@ -8,6 +8,17 @@ const port = 3000;
 
 app.use(express.static(path.join(__dirname, '../public')));
 
+app.get('/products/:id', async (req, res) => {
+  try {
+    const apiRes = await axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/products/${req.params.id}`, {
+      headers: { Authorization: process.env.TOKEN },
+    });
+    res.send(apiRes.data);
+  } catch (err) {
+    res.send('error fetching product info', err);
+  }
+});
+
 app.get('/reviews/meta', async (req, res) => {
   try {
     const apiRes = await axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews/meta?product_id=${req.query.product_id}`, {
