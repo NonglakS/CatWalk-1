@@ -15,7 +15,7 @@ app.get('/products/:id', async (req, res) => {
     });
     res.send(apiRes.data);
   } catch (err) {
-    res.send('error fetching product info', err);
+    res.send(err);
   }
 });
 
@@ -26,7 +26,7 @@ app.get('/products/:id/styles', async (req, res) => {
     });
     res.send(apiRes.data);
   } catch (err) {
-    res.send('error fetching product styles info', err);
+    res.send(err);
   }
 });
 
@@ -37,7 +37,7 @@ app.get('/qa/questions', async (req, res) => {
     });
     res.send(apiRes.data);
   } catch (err) {
-    res.send('error fetching questions', err);
+    res.send(err);
   }
 });
 
@@ -48,7 +48,7 @@ app.get('/reviews/meta', async (req, res) => {
     });
     res.send(apiRes.data);
   } catch (err) {
-    res.send('error fetching reviews meta data', err);
+    res.send(err);
   }
 });
 
@@ -59,7 +59,18 @@ app.get('/reviews', async (req, res) => {
     });
     res.send(apiRes.data);
   } catch (err) {
-    res.send('error fetching reviews meta data', err);
+    res.send(err);
+  }
+});
+
+app.put('/qa/answers/:id/helpful', async (req, res) => {
+  try {
+    await axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/qa/answers/${req.params.id}/helpful`, null, {
+      headers: { Authorization: process.env.TOKEN },
+    });
+    res.send('successfully marked answer helpful');
+  } catch (err) {
+    res.send(err);
   }
 });
 
