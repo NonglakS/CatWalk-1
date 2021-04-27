@@ -10,18 +10,14 @@ export default function Helpful({ id, helpfulness }) {
     setHelpScore(helpScore + 1);
     setVoted(true);
 
-    axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews/${id}/helpful`, null, {
-      headers: { Authorization: process.env.TOKEN },
-    })
+    axios.put(`/reviews/${id}/helpful`)
       .catch((err) => console.log(err));
   };
 
   const handleReport = () => {
     setReported(true);
 
-    axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews/${id}/report`, null, {
-      headers: { Authorization: process.env.TOKEN },
-    })
+    axios.put(`/reviews/${id}/report`)
       .catch((err) => console.log(err));
   };
 

@@ -6,10 +6,12 @@ import axios from 'axios';
 function AnswerHelpful({ answerId, answerHelpfulness }) {
   const [helpScore, setHelpScore] = useState(answerHelpfulness);
   const [foundHelpful, setFoundHelpful] = useState(false);
+
   const updateHelpfulness = () => {
     setHelpScore(helpScore + 1);
     setFoundHelpful(true);
-    axios.put(`/qa/answers/${answerId}/helpful`, null)
+
+    axios.put(`/qa/answers/${answerId}/helpful`)
       .catch((err) => console.log(err));
   };
   return (

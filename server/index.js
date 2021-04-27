@@ -85,6 +85,39 @@ app.put('/qa/answers/:id/report', async (req, res) => {
   }
 });
 
+app.put('/qa/questions/:id/helpful', async (req, res) => {
+  try {
+    await axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/qa/questions/${req.params.id}/helpful`, null, {
+      headers: { Authorization: process.env.TOKEN },
+    });
+    res.send('successfully marked question helpful');
+  } catch (err) {
+    res.send(err);
+  }
+});
+
+app.put('/reviews/:id/helpful', async (req, res) => {
+  try {
+    await axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews/${req.params.id}/helpful`, null, {
+      headers: { Authorization: process.env.TOKEN },
+    });
+    res.send('successfully marked review helpful');
+  } catch (err) {
+    res.send(err);
+  }
+});
+
+app.put('/reviews/:id/report', async (req, res) => {
+  try {
+    await axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews/${req.params.id}/report`, null, {
+      headers: { Authorization: process.env.TOKEN },
+    });
+    res.send('successfully reported review');
+  } catch (err) {
+    res.send(err);
+  }
+});
+
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'), (err) => {
     if (err) {
