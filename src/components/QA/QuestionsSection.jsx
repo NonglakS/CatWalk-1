@@ -65,9 +65,7 @@ export default function QuestionsSection() {
 
   useEffect(async () => {
     try {
-      const res = await axios.get(`qa/questions?product_id=${id}&count=1000`, {
-        headers: { Authorization: process.env.TOKEN },
-      });
+      const res = await axios.get(`qa/questions?product_id=${id}&count=1000`);
       setAllQuestions(res.data.results);
       setDisplayedQuestions(res.data.results.slice(0, 2));
     } catch (err) {

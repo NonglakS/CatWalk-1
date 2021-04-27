@@ -18,9 +18,7 @@ export default function ReviewsSection({ reviewsMeta, name, reviewScore }) {
 
   useEffect(async () => {
     try {
-      const res = await axios.get(`reviews?product_id=${id}&count=10000`, {
-        headers: { Authorization: process.env.TOKEN },
-      });
+      const res = await axios.get(`reviews?product_id=${id}&count=10000`);
       setReviews(res.data.results);
       setRenderedReviews(res.data.results.slice(0, reviewCount));
     } catch (err) {

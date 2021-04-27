@@ -21,9 +21,7 @@ export default function App() {
     }
 
     try {
-      const res = await axios.get(`/reviews/meta?product_id=${id}`, {
-        headers: { Authorization: process.env.TOKEN },
-      });
+      const res = await axios.get(`/reviews/meta?product_id=${id}`);
       setReviewsMeta(res.data);
       setReviewScore(averageReviewScore(res.data.ratings));
     } catch (err) {

@@ -14,9 +14,7 @@ export default function Overview({ product, reviewScore }) {
 
   useEffect(async () => {
     try {
-      const res = await axios.get(`/products/${product.id}/styles`, {
-        headers: { Authorization: process.env.TOKEN },
-      });
+      const res = await axios.get(`/products/${product.id}/styles`);
       setStyles(res.data.results);
       setCurrentStyle(res.data.results[0]);
       setSelect(`tick_${res.data.results[0].style_id}`);
