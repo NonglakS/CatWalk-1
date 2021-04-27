@@ -7,7 +7,7 @@ function StyleSelector({ handleStyleChange, currentStyle, select, styles }) {
   return (
     <div className="style-selector"> <strong>STYLE ></strong> {currentStyle.name}
       <div className="style-selector row">
-        <Circle styles={styles} select={select} handleStyleChange={handleStyleChange} />
+        <Circle  styles={styles} select={select} handleStyleChange={handleStyleChange} />
       </div>
     </div>)
 }
@@ -43,7 +43,7 @@ function Circle({ styles, select, handleStyleChange }) {
                   <CgCheckO style={tickStyle} size={25} />
                 </div>
               }
-              <img id={style.style_id} src={style.photos[0].thumbnail_url} alt={style.name} style={circleStyle} onClick={() => {
+              <img data-testid="style-icon" id={style.style_id} src={style.photos[0].thumbnail_url} alt={style.name} style={circleStyle} onClick={() => {
                 handleStyleChange(style)
               }} />
             </div>

@@ -14,7 +14,6 @@ export default function Overview({ product, reviewScore }) {
   const [styles, setStyles] = useState('');
   const [currentStyle, setCurrentStyle] = useState('');
   const [select, setSelect] = useState('');
-  const [view, changeView] = useState(7)
 
 
 
@@ -39,45 +38,33 @@ export default function Overview({ product, reviewScore }) {
     setSelect(`tick_${newStyle.style_id}`);
   }
 
-  function handleViewChange() {
-   if (view === 12) {
-     changeView(7);
-   } else {
-     changeView(12)
-   }
-  }
 
   return (
     <div className="overview">
-      <div className="row">
-        <div className="col logo-bar">LOGO</div>
-      </div>
-      <div><br/></div>
+      <div className="logo-bar">LOGO</div>
+      <div><br /></div>
       <div className="row mainview">
-        <div className={`col-md-${view} my-auto d-flex justify-content-center`} >
+        <div className={`col-md-7 my-auto d-flex justify-content-center`} >
           {currentStyle &&
-            <Gallery currentStyle={currentStyle}
-            handleViewChange={handleViewChange} />}
+            <Gallery currentStyle={currentStyle} />}
         </div>
-        {view !== 12
-        ? <div className="col-3 product-information">
-          <ProductInfo
-            reviewScore={reviewScore}
-            product={product}
-            styles={styles}
-            currentStyle={currentStyle} />
-          <StyleSelector
-            handleStyleChange={handleStyleChange}
-            styles={styles}
-            currentStyle={currentStyle}
-            select={select}
-          />
-          {currentStyle !== '' &&
-            <Cart currentStyle={currentStyle} />
-          }
-          <ShareIcon />
-        </div>
-        : null}
+            <div className="col-3 product-information">
+            <ProductInfo
+              reviewScore={reviewScore}
+              product={product}
+              styles={styles}
+              currentStyle={currentStyle} />
+            <StyleSelector
+              handleStyleChange={handleStyleChange}
+              styles={styles}
+              currentStyle={currentStyle}
+              select={select}
+            />
+            {currentStyle !== '' &&
+              <Cart currentStyle={currentStyle} />
+            }
+            <ShareIcon />
+          </div>
       </div>
       <div className="product-overview">
         <ProductOverview

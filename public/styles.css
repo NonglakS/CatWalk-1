@@ -1,12 +1,18 @@
 #app {
   margin: 0 200px;
 }
-.col.logo-bar {
+
+
+
+#expand-image{
+  /* transform:scale(2.5); */
+}
+
+
+.logo-bar {
   background-color: gray;
   height: 50px;
-  padding: 10px;
   margin-top: 2.5%;
-  margin-left: 2%;
   font: italic 2em -webkit-xxx-large;
   text-decoration: underline;
   color: white;
@@ -24,14 +30,11 @@ div#product-name {
   margin-bottom: 1%;
 }
 
-.col-md-3.style-icon, .share-icon{
+.col-md-3.style-icon, .share-icon, .product-overview {
   margin-top: 3%;
 }
 
 
-.product-overview {
-  margin: 2%;
-}
 
 .style-selector, .price {
   font-size: large;
@@ -56,7 +59,7 @@ div#arrow-up, div#arrow-down {
 }
 
 img.d-block.w-100.align-middle {
-  cursor: url("https://img.icons8.com/material-sharp/24/000000/zoom-in--v1.png"), zoom-in;
+  cursor:zoom-in;
 }
 
 span#sale-price, div#select-size-reminder {
