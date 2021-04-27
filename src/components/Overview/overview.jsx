@@ -6,10 +6,16 @@ import ProductInfo from './productInfo.jsx';
 import ProductOverview from './productOverview.jsx';
 import ShareIcon from './shareIcon.jsx';
 import Cart from './cart.jsx';
+<<<<<<< HEAD
 import {ThemeContext} from "../themeContext.jsx"
+=======
+import { TrackerContext } from '../App.jsx'
+
+
+>>>>>>> master
 
 export default function Overview({ product, reviewScore }) {
-
+  const clickTracker = useContext(TrackerContext)
   const [styles, setStyles] = useState('');
   const [currentStyle, setCurrentStyle] = useState('');
   const [select, setSelect] = useState('');
@@ -34,15 +40,21 @@ export default function Overview({ product, reviewScore }) {
   function handleStyleChange(newStyle) {
     setCurrentStyle(newStyle);
     setSelect(`tick_${newStyle.style_id}`);
+    clickTracker('style selector', 'overview')
   }
 
   return (
     <div className="overview">
+<<<<<<< HEAD
         <div className="logo-bar">
           LOGO
           <button type="submit" onClick={toggleTheme} className={`${theme}-theme-secondary toggle-button`}> {theme} theme </button>
         </div>
       <div><br/></div>
+=======
+      <div className="logo-bar">LOGO</div>
+      <div><br /></div>
+>>>>>>> master
       <div className="row mainview">
         <div className="col-md-7 my-auto d-flex justify-content-center">
           {currentStyle &&
