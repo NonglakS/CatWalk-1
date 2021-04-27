@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md';
-import getData from '../../helperFunctions/getData.js';
 
 function Thumbnails({
   currentStyle, handleSelect, activeIndexArray, activeIndex, scrollUp, scrollDown,
