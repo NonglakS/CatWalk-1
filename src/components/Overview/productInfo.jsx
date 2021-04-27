@@ -1,12 +1,18 @@
-import React from 'react';
+import React, {useContext}from 'react';
 import Price from './price.jsx'
 import { FaRegStar, FaStar, FaStarHalfAlt } from 'react-icons/fa';
 import makeAverageStars from '../../helperFunctions/makeAverageStars.js';
+import { TrackerContext } from '../App.jsx'
 
 
 function ProductInfo({ product, currentStyle, reviewScore }) {
-
+  const clickTracker = useContext(TrackerContext)
   const stars = makeAverageStars(reviewScore);
+
+  const handleReadReview = () => {
+    document.querySelector('div.ratings-and-reviews').scrollIntoView()
+    clickTracker('read all review', 'overview');
+  }
 
   return (
     <div>
@@ -21,9 +27,7 @@ function ProductInfo({ product, currentStyle, reviewScore }) {
               }
               return <FaStarHalfAlt />;
             })}
-            <a id="read-all-reviews" onClick={() => {
-              document.querySelector('div.ratings-and-reviews').scrollIntoView()
-            }}>Read all reviews</a>
+            <a id="read-all-reviews" onClick={handleReadReview}>Read all reviews</a>
           </div>
         </div>
         : null
