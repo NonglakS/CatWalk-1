@@ -3,7 +3,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import getData from '../../helperFunctions/getData.js';
+import axios from 'axios';
 import AddQuestion from './AddQuestion.jsx';
 import Questions from './Questions.jsx';
 import Answers from './Answers.jsx';
@@ -18,7 +18,6 @@ export default function QuestionsSection() {
   const [noResults, setNoResults] = useState(false);
 
   const { id } = useParams();
-  const urlAddOn = `qa/questions?product_id=${id}&count=1000`;
 
   const searchQuestions = (input) => {
     const searchQ = [];
@@ -50,7 +49,7 @@ export default function QuestionsSection() {
     }
   };
 
-  const renderQuestions = function (questionArray) {
+  const renderQuestions = (questionArray) => {
     const questions = [];
     for (let i = 0; i < questionsRendered; i++) {
       if (questionArray[i] === undefined) {
@@ -64,15 +63,16 @@ export default function QuestionsSection() {
     setQuestionsRendered(questionsRendered + 2);
   };
 
-  useEffect(() => {
-    getData(urlAddOn, (err, res) => {
-      if (err) {
-        return;
-      } else {
-        setAllQuestions(res.data.results);
-        setDisplayedQuestions(res.data.results.slice(0, 2));
-      }
-    });
+  useEffect(async () => {
+    try {
+      const res = await axios.get(`qa/questions?product_id=${id}&count=1000`, {
+        headers: { Authorization: process.env.TOKEN },
+      });
+      setAllQuestions(res.data.results);
+      setDisplayedQuestions(res.data.results.slice(0, 2));
+    } catch (err) {
+      console.log(err);
+    }
   }, []);
 
   return (
