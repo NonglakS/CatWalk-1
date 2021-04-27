@@ -33,6 +33,17 @@ app.get('/products/:id/styles', async (req, res) => {
   }
 });
 
+app.post('/cart', async (req, res) => {
+  try {
+    await axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/cart', req.body, {
+      headers: { Authorization: process.env.TOKEN },
+    });
+    res.send('succesfully updated cart');
+  } catch (err) {
+    res.send(err);
+  }
+});
+
 // Questions requests
 app.get('/qa/questions', async (req, res) => {
   try {
