@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import getData from '../../helperFunctions/getData.js';
 import Gallery from './gallery.jsx';
 import StyleSelector from './styleSelector.jsx';
@@ -6,11 +6,12 @@ import ProductInfo from './productInfo.jsx';
 import ProductOverview from './productOverview.jsx';
 import ShareIcon from './shareIcon.jsx';
 import Cart from './cart.jsx';
+import { TrackerContext } from '../App.jsx'
 
 
 
 export default function Overview({ product, reviewScore }) {
-
+  const clickTracker = useContext(TrackerContext)
   const [styles, setStyles] = useState('');
   const [currentStyle, setCurrentStyle] = useState('');
   const [select, setSelect] = useState('');
@@ -35,12 +36,13 @@ export default function Overview({ product, reviewScore }) {
   function handleStyleChange(newStyle) {
     setCurrentStyle(newStyle);
     setSelect(`tick_${newStyle.style_id}`);
+    clickTracker('style selector', 'overview')
   }
 
   return (
     <div className="overview">
-        <div className="logo-bar">LOGO</div>
-      <div><br/></div>
+      <div className="logo-bar">LOGO</div>
+      <div><br /></div>
       <div className="row mainview">
         <div className="col-md-7 my-auto d-flex justify-content-center">
           {currentStyle &&

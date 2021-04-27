@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Thumbnails from './thumbnails.jsx'
 import { Carousel } from 'react-bootstrap';
 import { FaCheck } from 'react-icons/fa';
-
+import { TrackerContext } from '../App.jsx'
 
 function Gallery({ currentStyle }) {
+
+  const clickTracker = useContext(TrackerContext)
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [activeIndexArray, setActiveIndexArray] = useState([0, 1, 2, 3, 4, 5, 6]);
@@ -24,6 +26,8 @@ function Gallery({ currentStyle }) {
   const handleSelect = (selectedIndex, e) => {
     setActiveIndex(selectedIndex);
     highLightThumbnail(selectedIndex);
+    clickTracker('thumbnails', 'overview')
+
   };
 
   const scrollUp = () => {
@@ -37,6 +41,7 @@ function Gallery({ currentStyle }) {
         setActiveIndex(arr[6]);
       }
     }
+    clickTracker('thumbnails', 'overview')
   }
 
   const scrollDown = () => {
@@ -109,9 +114,9 @@ function Gallery({ currentStyle }) {
       >
         {currentStyle.photos.map((photo) => {
           return (
-            <Carousel.Item style={{ 'height': "650px"}}>
+            <Carousel.Item style={{ 'height': "650px" }}>
               <div className="d-flex h-100 align-items-center justify-content-center">
-                <img 
+                <img
                   className="d-block w-100 align-middle"
                   src={photo.url}
                   alt={`image of ${currentStyle.name}`}
