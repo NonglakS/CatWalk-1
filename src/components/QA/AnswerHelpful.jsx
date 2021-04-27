@@ -12,13 +12,12 @@ function AnswerHelpful({ answerId, answerHelpfulness }) {
     axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/qa/answers/${answerId}/helpful`, null, {
       headers: { Authorization: process.env.TOKEN },
     })
-
       .catch((err) => console.log(err));
   };
   return (
     <>
       {foundHelpful
-        ? <button className="helpful-btn" type="submit"> Yes </button>
+        ? <button className="helpful-btn-pressed" type="submit"> Yes </button>
         : <button className="helpful-btn" type="submit" onClick={() => updateHelpfulness()}> Yes </button>
       }
       ({helpScore})
