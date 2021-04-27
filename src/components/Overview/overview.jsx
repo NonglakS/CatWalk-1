@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import getData from '../../helperFunctions/getData.js';
 import Gallery from './gallery.jsx';
 import StyleSelector from './styleSelector.jsx';
@@ -6,15 +6,14 @@ import ProductInfo from './productInfo.jsx';
 import ProductOverview from './productOverview.jsx';
 import ShareIcon from './shareIcon.jsx';
 import Cart from './cart.jsx';
-
-
+import {ThemeContext} from "../themeContext.jsx"
 
 export default function Overview({ product, reviewScore }) {
 
   const [styles, setStyles] = useState('');
   const [currentStyle, setCurrentStyle] = useState('');
   const [select, setSelect] = useState('');
-
+  const { theme, toggleTheme } = useContext(ThemeContext)
 
   useEffect(() => {
 
@@ -39,7 +38,10 @@ export default function Overview({ product, reviewScore }) {
 
   return (
     <div className="overview">
-        <div className="logo-bar">LOGO</div>
+        <div className="logo-bar">
+          LOGO
+          <button type="submit" onClick={toggleTheme} className={`${theme}-theme-secondary toggle-button`}> {theme} theme </button>
+        </div>
       <div><br/></div>
       <div className="row mainview">
         <div className="col-md-7 my-auto d-flex justify-content-center">

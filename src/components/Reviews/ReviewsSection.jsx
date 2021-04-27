@@ -59,7 +59,7 @@ export default function ReviewsSection({ reviewsMeta, name, reviewScore }) {
 
   return (
     <>
-      <h5>Ratings & Reviews</h5>
+      <h3 className="ratings-header">Ratings & Reviews</h3>
       <div className="ratings-and-reviews">
         <div className="ratings">
           <Ratings reviewsMeta={reviewsMeta} reviewScore={reviewScore} onFilter={handleFilter} />

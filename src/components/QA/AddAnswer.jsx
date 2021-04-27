@@ -1,10 +1,12 @@
 /* eslint-disable no-else-return */
 /* eslint-disable react/jsx-one-expression-per-line */
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useContext } from 'react';
 import axios from 'axios';
 import Modal from '../../shared-components/Modal.jsx';
+import {ThemeContext} from "../themeContext.jsx"
 
 function AddAnswer({ questionId, questionBody }) {
+  const { theme } = useContext(ThemeContext)
   const modal = useRef(null);
   const [values, setValues] = useState({
     name: '', email: '', body: '',
@@ -48,7 +50,7 @@ function AddAnswer({ questionId, questionBody }) {
 
   return (
     <>
-      <button className="add-answer" type="button" onClick={() => modal.current.open()}>ADD AN ANSWER</button>
+      <button className={`${theme}-theme-secondary add-answer`} type="button" onClick={() => modal.current.open()}>ADD AN ANSWER</button>
       <Modal ref={modal} fade>
         <form id="answer-form" className="submit-answer">
           <text>Submit Your Answer</text>

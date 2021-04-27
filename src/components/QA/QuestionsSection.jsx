@@ -76,7 +76,7 @@ export default function QuestionsSection() {
 
   return (
     <>
-      <h3>Questions and Answers</h3>
+      <h3 className="qa-meta">Questions and Answers</h3>
       <div className="questions-area">
         <QuestionSearch inputText={inputText} handleInput={handleInputChange} />
       </div>
@@ -96,7 +96,6 @@ export default function QuestionsSection() {
           {searchActivated
             ? null
             : <button className="display-questions" type="submit" onClick={() => renderQuestions(allQuestions)}> MORE QUESTIONS </button>}
-
         </div>
         <AddQuestion />
       </div>

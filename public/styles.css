@@ -1,13 +1,51 @@
 #app {
-  margin: 0 200px;
+  padding: 0 200px;
+  background-color: rgb(255, 237, 166);
 }
+
+.light-theme-primary {
+  background-color: rgb(255, 237, 166);
+}
+
+.light-theme-secondary {
+  background-color: #FF971F
+}
+
+.light-theme-tertiary {
+  background-color: #DC6F00
+}
+
+.dark-theme-primary {
+  background-color: rgb(46, 46, 46);
+  color: white;
+}
+
+.dark-theme-secondary {
+  background-color:  #DC6F00;
+  color: white;
+}
+
+.dark-theme-tertiary {
+  background-color: rgb(128, 65, 2);
+  color: white;
+}
+
 .logo-bar {
+  display: flex;
+  justify-content: space-between;
   background-color: gray;
   height: 50px;
-  margin-top: 2.5%;
   font: italic 2em -webkit-xxx-large;
-  text-decoration: underline;
   color: white;
+}
+
+.toggle-button {
+  font-weight: bold;
+  font-size: .5em;
+  font-variant: small-caps;
+  margin-right: 7px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 a#read-all-reviews {
@@ -166,6 +204,11 @@ span#sale-price, div#select-size-reminder {
   max-height: 90vh;
 }
 
+.qa-meta {
+  margin-top: 5px;
+  font-weight: 800;
+}
+
 .search-bar{
   display: flex;
   flex-direction: column;
@@ -248,13 +291,12 @@ span#sale-price, div#select-size-reminder {
 
 .add-question {
   margin-bottom: 20px;
-  background-color: aliceblue;
+  margin-left: 12px;
   font-weight: bold;
   padding-left: 12px;
   padding-right: 12px;
   padding-top: 8px;
   padding-bottom: 8px;
-  margin-left: 10px;
   width: 220px;
 }
 
@@ -277,7 +319,6 @@ span#sale-price, div#select-size-reminder {
 
 .display-answers {
   margin-bottom: 20px;
-  background-color: aliceblue;
   font-weight: bold;
   padding-left: 12px;
   padding-right: 12px;
@@ -291,7 +332,6 @@ span#sale-price, div#select-size-reminder {
   width: 40%;
   margin-top: 10px;
   margin-bottom: 20px;
-  background-color: aliceblue;
   font-weight: bold;
   padding-left: 12px;
   padding-right: 12px;
@@ -402,7 +442,9 @@ span#sale-price, div#select-size-reminder {
   width: 50%;
 }
 
-
+.ratings-header {
+  font-weight: 800;
+}
 
  /* Modal Styles */
 
