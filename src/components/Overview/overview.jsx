@@ -7,20 +7,13 @@ import ProductOverview from './productOverview.jsx';
 import ShareIcon from './shareIcon.jsx';
 import Cart from './cart.jsx';
 
-
-
 export default function Overview({ product, reviewScore }) {
-
   const [styles, setStyles] = useState('');
   const [currentStyle, setCurrentStyle] = useState('');
   const [select, setSelect] = useState('');
 
-
-
-
   useEffect(() => {
-
-    let getStyleUrl = `products/${product.id}/styles`;
+    const getStyleUrl = `products/${product.id}/styles`;
     getData(getStyleUrl, (err, res) => {
       if (err) {
         console.log('ERROR', err);
@@ -28,9 +21,8 @@ export default function Overview({ product, reviewScore }) {
         setStyles(res.data.results);
         setCurrentStyle(res.data.results[0]);
         setSelect(`tick_${res.data.results[0].style_id}`);
-
       }
-    })
+    });
   }, []);
 
   function handleStyleChange(newStyle) {
@@ -38,39 +30,38 @@ export default function Overview({ product, reviewScore }) {
     setSelect(`tick_${newStyle.style_id}`);
   }
 
-
   return (
     <div className="overview">
       <div className="logo-bar">LOGO</div>
       <div><br /></div>
       <div className="row mainview">
-        <div className={`col-md-7 my-auto d-flex justify-content-center`} >
-          {currentStyle &&
-            <Gallery currentStyle={currentStyle} />}
+        <div className="col-md-7 my-auto d-flex justify-content-center">
+          {currentStyle
+            && <Gallery currentStyle={currentStyle} />}
         </div>
-            <div className="col-3 product-information">
-            <ProductInfo
-              reviewScore={reviewScore}
-              product={product}
-              styles={styles}
-              currentStyle={currentStyle} />
-            <StyleSelector
-              handleStyleChange={handleStyleChange}
-              styles={styles}
-              currentStyle={currentStyle}
-              select={select}
-            />
-            {currentStyle !== '' &&
-              <Cart currentStyle={currentStyle} />
-            }
-            <ShareIcon />
-          </div>
+        <div className="col-3 product-information">
+          <ProductInfo
+            reviewScore={reviewScore}
+            product={product}
+            styles={styles}
+            currentStyle={currentStyle}
+          />
+          <StyleSelector
+            handleStyleChange={handleStyleChange}
+            styles={styles}
+            currentStyle={currentStyle}
+            select={select}
+          />
+          {currentStyle !== ''
+              && <Cart currentStyle={currentStyle} />}
+          <ShareIcon />
+        </div>
       </div>
       <div className="product-overview">
         <ProductOverview
-          product={product} />
+          product={product}
+        />
       </div>
     </div>
   );
 }
-

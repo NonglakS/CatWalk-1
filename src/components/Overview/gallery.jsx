@@ -52,8 +52,8 @@ function Gallery({ currentStyle, handleViewChange }) {
   };
 
   const zoom = () => {
-    const zoom = zoomIn;
-    setZoomIn(!zoom);
+    const isZoom = zoomIn;
+    setZoomIn(!isZoom);
   };
 
   const zoomStyle = zoomIn
@@ -126,6 +126,7 @@ function Gallery({ currentStyle, handleViewChange }) {
         {currentStyle.photos.map((photo) => (
           <Carousel.Item style={{ height: '650px' }}>
             <div className="d-flex h-100 align-items-center justify-content-center">
+              <canvas id="canvas" height="650">
               <img
                 onClick={() => { modal.current.open(); }}
                 className="d-block w-100 align-middle"
@@ -133,6 +134,7 @@ function Gallery({ currentStyle, handleViewChange }) {
                 src={photo.url}
                 alt={`image of ${currentStyle.name}`}
               />
+              </canvas>
             </div>
           </Carousel.Item>
         ))}
