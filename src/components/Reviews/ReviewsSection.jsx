@@ -31,6 +31,19 @@ export default function ReviewsSection({ reviewsMeta, name, reviewScore }) {
     setReviewCount(reviewCount + 2);
   };
 
+  const handleSort = (sortBy) => {
+    console.log('sortBy', sortBy);
+    getData(`reviews?product_id=${id}&count=10000&sort=${sortBy}`, (err, res) => {
+      if (err) {
+        console.log('err', err);
+      } else {
+        console.log('res', res);
+        setReviews(res.data.results);
+        setRenderedReviews(res.data.results.slice(0, reviewCount));
+      }
+    });
+  };
+
   const handleFilter = (filterBy) => {
     let currentFilters = filters.slice();
     if (currentFilters.includes(filterBy)) {
@@ -56,7 +69,18 @@ export default function ReviewsSection({ reviewsMeta, name, reviewScore }) {
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
-          <h3>Review Summaries</h3>
+          <div style={{ display: 'flex' }}>
+            <label style={{ marginRight: '5px' }} className="review-summary">
+              {reviews.length}
+              {' '}
+              reviews, sorted by
+              <select className="review-summary" style={{ border: 'none', textDecoration: 'underline' }} onChange={(e) => handleSort(e.target.value)}>
+                <option value="relevant">relevance</option>
+                <option value="helpful">helpfulness</option>
+                <option value="newest">newest</option>
+              </select>
+            </label>
+          </div>
           <div className="reviews">
             {reviews
               && renderedReviews.map((review) => (

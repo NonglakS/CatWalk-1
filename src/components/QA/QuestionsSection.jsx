@@ -7,6 +7,7 @@ import axios from 'axios';
 import AddQuestion from './AddQuestion.jsx';
 import Questions from './Questions.jsx';
 import Answers from './Answers.jsx';
+import QuestionSearch from './QuestionSearch.jsx';
 
 export default function QuestionsSection() {
   const [allQuestions, setAllQuestions] = useState('');
@@ -28,8 +29,10 @@ export default function QuestionsSection() {
     }
     if (searchQ.length > 0) {
       setSearchedQuestions(searchQ);
+      setNoResults(false);
     } else {
       setSearchedQuestions([]);
+      setNoResults(true);
     }
   };
 
@@ -38,10 +41,6 @@ export default function QuestionsSection() {
     if (e.target.value.length > 2) {
       searchQuestions(e.target.value);
       setSearchActivated(true);
-      if (searchedQuestions.length === 0) {
-        setNoResults(true);
-      }
-      setNoResults(false);
     } else {
       setSearchedQuestions([]);
       setSearchActivated(false);
@@ -77,21 +76,17 @@ export default function QuestionsSection() {
     <>
       <h3>Questions and Answers</h3>
       <div className="questions-area">
-
-        <form className="search-bar">
-          <input
-            className="search-input"
-            type="text"
-            placeholder="Have a question? Search for answers..."
-            name="inputText"
-            onChange={handleInputChange}
-          />
-        </form>
+        <QuestionSearch inputText={inputText} handleInput={handleInputChange} />
       </div>
       <div className="questions-module">
         <div className="question-body">
           {noResults
-            ? <span>No Results Found</span>
+            ? (
+              <div className="no-results-box">
+                <span className="no-results">No Matching Questions Found</span>
+                <span className="helpful-questions">Users found the following questions helpful:</span>
+              </div>
+            )
             : null}
           {displayedQuestions && searchedQuestions.length < 1
             ? displayedQuestions.map((data) => <Questions key={data.toString()} question={data} />)

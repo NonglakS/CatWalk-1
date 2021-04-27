@@ -1,12 +1,10 @@
 #app {
   margin: 0 200px;
 }
-.col.logo-bar {
+.logo-bar {
   background-color: gray;
   height: 50px;
-  padding: 10px;
   margin-top: 2.5%;
-  margin-left: 2%;
   font: italic 2em -webkit-xxx-large;
   text-decoration: underline;
   color: white;
@@ -24,14 +22,11 @@ div#product-name {
   margin-bottom: 1%;
 }
 
-.col-md-3.style-icon, .share-icon{
+.col-md-3.style-icon, .share-icon, .product-overview {
   margin-top: 3%;
 }
 
 
-.product-overview {
-  margin: 2%;
-}
 
 .style-selector, .price {
   font-size: large;
@@ -175,9 +170,25 @@ span#sale-price, div#select-size-reminder {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 50%;
+  width: 60%;
   padding: 10px;
   font-size: 1.5em;
+  margin-left: 1px
+}
+
+.no-results{
+  font-weight: bold;
+  color:#3f3f3f;
+  font-size: 1.6em;
+  margin-left: 30px;
+  margin-top: 6px;
+}
+
+.helpful-questions{
+  color:#3f3f3f;
+  font-size: 1.2em;
+  margin-left: 10px;
+  margin-top: 4px;
 }
 
 .question-body {
@@ -185,6 +196,7 @@ span#sale-price, div#select-size-reminder {
   flex-direction: column;
   width: 100%;
   overflow-y: scroll;
+  margin-left: 11px;
 }
 
 .helpful-btn {
@@ -193,12 +205,28 @@ span#sale-price, div#select-size-reminder {
   text-decoration: underline;
 }
 
+.helpful-btn-pressed {
+  border: none;
+  background: none;
+  font-weight: bold;
+  cursor: not-allowed;
+}
+
 .report-btn {
   border: none;
   background: none;
   text-decoration: underline;
   color:rgb(160, 158, 158);
   margin-bottom: 10px;
+}
+
+.report-btn-pressed {
+  border: none;
+  background: none;
+  color:rgb(160, 158, 158);
+  margin-bottom: 10px;
+  font-weight: bold;
+  cursor: not-allowed;
 }
 
 .qa-header {

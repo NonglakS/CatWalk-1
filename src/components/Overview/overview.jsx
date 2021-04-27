@@ -30,10 +30,8 @@ export default function Overview({ product, reviewScore }) {
 
   return (
     <div className="overview">
-      <div className="row">
-        <div className="col logo-bar">LOGO</div>
-      </div>
-      <div><br /></div>
+        <div className="logo-bar">LOGO</div>
+      <div><br/></div>
       <div className="row mainview">
         <div className="col-md-7 my-auto d-flex justify-content-center">
           {currentStyle
