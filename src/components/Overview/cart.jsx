@@ -1,11 +1,16 @@
 /* eslint-disable max-len */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import Select from 'react-select';
 import { Button, Icon } from 'semantic-ui-react';
 import axios from 'axios';
 import AddButton from './addButton.jsx'
+import { TrackerContext } from '../App.jsx'
+
 
 function Cart({ currentStyle }) {
+
+  const clickTracker = useContext(TrackerContext)
+
   const [sizeOptions, setSizeOptions] = useState([]);
   const [qtyOptions, setQtyOptions] = useState([]);
   const [outOfStock, setOutOfStock] = useState(false);
@@ -36,10 +41,13 @@ function Cart({ currentStyle }) {
     } else {
       setQtyOptions(updateRange(15));
     }
+
+    clickTracker('size selector', 'overview');
   };
 
   const handleQtyChange = (e) => {
     setCurrentVal({ label: e.value, value: e.value, sku: currentVal.sku });
+    clickTracker('quantity selector', 'overview')
   };
 
   const updateRange = (max) => {
@@ -65,6 +73,7 @@ function Cart({ currentStyle }) {
         .then((res) => console.log('Added an item to cart! Response code : ', res.status))
         .catch((err) => { console.log(err); });
     }
+    clickTracker('add to cart', 'overview')
   };
 
   return (
