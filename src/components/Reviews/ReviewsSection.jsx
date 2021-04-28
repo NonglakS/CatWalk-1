@@ -9,6 +9,7 @@ import ReviewForm from './ReviewForm.jsx';
 import Characteristic from './Characteristic.jsx';
 
 export default function ReviewsSection({ reviewsMeta, name, reviewScore }) {
+  const clickTracker = useContext(TrackerContext);
   const [reviews, setReviews] = useState([]);
   const [reviewCount, setReviewCount] = useState(2);
   const [renderedReviews, setRenderedReviews] = useState([]);
@@ -32,7 +33,6 @@ export default function ReviewsSection({ reviewsMeta, name, reviewScore }) {
   };
 
   const handleSort = (sortBy) => {
-    console.log('sortBy', sortBy);
     getData(`reviews?product_id=${id}&count=10000&sort=${sortBy}`, (err, res) => {
       if (err) {
         console.log('err', err);
@@ -42,6 +42,7 @@ export default function ReviewsSection({ reviewsMeta, name, reviewScore }) {
         setRenderedReviews(res.data.results.slice(0, reviewCount));
       }
     });
+
   };
 
   const handleFilter = (filterBy) => {

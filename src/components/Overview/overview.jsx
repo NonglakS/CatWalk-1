@@ -28,7 +28,7 @@ export default function Overview({ product, reviewScore }) {
   function handleStyleChange(newStyle) {
     setCurrentStyle(newStyle);
     setSelect(`tick_${newStyle.style_id}`);
-    clickTracker('style selector', 'overview')
+    clickTracker('style selector', 'overview');
   }
 
   return (
