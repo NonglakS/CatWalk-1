@@ -1,15 +1,17 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable react/prop-types */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import Answers from './Answers.jsx';
 import QuestionHelpful from './QuestionHelpful.jsx';
 import AddAnswer from './AddAnswer.jsx'
+import { TrackerContext } from '../App.jsx'
 
 function Questions({ question }) {
   const [allAnswers, setAllAnswers] = useState('');
   const [displayedAnswers, setDisplayedAnswers] = useState('');
   const [answerNumberDisplayed, setAnswerNumberDisplayed] = useState(2);
   const [allAnswersDisplayed, setAllAnswersDisplayed] = useState(false);
+  const clickTracker = useContext(TrackerContext)
 
   const getAnswers = function (questionObject) {
     const answerKeys = Object.values(questionObject.answers);
@@ -24,12 +26,14 @@ function Questions({ question }) {
   };
 
   const displayAllAnswers = function () {
+    clickTracker('More Answers', 'QA');
     setAnswerNumberDisplayed(allAnswers.length);
     setDisplayedAnswers(allAnswers);
     setAllAnswersDisplayed(true);
   };
 
   const displayDefaultAnswers = function () {
+    clickTracker('Collapse Answers', 'QA');
     setAnswerNumberDisplayed(2);
     setDisplayedAnswers(allAnswers.slice(0, 2));
     setAllAnswersDisplayed(false);

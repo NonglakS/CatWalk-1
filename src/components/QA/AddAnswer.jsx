@@ -4,6 +4,7 @@ import React, { useState, useRef, useContext } from 'react';
 import axios from 'axios';
 import Modal from '../../shared-components/Modal.jsx';
 import {ThemeContext} from "../themeContext.jsx"
+import { TrackerContext } from '../App.jsx'
 
 function AddAnswer({ questionId, questionBody }) {
   const { theme } = useContext(ThemeContext)
@@ -12,6 +13,7 @@ function AddAnswer({ questionId, questionBody }) {
     name: '', email: '', body: '',
   });
   const [invalidEntry, setInvalidEntry] = useState(false);
+  const clickTracker = useContext(TrackerContext)
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -32,6 +34,7 @@ function AddAnswer({ questionId, questionBody }) {
   };
 
   const addItem = (e) => {
+    clickTracker('Add Answer', 'QA');
     e.preventDefault();
     const { name, email, body } = values;
     if (!name || !email || !body || !validateEmail(email)) {

@@ -1,13 +1,14 @@
 /* eslint-disable no-useless-return */
 /* eslint-disable no-else-return */
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import getData from '../../helperFunctions/getData.js';
 import AddQuestion from './AddQuestion.jsx';
 import Questions from './Questions.jsx';
 import Answers from './Answers.jsx';
 import QuestionSearch from './QuestionSearch.jsx';
+import { TrackerContext } from '../App.jsx'
 
 export default function QuestionsSection() {
   const [allQuestions, setAllQuestions] = useState('');
@@ -17,9 +18,9 @@ export default function QuestionsSection() {
   const [inputText, setInputText] = useState('');
   const [searchActivated, setSearchActivated] = useState(false);
   const [noResults, setNoResults] = useState(false);
-
   const { id } = useParams();
   const urlAddOn = `qa/questions?product_id=${id}&count=1000`;
+  const clickTracker = useContext(TrackerContext)
 
   const searchQuestions = (input) => {
     const searchQ = [];
@@ -51,6 +52,7 @@ export default function QuestionsSection() {
 
   const renderQuestions = function (questionArray) {
     const questions = [];
+    clickTracker('More Questions', 'QA');
     for (let i = 0; i < questionsRendered; i++) {
       if (questionArray[i] === undefined) {
         return;

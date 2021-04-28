@@ -1,14 +1,17 @@
 /* eslint-disable react/jsx-curly-newline */
 /* eslint-disable react/jsx-one-expression-per-line */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
+import { TrackerContext } from '../App.jsx'
 
 function QuestionHelpful({ questionId, questionHelpfulness }) {
-  const [helpScore, setHelpScore] = useState(questionHelpfulness)
+  const [helpScore, setHelpScore] = useState(questionHelpfulness);
+  const clickTracker = useContext(TrackerContext);
   const [foundHelpful, setFoundHelpful] = useState(false);
   const updateHelpfulness = () => {
-    (setHelpScore(helpScore + 1));
-    (setFoundHelpful(true));
+    clickTracker('Question Helpful', 'QA');
+    setHelpScore(helpScore + 1);
+    setFoundHelpful(true);
     axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/qa/questions/${questionId}/helpful`, null, {
       headers: { Authorization: process.env.TOKEN },
     })

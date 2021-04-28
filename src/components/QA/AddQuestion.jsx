@@ -1,14 +1,16 @@
 /* eslint-disable no-useless-return */
 /* eslint-disable no-else-return */
 /* eslint-disable react/jsx-one-expression-per-line */
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Modal from '../../shared-components/Modal.jsx';
+import { TrackerContext } from '../App.jsx'
 
 function AddQuestion({ product, productName }) {
   const modal = useRef(null);
   const { id } = useParams();
+  const clickTracker = useContext(TrackerContext)
   const [values, setValues] = useState({
     name: '', email: '', body: '', product_id: Number(id),
   });
@@ -26,6 +28,7 @@ function AddQuestion({ product, productName }) {
   };
 
   const postQuestion = (params, callback) => {
+    clickTracker('Add Question', 'QA');
     axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/qa/questions', params, {
       headers: { Authorization: process.env.TOKEN },
     })
@@ -35,6 +38,7 @@ function AddQuestion({ product, productName }) {
 
   const addItem = (e) => {
     e.preventDefault();
+    clickTracker('Add Question', 'QA');
     const { name, email, body } = values;
     if (!name || !email || !body || !validateEmail(email)) {
       console.log('invalid entries');

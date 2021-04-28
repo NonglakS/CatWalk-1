@@ -12,7 +12,7 @@
 }
 
 .light-theme-tertiary {
-  background-color: #DC6F00
+  background-color: rgb(255, 243, 199);
 }
 
 .dark-theme-primary {
@@ -216,7 +216,8 @@ span#sale-price, div#select-size-reminder {
   width: 60%;
   padding: 10px;
   font-size: 1.5em;
-  margin-left: 1px
+  margin-left: 1px;
+  background-color: auto
 }
 
 .no-results{
