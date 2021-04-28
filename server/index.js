@@ -126,7 +126,7 @@ app.get('/reviews/meta', async (req, res) => {
 
 app.get('/reviews', async (req, res) => {
   try {
-    const apiRes = await axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews?product_id=${req.query.product_id}`, {
+    const apiRes = await axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews?product_id=${req.query.product_id}&count=1000`, {
       headers: { Authorization: process.env.TOKEN },
     });
     res.send(apiRes.data);
@@ -159,11 +159,13 @@ app.put('/reviews/:id/report', async (req, res) => {
 
 app.post('/reviews', async (req, res) => {
   try {
-    console.log('post review')
     await axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews', req.body, {
       headers: { Authorization: process.env.TOKEN },
     });
-    res.send('successfully posted new reivew');
+    const apiRes = await axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews?product_id=${req.body.product_id}&count=1000`, {
+      headers: { Authorization: process.env.TOKEN },
+    });
+    res.send(apiRes.data);
   } catch (err) {
     res.send(err);
   }
