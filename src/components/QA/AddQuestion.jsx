@@ -5,17 +5,18 @@ import React, { useState, useRef, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Modal from '../../shared-components/Modal.jsx';
-import { TrackerContext } from '../App.jsx'
+import { TrackerContext } from '../App.jsx';
+import { ThemeContext } from '../themeContext.jsx';
 
 function AddQuestion({ product, productName }) {
+  const { theme } = useContext(ThemeContext);
   const modal = useRef(null);
   const { id } = useParams();
-  const clickTracker = useContext(TrackerContext)
+  const clickTracker = useContext(TrackerContext);
   const [values, setValues] = useState({
     name: '', email: '', body: '', product_id: Number(id),
   });
   const [invalidEntry, setInvalidEntry] = useState(false);
-
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -29,9 +30,7 @@ function AddQuestion({ product, productName }) {
 
   const postQuestion = (params, callback) => {
     clickTracker('Add Question', 'QA');
-    axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/qa/questions', params, {
-      headers: { Authorization: process.env.TOKEN },
-    })
+    axios.post('/qa/questions', params)
       .then((res) => callback(null, res))
       .catch((err) => callback(err));
   };
@@ -50,6 +49,7 @@ function AddQuestion({ product, productName }) {
         console.log('err', err);
       } else {
         alert('Question Submitted');
+        modal.current.close();
         setInvalidEntry(false);
       }
     });
@@ -57,7 +57,7 @@ function AddQuestion({ product, productName }) {
 
   return (
     <>
-      <button className="add-question" type="button" onClick={() => modal.current.open()}>ADD A QUESTION +</button>
+      <button className={`${theme}-theme-secondary add-question`} type="button" onClick={() => modal.current.open()}>ADD A QUESTION +</button>
       <Modal ref={modal} fade>
         <form id="question-form">
           <text>Ask Your Question</text>

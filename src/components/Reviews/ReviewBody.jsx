@@ -1,24 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import ReviewPic from './ReviewPic.jsx';
+import {ThemeContext} from "../themeContext.jsx"
 
 export default function ReviewBody({ body, photos }) {
   const [showMore, setShowMore] = useState(true);
   const shortenedBody = body.slice(0, 251) + '...';
+  const { theme } = useContext(ThemeContext)
   let expandable = false;
+
+
 
   if (body.length > shortenedBody.length) {
     expandable = true;
   }
 
   return (
-    <div className="review-body">
+    <div className={`${theme}-theme-primary review-body`}>
       {showMore ? (
         <div>
           {expandable ? shortenedBody : body}
         </div>
       )
         : (
-          <div>
+          <div className={`${theme}-theme-primary`}>
             {body}
           </div>
         )}

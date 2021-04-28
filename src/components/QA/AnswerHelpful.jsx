@@ -6,16 +6,15 @@ import { TrackerContext } from '../App.jsx'
 
 
 function AnswerHelpful({ answerId, answerHelpfulness }) {
-  const [helpScore, setHelpScore] = useState(answerHelpfulness)
+  const [helpScore, setHelpScore] = useState(answerHelpfulness);
   const [foundHelpful, setFoundHelpful] = useState(false);
   const clickTracker = useContext(TrackerContext)
+
   const updateHelpfulness = () => {
+    setHelpScore(helpScore + 1);
+    setFoundHelpful(true);
     clickTracker('Answer Helpful', 'QA');
-    (setHelpScore(helpScore + 1));
-    (setFoundHelpful(true));
-    axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/qa/answers/${answerId}/helpful`, null, {
-      headers: { Authorization: process.env.TOKEN },
-    })
+    axios.put(`/qa/answers/${answerId}/helpful`)
       .catch((err) => console.log(err));
   };
   return (

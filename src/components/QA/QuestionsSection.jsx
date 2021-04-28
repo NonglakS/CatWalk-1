@@ -3,12 +3,13 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import getData from '../../helperFunctions/getData.js';
+import axios from 'axios';
 import AddQuestion from './AddQuestion.jsx';
 import Questions from './Questions.jsx';
 import Answers from './Answers.jsx';
 import QuestionSearch from './QuestionSearch.jsx';
 import { TrackerContext } from '../App.jsx'
+import { ThemeContext } from "../themeContext.jsx"
 
 export default function QuestionsSection() {
   const [allQuestions, setAllQuestions] = useState('');
@@ -19,8 +20,8 @@ export default function QuestionsSection() {
   const [searchActivated, setSearchActivated] = useState(false);
   const [noResults, setNoResults] = useState(false);
   const { id } = useParams();
-  const urlAddOn = `qa/questions?product_id=${id}&count=1000`;
-  const clickTracker = useContext(TrackerContext)
+  const clickTracker = useContext(TrackerContext);
+  const { theme } = useContext(ThemeContext)
 
   const searchQuestions = (input) => {
     const searchQ = [];
@@ -50,7 +51,7 @@ export default function QuestionsSection() {
     }
   };
 
-  const renderQuestions = function (questionArray) {
+  const renderQuestions = (questionArray) => {
     const questions = [];
     clickTracker('More Questions', 'QA');
     for (let i = 0; i < questionsRendered; i++) {
@@ -65,15 +66,14 @@ export default function QuestionsSection() {
     setQuestionsRendered(questionsRendered + 2);
   };
 
-  useEffect(() => {
-    getData(urlAddOn, (err, res) => {
-      if (err) {
-        return;
-      } else {
-        setAllQuestions(res.data.results);
-        setDisplayedQuestions(res.data.results.slice(0, 2));
-      }
-    });
+  useEffect(async () => {
+    try {
+      const res = await axios.get(`qa/questions?product_id=${id}&count=1000`);
+      setAllQuestions(res.data.results);
+      setDisplayedQuestions(res.data.results.slice(0, 2));
+    } catch (err) {
+      console.log(err);
+    }
   }, []);
 
   return (
@@ -97,7 +97,7 @@ export default function QuestionsSection() {
             : searchedQuestions.map((data) => <Questions key={data.toString()} question={data} />)}
           {searchActivated
             ? null
-            : <button className="display-questions" type="submit" onClick={() => renderQuestions(allQuestions)}> MORE QUESTIONS </button>}
+            : <button className={`${theme}-theme-secondary display-questions`} type="submit" onClick={() => renderQuestions(allQuestions)}> MORE QUESTIONS </button>}
         </div>
         <AddQuestion />
       </div>

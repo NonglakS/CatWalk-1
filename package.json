@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest --collect-coverage",
     "live": "live-server",
-    "build": "webpack -d eval-source-map --mode production --watch",
+    "build": "webpack -d eval-source-map --mode development --watch",
     "start": "nodemon ./server/index.js"
   },
   "repository": {
@@ -27,6 +27,7 @@
     "babel-loader": "^8.2.2",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.6.0",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jest": "^26.6.3",
     "jquery": "^3.6.0",

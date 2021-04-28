@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-curly-newline */
 /* eslint-disable react/jsx-one-expression-per-line */
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { TrackerContext } from '../App.jsx'
 
@@ -12,9 +12,7 @@ function QuestionHelpful({ questionId, questionHelpfulness }) {
     clickTracker('Question Helpful', 'QA');
     setHelpScore(helpScore + 1);
     setFoundHelpful(true);
-    axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/qa/questions/${questionId}/helpful`, null, {
-      headers: { Authorization: process.env.TOKEN },
-    })
+    axios.put(`/qa/questions/${questionId}/helpful`)
       .catch((err) => console.log(err));
   };
   return (

@@ -6,7 +6,7 @@ const QuestionSearch = ({ inputText, handleInput }) => {
   return (
     <form className="search-bar">
       <input
-        className={`${theme}-theme-tertiary`}
+        className={`${theme}-theme-tertiary search-input`}
         type="text"
         placeholder="Have a question? Search for answers..."
         name="inputText"
@@ -15,5 +15,4 @@ const QuestionSearch = ({ inputText, handleInput }) => {
     </form>
   );
 };
-
 export default QuestionSearch;

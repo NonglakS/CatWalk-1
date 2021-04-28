@@ -1,12 +1,13 @@
 /* eslint-disable max-len */
-import React, { useState, useEffect, useRef } from 'react';
-import { useParams } from 'react-router-dom';
-import getData from '../../helperFunctions/getData.js';
+import React, { useState, useEffect, useRef, useContext } from 'react';
+import { useParams } from 'react-router-dom'
+import axios from 'axios';
 import ReviewTile from './ReviewTile.jsx';
 import Ratings from './Ratings.jsx';
 import Modal from '../../shared-components/Modal.jsx';
 import ReviewForm from './ReviewForm.jsx';
 import Characteristic from './Characteristic.jsx';
+import { ThemeContext } from "../themeContext.jsx"
 
 export default function ReviewsSection({ reviewsMeta, name, reviewScore }) {
   const [reviews, setReviews] = useState([]);
@@ -15,16 +16,16 @@ export default function ReviewsSection({ reviewsMeta, name, reviewScore }) {
   const [filters, setFilters] = useState([]);
   const modal = useRef(null);
   const { id } = useParams();
+  const { theme } = useContext(ThemeContext);
 
-  useEffect(() => {
-    getData(`reviews?product_id=${id}&count=10000&sort=relevant`, (err, res) => {
-      if (err) {
-        console.log('err', err);
-      } else {
-        setReviews(res.data.results);
-        setRenderedReviews(res.data.results.slice(0, reviewCount));
-      }
-    });
+  useEffect(async () => {
+    try {
+      const res = await axios.get(`reviews?product_id=${id}&count=10000`);
+      setReviews(res.data.results);
+      setRenderedReviews(res.data.results.slice(0, reviewCount));
+    } catch (err) {
+      console.log(err);
+    }
   }, []);
 
   const rerenderReviews = () => {
@@ -38,7 +39,7 @@ export default function ReviewsSection({ reviewsMeta, name, reviewScore }) {
       if (err) {
         console.log('err', err);
       } else {
-        console.log('res', res)
+        console.log('res', res);
         setReviews(res.data.results);
         setRenderedReviews(res.data.results.slice(0, reviewCount));
       }
@@ -75,7 +76,7 @@ export default function ReviewsSection({ reviewsMeta, name, reviewScore }) {
               {reviews.length}
               {' '}
               reviews, sorted by
-              <select className="review-summary" style={{ border: 'none', textDecoration: 'underline' }} onChange={(e) => handleSort(e.target.value)}>
+              <select className={`${theme}-theme-primary review-summary`} style={{ border: 'none', textDecoration: 'underline' }} onChange={(e) => handleSort(e.target.value)}>
                 <option value="relevant">relevance</option>
                 <option value="helpful">helpfulness</option>
                 <option value="newest">newest</option>
@@ -89,11 +90,11 @@ export default function ReviewsSection({ reviewsMeta, name, reviewScore }) {
               ))}
           </div>
           <div style={{ display: 'flex' }}>
-            <button className="show-more-btn" type="button" onClick={() => modal.current.open()}>
+            <button className={`${theme}-theme-secondary show-more-btn`} type="button" onClick={() => modal.current.open()}>
               Add Review
             </button>
             {!filters.length && reviewCount < reviews.length && (
-              <button className="show-more-btn" type="button" onClick={() => rerenderReviews()}>More Reviews</button>
+              <button className={`${theme}-theme-secondary show-more-btn`} type="button" onClick={() => rerenderReviews()}>More Reviews</button>
             )}
           </div>
           <Modal ref={modal} fade>

@@ -9,9 +9,7 @@ function AnswerReport({ answerId }) {
   const updateReported = () => {
     (setReported(true));
     clickTracker('Report Answer', 'QA');
-    axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/qa/answers/${answerId}/report`, null, {
-      headers: { Authorization: process.env.TOKEN },
-    })
+    axios.put(`/qa/answers/${answerId}/report`)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };

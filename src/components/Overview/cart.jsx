@@ -18,7 +18,6 @@ function Cart({ currentStyle }) {
   const [currentVal, setCurrentVal] = useState({ label: 1, value: 0, sku: '' });
   const [clickAdd, setClickAdd] = useState(false);
 
-
   const tempSize = [];
 
   useEffect(() => {
@@ -55,23 +54,21 @@ function Cart({ currentStyle }) {
     return arr.map((val) => ({ value: val, label: val }));
   };
 
-  const handleAddToCart = (e) => {
+  const handleAddToCart = async (e) => {
     if (!currentVal.value) {
       setClickAdd(true);
     } else {
-      const options = {
-        method: 'post',
-        url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/cart',
-        data: {
-          sku_id: currentVal.sku,
-          count: currentVal.value,
-        },
-        headers: { Authorization: process.env.TOKEN },
+      const data = {
+        sku_id: currentVal.sku,
+        count: currentVal.value,
       };
 
-      axios(options)
-        .then((res) => console.log('Added an item to cart! Response code : ', res.status))
-        .catch((err) => { console.log(err); });
+      try {
+        await axios.post('/cart', data);
+        console.log('Added an item to the cart!');
+      } catch (err) {
+        console.log(err);
+      }
     }
     clickTracker('add to cart', 'overview')
   };
