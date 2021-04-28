@@ -19,7 +19,7 @@ export default function ReviewsSection({ reviewsMeta, name, reviewScore }) {
 
   useEffect(async () => {
     try {
-      const res = await axios.get(`reviews?product_id=${id}&count=10000`);
+      const res = await axios.get(`/reviews?product_id=${id}&count=10000`);
       setReviews(res.data.results);
       setRenderedReviews(res.data.results.slice(0, reviewCount));
     } catch (err) {
@@ -32,17 +32,14 @@ export default function ReviewsSection({ reviewsMeta, name, reviewScore }) {
     setReviewCount(reviewCount + 2);
   };
 
-  const handleSort = (sortBy) => {
-    getData(`reviews?product_id=${id}&count=10000&sort=${sortBy}`, (err, res) => {
-      if (err) {
-        console.log('err', err);
-      } else {
-        console.log('res', res);
-        setReviews(res.data.results);
-        setRenderedReviews(res.data.results.slice(0, reviewCount));
-      }
-    });
-
+  const handleSort = async (sortBy) => {
+    try {
+      const res = await axios.get(`/reviews?product_id=${id}&count=10000&sort=${sortBy}`);
+      setReviews(res.data.results);
+      setRenderedReviews(res.data.results.slice(0, reviewCount));
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleFilter = (filterBy) => {
