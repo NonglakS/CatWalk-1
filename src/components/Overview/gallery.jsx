@@ -2,12 +2,14 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Carousel } from 'react-bootstrap';
 import Thumbnails from './thumbnails.jsx';
 import Modal from '../../shared-components/Modal.jsx';
+import { BiCollapse } from 'react-icons/bi';
 
-function Gallery({ currentStyle, handleViewChange }) {
+function Gallery({ currentStyle, handleViewChange, view, collapse }) {
   const modal = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [activeIndexArray, setActiveIndexArray] = useState([0, 1, 2, 3, 4, 5, 6]);
-  const [zoomIn, setZoomIn] = useState(false);
+  const [expand, setExpand] = useState(false);
+
 
   const highLightThumbnail = (index) => {
     let elem = document.getElementsByClassName('button-thumbnail');
@@ -51,34 +53,68 @@ function Gallery({ currentStyle, handleViewChange }) {
     }
   };
 
-  const zoom = () => {
-    const isZoom = zoomIn;
-    setZoomIn(!isZoom);
-  };
+  const move = (e) => {
 
-  const zoomStyle = zoomIn
-    ? {
-      transform: 'scale(2.5)',
-      cursor: 'zoom-out',
+    e.preventDefault();
+    if (view === 12 && expand) {
+      var x = e.pageX * -0.1;
+      var y = e.pageY * -0.1;
+      e.target.style.position = 'absolute';
+      e.target.style.left = x + 'px';
+      e.target.style.top = y + 'px';
     }
-    : {
-      transform: '',
-      cursor: 'zoom-in',
-    };
+  }
+
+  const leave = (e) => {
+    e.preventDefault();
+    if (view === 12 && expand) {
+      e.target.style.left = 0 + 'px';
+      e.target.style.top = 'auto';
+      console.log(e.target.getBoundingClientRect());
+    }
+   }
+
+  const handleImageClick = (e) => {
+    var prevIcon = document.querySelector('.carousel-control-prev');
+    var nextIcon = document.querySelector('.carousel-control-next');
+    e.preventDefault();
+    handleViewChange();
+    if (view === 12) {
+
+      var tempEx = expand;
+      if (!tempEx) {
+
+        e.target.style.cursor = 'zoom-out'
+        e.target.style.transform = 'scale(2.5)';
+        prevIcon.hidden = true;
+        nextIcon.hidden = true;
+        document.querySelector('ul#left-thumbnails').hidden = true;
+      } else {
+
+        e.target.style.cursor = 'zoom-in'
+        e.target.style.transform = 'scale(1)';
+        e.target.style.left = 0 + 'px';
+        e.target.style.top = 'auto';
+        prevIcon.hidden = false;
+        nextIcon.hidden = false;
+        document.querySelector('ul#left-thumbnails').hidden = false;
+      }
+      setExpand(!tempEx)
+    }
+  }
 
   useEffect(() => {
     highLightThumbnail(activeIndex);
 
-    const prevIcon = document.querySelector('.carousel-control-prev-icon');
-    const nextIcon = document.querySelector('.carousel-control-next-icon');
-
+    var prevIcon = document.querySelector('.carousel-control-prev');
+    var nextIcon = document.querySelector('.carousel-control-next');
     if (activeIndex === 0) {
-      prevIcon.style.display = 'none';
+      prevIcon.hidden = true;
     } else if (activeIndex === currentStyle.photos.length - 1) {
-      nextIcon.style.display = 'none';
+      nextIcon.hidden = true;
     } else {
-      prevIcon.style.display = 'inline-block';
-      nextIcon.style.display = 'inline-block';
+      prevIcon.hidden = false;
+      nextIcon.hidden = false;
     }
 
     // active Index array for show / hide thumbnail
@@ -108,17 +144,18 @@ function Gallery({ currentStyle, handleViewChange }) {
 
       <div className="thumbnails d-flex h-100 align-items-center justify-content-center align-middle ">
         {currentStyle !== undefined && (
-        <Thumbnails
-          currentStyle={currentStyle}
-          activeIndex={activeIndex}
-          activeIndexArray={activeIndexArray}
-          handleSelect={handleSelect}
-          scrollUp={scrollUp}
-          scrollDown={scrollDown}
-        />
+          <Thumbnails
+            currentStyle={currentStyle}
+            activeIndex={activeIndex}
+            activeIndexArray={activeIndexArray}
+            handleSelect={handleSelect}
+            scrollUp={scrollUp}
+            scrollDown={scrollDown}
+          />
         )}
       </div>
       <Carousel
+        indicators={false}
         activeIndex={activeIndex}
         interval={null}
         onSelect={handleSelect}
@@ -126,47 +163,22 @@ function Gallery({ currentStyle, handleViewChange }) {
         {currentStyle.photos.map((photo) => (
           <Carousel.Item style={{ height: '650px' }}>
             <div className="d-flex h-100 align-items-center justify-content-center">
-              <canvas id="canvas" height="650">
               <img
-                onClick={() => { modal.current.open(); }}
+                onMouseLeave={(e) => leave(e)}
+                onMouseMove={(e) => move(e)}
+                onClick={(e) => { handleImageClick(e) }}
                 className="d-block w-100 align-middle"
                 id="main-image"
                 src={photo.url}
                 alt={`image of ${currentStyle.name}`}
               />
-              </canvas>
             </div>
           </Carousel.Item>
         ))}
       </Carousel>
-      <Modal ref={modal} fade>
-        <div className="row">
-          <div className="col justify-content-center">
-            <Carousel
-              activeIndex={activeIndex}
-              interval={null}
-              onSelect={handleSelect}
-            >
-              {currentStyle.photos.map((photo) => (
-                <Carousel.Item>
-                  <div className="expand-image d-flex align-items-center justify-content-center">
-                    <img
-                      id="expand-image"
-                      onClick={zoom}
-                      style={zoomStyle}
-                        // className="d-block align-middle"
-                      src={photo.url}
-                      alt={`image of ${currentStyle.name}`}
-                    />
-                  </div>
-                </Carousel.Item>
-              ))}
-
-            </Carousel>
-          </div>
-        </div>
-
-      </Modal>
+      {view === 12
+        ? <BiCollapse id="expand-icon" onClick={(e) => { collapse(e) }} />
+        : null}
     </div>
   );
 }

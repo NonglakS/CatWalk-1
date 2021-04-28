@@ -2,13 +2,6 @@
   margin: 0 200px;
 }
 
-
-
-#expand-image{
-  /* transform:scale(2.5); */
-}
-
-
 .logo-bar {
   background-color: gray;
   height: 50px;
@@ -17,6 +10,7 @@
   text-decoration: underline;
   color: white;
 }
+
 
 a#read-all-reviews {
   margin-left: 5%;
@@ -46,6 +40,13 @@ div#product-name {
   z-index: 99999;
 }
 
+#expand-icon {
+  position: absolute;
+  right: 0px;
+  margin-right: 2%;
+
+}
+
 button.button-thumbnail {
   border: none;
 }
@@ -55,7 +56,7 @@ div#arrow-up, div#arrow-down {
 }
 
 .carousel-control-prev {
-  left: 17%;
+  left: 12%;
 }
 
 img.d-block.w-100.align-middle {
