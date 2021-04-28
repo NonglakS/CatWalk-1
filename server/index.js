@@ -126,7 +126,7 @@ app.get('/reviews/meta', async (req, res) => {
 
 app.get('/reviews', async (req, res) => {
   try {
-    const apiRes = await axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews?product_id=${req.query.product_id}&count=1000`, {
+    const apiRes = await axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews?product_id=${req.query.product_id}&count=1000&sort=${req.query.sort || 'relevant'}`, {
       headers: { Authorization: process.env.TOKEN },
     });
     res.send(apiRes.data);
