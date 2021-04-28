@@ -54,7 +54,7 @@ function Gallery({ currentStyle, handleViewChange, view, collapse }) {
   };
 
   const move = (e) => {
-
+ console.log(e);
     e.preventDefault();
     if (view === 12 && expand) {
       var x = e.pageX * -0.1;
@@ -154,6 +154,10 @@ function Gallery({ currentStyle, handleViewChange, view, collapse }) {
           />
         )}
       </div>
+      {view === 12
+        ? <BiCollapse id="expand-icon" onClick={(e) => { collapse(e) }}
+        size={30} />
+        : null}
       <Carousel
         indicators={false}
         activeIndex={activeIndex}
@@ -176,9 +180,6 @@ function Gallery({ currentStyle, handleViewChange, view, collapse }) {
           </Carousel.Item>
         ))}
       </Carousel>
-      {view === 12
-        ? <BiCollapse id="expand-icon" onClick={(e) => { collapse(e) }} />
-        : null}
     </div>
   );
 }

@@ -38,7 +38,7 @@ function Questions({ question }) {
   useEffect(() => {
     getAnswers(question);
     setDisplayedAnswers(allAnswers.slice(0, answerNumberDisplayed));
-  });
+  }, []);
 
   return (
     <div>

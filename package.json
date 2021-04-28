@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest --collect-coverage",
     "live": "live-server",
-    "build": "webpack -d eval-source-map --mode production --watch",
+    "build": "webpack -d eval-source-map --mode development --watch",
     "start": "nodemon ./server/index.js"
   },
   "repository": {
