@@ -1,38 +1,34 @@
 import { useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
-import getData from '../helperFunctions/getData.js';
+import axios from 'axios';
 import averageReviewScore from '../helperFunctions/averageReviewScore.js';
 import QuestionsSection from './QA/QuestionsSection.jsx';
 import ReviewsSection from './Reviews/ReviewsSection.jsx';
 import Overview from './Overview/overview.jsx';
-import axios from 'axios';
 
 export const TrackerContext = React.createContext()
 
 export default function App(props) {
   const { id } = useParams();
-  const urlAddOn = `products/${id}`;
   const [product, setProduct] = useState('');
   const [reviewsMeta, setReviewsMeta] = useState({});
   const [reviewScore, setReviewScore] = useState(0);
 
-  useEffect(() => {
-    getData(urlAddOn, (err, res) => {
-      if (err) {
-        console.log('err', err);
-      } else {
-        setProduct(res.data);
-      }
-    });
+  useEffect(async () => {
+    try {
+      const res = await axios.get(`/products/${id}`);
+      setProduct(res.data);
+    } catch (err) {
+      console.log('get product err', err);
+    }
 
-    getData(`reviews/meta?product_id=${id}`, (err, res) => {
-      if (err) {
-        console.log('err', err);
-      } else {
-        setReviewsMeta(res.data);
-        setReviewScore(averageReviewScore(res.data.ratings));
-      }
-    });
+    try {
+      const res = await axios.get(`/reviews/meta?product_id=${id}`);
+      setReviewsMeta(res.data);
+      setReviewScore(averageReviewScore(res.data.ratings));
+    } catch (err) {
+      console.log('err', err);
+    }
   }, []);
 
   const clickTracker = (element, widget) => {

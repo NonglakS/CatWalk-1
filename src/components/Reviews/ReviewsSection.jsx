@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import React, { useState, useEffect, useRef } from 'react';
-import { useParams } from 'react-router-dom';
-import getData from '../../helperFunctions/getData.js';
+import { useParams } from 'react-router-dom'
+import axios from 'axios';
 import ReviewTile from './ReviewTile.jsx';
 import Ratings from './Ratings.jsx';
 import Modal from '../../shared-components/Modal.jsx';
@@ -16,15 +16,14 @@ export default function ReviewsSection({ reviewsMeta, name, reviewScore }) {
   const modal = useRef(null);
   const { id } = useParams();
 
-  useEffect(() => {
-    getData(`reviews?product_id=${id}&count=10000&sort=relevant`, (err, res) => {
-      if (err) {
-        console.log('err', err);
-      } else {
-        setReviews(res.data.results);
-        setRenderedReviews(res.data.results.slice(0, reviewCount));
-      }
-    });
+  useEffect(async () => {
+    try {
+      const res = await axios.get(`reviews?product_id=${id}&count=10000`);
+      setReviews(res.data.results);
+      setRenderedReviews(res.data.results.slice(0, reviewCount));
+    } catch (err) {
+      console.log(err);
+    }
   }, []);
 
   const rerenderReviews = () => {
@@ -38,7 +37,7 @@ export default function ReviewsSection({ reviewsMeta, name, reviewScore }) {
       if (err) {
         console.log('err', err);
       } else {
-        console.log('res', res)
+        console.log('res', res);
         setReviews(res.data.results);
         setRenderedReviews(res.data.results.slice(0, reviewCount));
       }
