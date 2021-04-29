@@ -54,14 +54,17 @@ function Gallery({ currentStyle, handleViewChange, view, collapse }) {
   };
 
   const move = (e) => {
- console.log(e);
     e.preventDefault();
     if (view === 12 && expand) {
-      var x = e.pageX * -0.1;
-      var y = e.pageY * -0.1;
       e.target.style.position = 'absolute';
-      e.target.style.left = x + 'px';
-      e.target.style.top = y + 'px';
+       var bound = e.target.getBoundingClientRect();
+       var offsetX = document.querySelector('div.active').getBoundingClientRect().x;
+       var offsetY = document.querySelector('div.active').getBoundingClientRect().y;
+       var posX = e.pageX - offsetX;
+       var posY = e.pageY - offsetY;
+       e.target.style.left = -posX/1.5 + 'px'
+       e.target.style.top = -posY/1.5 + 'px'
+
     }
   }
 
@@ -70,7 +73,7 @@ function Gallery({ currentStyle, handleViewChange, view, collapse }) {
     if (view === 12 && expand) {
       e.target.style.left = 0 + 'px';
       e.target.style.top = 'auto';
-      console.log(e.target.getBoundingClientRect());
+
     }
    }
 
@@ -89,6 +92,26 @@ function Gallery({ currentStyle, handleViewChange, view, collapse }) {
         prevIcon.hidden = true;
         nextIcon.hidden = true;
         document.querySelector('ul#left-thumbnails').hidden = true;
+        // console.log('target-offset',e.target.offsetWidth, e.target.offsetHeight)
+        var bound = e.target.getBoundingClientRect();
+        var bound = e.target.getBoundingClientRect();
+        var offsetX = document.querySelector('div.active').getBoundingClientRect().x;
+        var offsetY = document.querySelector('div.active').getBoundingClientRect().y;
+        var posX = e.pageX - offsetX;
+        var posY = e.pageY - offsetY;
+        e.target.style.position = 'absolute';
+        e.target.style.left = -posX/1.5 + 'px'
+        e.target.style.top = -posY/1.5 + 'px'
+
+
+        //TOD): capture mouse pose - calculate x-y - set x-y
+
+
+
+
+
+
+
       } else {
 
         e.target.style.cursor = 'zoom-in'

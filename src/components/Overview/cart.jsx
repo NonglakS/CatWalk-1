@@ -24,6 +24,10 @@ function Cart({ currentStyle }) {
     }
 
     tempSize.length === 0 ? setOutOfStock(true) : setSizeOptions(tempSize);
+    // document.querySelector('.css-yk16xz-control').style.backgroundColor = 'red'
+    // document.querySelector('.css-1fhf3k1-control').style.backgroundColor = 'red'
+    // document.querySelector('.ui.basic.buttons').style.bac[1].style.backgroundColor = 'red';
+
   }, [currentStyle]);
 
   const handleSizeChange = (e) => {
@@ -67,6 +71,8 @@ function Cart({ currentStyle }) {
     }
   };
 
+
+
   return (
     <>
       <div id="select-size-reminder">{clickAdd ? 'Please Select Size !' : <br />}</div>
@@ -74,7 +80,7 @@ function Cart({ currentStyle }) {
         <div className="col-8 select-size">
           {clickAdd
             ? <Select id="size-options" menuIsOpen options={sizeOptions} onChange={handleSizeChange} />
-            : <Select id="size-options" options={sizeOptions} placeholder={outOfStock ? 'Out of Stock' : 'SELECT SIZE'} onChange={handleSizeChange} />}
+            : <Select menuColor='red' id="size-options" options={sizeOptions} placeholder={outOfStock ? 'Out of Stock' : 'SELECT SIZE'} onChange={handleSizeChange} />}
         </div>
         <div className="col-4 select-quantity">
           {!disable
@@ -87,7 +93,7 @@ function Cart({ currentStyle }) {
           <AddButton handleAddToCart={handleAddToCart} outOfStock={!!outOfStock} />
         </div>
         <div className="col d-flex flex-row-reverse add-to-collection" id="fav">
-          <Button basic>
+          <Button>
             <Icon name="star outline" />
           </Button>
         </div>

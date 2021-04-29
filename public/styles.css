@@ -62,12 +62,8 @@ div#arrow-up, div#arrow-down {
 
 img.d-block.w-100.align-middle {
   cursor:zoom-in;
-  -webkit-transition: all 0.5s ease-in-out;
-  -moz-transition: all 0.5s ease-in-out;
-  -ms-transition: all 0.5s ease-in-out;
-  -o-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
 }
+
 .col-md-12.my-auto.d-flex.justify-content-center {
   -webkit-transition: all 0.5s ease-in-out;
   -moz-transition: all 0.5s ease-in-out;
