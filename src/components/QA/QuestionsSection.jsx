@@ -21,7 +21,7 @@ export default function QuestionsSection() {
   const [noResults, setNoResults] = useState(false);
   const { id } = useParams();
   const clickTracker = useContext(TrackerContext);
-  const { theme } = useContext(ThemeContext)
+  const { theme } = useContext(ThemeContext);
 
   const searchQuestions = (input) => {
     const searchQ = [];
@@ -51,6 +51,12 @@ export default function QuestionsSection() {
     }
   };
 
+  const noQuestions = () => {
+    if(!displayedQuestions) {
+      setSearchActivated(true);
+    }
+  };
+
   const renderQuestions = (questionArray) => {
     const questions = [];
     clickTracker('More Questions', 'QA');
@@ -70,7 +76,7 @@ export default function QuestionsSection() {
     try {
       const res = await axios.get(`qa/questions?product_id=${id}&count=1000`);
       setAllQuestions(res.data.results);
-      setDisplayedQuestions(res.data.results.slice(0, 2));
+      setDisplayedQuestions(res.data.results.slice(0, 2))
     } catch (err) {
       console.log(err);
     }
@@ -97,7 +103,11 @@ export default function QuestionsSection() {
             : searchedQuestions.map((data) => <Questions key={data.toString()} question={data} />)}
           {searchActivated
             ? null
-            : <button className={`${theme}-theme-secondary display-questions`} type="submit" onClick={() => renderQuestions(allQuestions)}> MORE QUESTIONS </button>}
+            : [displayedQuestions.length !== allQuestions.length
+              ? <button className={`${theme}-theme-secondary display-questions`} type="submit" onClick={() => renderQuestions(allQuestions)}> MORE QUESTIONS </button>
+              : null,
+            ]}
+
         </div>
         <AddQuestion />
       </div>

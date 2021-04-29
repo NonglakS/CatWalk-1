@@ -15,13 +15,8 @@
   background-color: rgb(255, 243, 199);
 }
 
-
-.light-theme-button-text {
-  color: black;
-}
-
-.white-btn{
-  background-color: white;
+.light-theme-helpful {
+  color:black
 }
 
 .dark-theme-primary {
@@ -30,7 +25,7 @@
 }
 
 .dark-theme-secondary {
-  background-color:  #cc7402;
+  background-color:  #0a1572;
   color: white;
 }
 
@@ -39,9 +34,40 @@
   color: white;
 }
 
-
 .dark-theme-button-text {
   color: white;
+}
+
+.dark-theme-helpful {
+  color:white
+}
+
+.light-theme-button-text {
+  color: black;
+}
+
+.ui.button{
+  background-color: white;
+}
+
+.react-icon {
+  color:black
+}
+
+.ui.basic.button {
+  background-color: white;
+}
+
+.element.style {
+  color:black;
+}
+
+.tickmark{
+  color:black;
+}
+
+.css-2b097c-container {
+  color: black;
 }
 
 .logo-bar {
@@ -290,6 +316,11 @@ span#sale-price, div#select-size-reminder {
   font-size: 18px;
   font-weight: bold;
   margin-top: 10px;
+}
+
+.submit-header {
+  color:rgb(233, 232, 232);
+  font-size: 1.2em;
 }
 
 .add-answer {

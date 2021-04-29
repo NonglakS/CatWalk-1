@@ -60,12 +60,12 @@ function AddQuestion({ product, productName }) {
       <button className={`${theme}-theme-secondary add-question`} type="button" onClick={() => modal.current.open()}>ADD A QUESTION +</button>
       <Modal ref={modal} fade>
         <form id="question-form">
-          <text>Ask Your Question</text>
+          <div className="submit-header">Ask Your Question</div>
           <div>About the {productName}</div>
           <br />
           {invalidEntry
-            && <text className="bad-entry"> You must enter the following: </text>}
-          <text>What is your nickname *&nbsp;&nbsp;</text>
+            && <div className="bad-entry"> You must fill in all valid entries: </div>}
+          <div>What is your nickname *&nbsp;&nbsp;</div>
           <input
             type="text"
             name="name"
@@ -74,9 +74,9 @@ function AddQuestion({ product, productName }) {
             value={values.name}
           />
           <br />
-          <text>For privacy reasons, do not use your full name or email address</text>
+          <div className="disclaimer">For privacy reasons, do not use your full name or email address</div>
           <br />
-          <text>Your email *&nbsp;&nbsp;</text>
+          <div>Your email *&nbsp;&nbsp;</div>
           <input
             type="text"
             name="email"
@@ -84,19 +84,22 @@ function AddQuestion({ product, productName }) {
             value={values.email}
           />
           <br />
-          <text>For authentication reasons, you will not be emailed</text>
+          <div className="disclaimer">For authentication reasons, you will not be emailed</div>
           <br />
-          <text>Your question? *&nbsp;&nbsp;</text>
+          <div>Your question? *&nbsp;&nbsp;</div>
           <input
             type="textArea"
             name="body"
+            id="summary"
             placeholder="Why did you like the product or not"
             onChange={handleInputChange}
             value={values.body}
+            style={{ width: '75%', height: '30px' }}
           />
           <br />
-          <text>* mandatory field</text>
-          <button type="submit" onClick={addItem}>Submit question</button>
+          <div className="disclaimer">* mandatory field</div>
+          <br />
+          <button type="submit" style={{ marginTop: '12px}' }} onClick={addItem}>Submit question</button>
         </form>
       </Modal>
     </>

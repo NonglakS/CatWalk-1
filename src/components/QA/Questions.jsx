@@ -6,6 +6,7 @@ import Answers from './Answers.jsx';
 import QuestionHelpful from './QuestionHelpful.jsx';
 import AddAnswer from './AddAnswer.jsx'
 import { TrackerContext } from '../App.jsx'
+import {ThemeContext} from "../themeContext.jsx"
 
 function Questions({ question }) {
   const initializeAnswers = function (questionObject) {
@@ -16,6 +17,7 @@ function Questions({ question }) {
   const [answerNumberDisplayed, setAnswerNumberDisplayed] = useState(2);
   const [displayedAnswers, setDisplayedAnswers] = useState(allAnswers.slice(0, answerNumberDisplayed));
   const [allAnswersDisplayed, setAllAnswersDisplayed] = useState(false);
+  const { theme } = useContext(ThemeContext);
   const displayAllAnswers = function () {
     setAnswerNumberDisplayed(allAnswers.length);
     setDisplayedAnswers(allAnswers);
@@ -45,9 +47,9 @@ function Questions({ question }) {
       {displayedAnswers
       && displayedAnswers.map((data) => <Answers key={data.toString()} answer={data} />)}
       {displayedAnswers && displayedAnswers < allAnswers && (
-        <button className="change-questions" type="submit" onClick={() => displayAllAnswers()}> MORE ANSWERS </button>)}
+        <button className={`${theme}-theme-helpful change-questions`} type="submit" onClick={() => displayAllAnswers()}> MORE ANSWERS </button>)}
       {displayedAnswers && allAnswersDisplayed && (
-        <button className="change-questions" type="submit" onClick={() => displayDefaultAnswers()}> COLLAPSE ANSWERS </button>)}
+        <button className={`${theme}-theme-helpful change-questions`} type="submit" onClick={() => displayDefaultAnswers()}> COLLAPSE ANSWERS </button>)}
       <br />
     </div>
   );

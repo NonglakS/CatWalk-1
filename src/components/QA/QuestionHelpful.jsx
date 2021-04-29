@@ -3,11 +3,13 @@
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { TrackerContext } from '../App.jsx'
+import {ThemeContext} from "../themeContext.jsx"
 
 function QuestionHelpful({ questionId, questionHelpfulness }) {
   const [helpScore, setHelpScore] = useState(questionHelpfulness);
   const clickTracker = useContext(TrackerContext);
   const [foundHelpful, setFoundHelpful] = useState(false);
+  const { theme } = useContext(ThemeContext)
   const updateHelpfulness = () => {
     clickTracker('Question Helpful', 'QA');
     setHelpScore(helpScore + 1);
@@ -18,8 +20,8 @@ function QuestionHelpful({ questionId, questionHelpfulness }) {
   return (
     <>
       {foundHelpful
-        ? <button className="helpful-btn-pressed" type="submit"> Yes </button>
-        : <button className="helpful-btn" type="submit" onClick={() => updateHelpfulness()}> Yes </button>
+        ? <button className={`${theme}-theme-helpful helpful-btn-pressed`} type="submit"> Yes </button>
+        : <button className={`${theme}-theme-helpful helpful-btn`} type="submit" onClick={() => updateHelpfulness()}> Yes </button>
       }
       ({helpScore})
     </>
