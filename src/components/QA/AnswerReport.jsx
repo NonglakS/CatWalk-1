@@ -14,7 +14,9 @@ function AnswerReport({ answerId }) {
 
   return (
     <>
-      <button className="report-btn" type="submit" onClick={() => updateReported()}>Report</button>
+      {reported
+        ? <button className="report-btn-pressed" type="submit">Reported</button>
+        : <button className="report-btn" type="submit" onClick={() => updateReported()}>Report</button>}
     </>
   );
 }

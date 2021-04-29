@@ -17,7 +17,7 @@ function QuestionHelpful({ questionId, questionHelpfulness }) {
   return (
     <>
       {foundHelpful
-        ? <button className="helpful-btn" type="submit"> Yes </button>
+        ? <button className="helpful-btn-pressed" type="submit"> Yes </button>
         : <button className="helpful-btn" type="submit" onClick={() => updateHelpfulness()}> Yes </button>
       }
       ({helpScore})
