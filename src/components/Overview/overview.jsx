@@ -6,7 +6,7 @@ import ProductInfo from './productInfo.jsx';
 import ProductOverview from './productOverview.jsx';
 import ShareIcon from './shareIcon.jsx';
 import Cart from './cart.jsx';
-import { TrackerContext } from '../App.jsx'
+import { TrackerContext } from '../App.jsx';
 
 export default function Overview({ product, reviewScore }) {
   const clickTracker = useContext(TrackerContext);
