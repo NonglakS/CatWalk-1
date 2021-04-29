@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable max-len */
 import React from 'react';
 import { FaRegStar, FaStar, FaStarHalfAlt } from 'react-icons/fa';
@@ -16,13 +17,13 @@ export default function Ratings({ reviewsMeta, reviewScore, onFilter }) {
       <div style={{ display: 'flex' }}>
         <h1 style={{ marginRight: '5px' }}>{reviewScore}</h1>
         <div>
-          {starRating.map((star) => {
+          {starRating.map((star, index) => {
             if (star === 0) {
-              return <FaRegStar />;
+              return <FaRegStar key={index} />;
             } if (star === 1) {
-              return <FaStar />;
+              return <FaStar key={index} />;
             }
-            return <FaStarHalfAlt />;
+            return <FaStarHalfAlt key={index} />;
           })}
         </div>
         <div>
@@ -38,7 +39,7 @@ export default function Ratings({ reviewsMeta, reviewScore, onFilter }) {
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '20px' }}>
         {ratings && Object.keys(ratings).map((rating) => (
-          <RatingBar rating={rating} ratingCount={ratings[rating]} totalRatings={reviewCount} onFilter={onFilter} />
+          <RatingBar rating={rating} ratingCount={ratings[rating]} totalRatings={reviewCount} onFilter={onFilter} key={rating} />
         ))}
       </div>
     </>

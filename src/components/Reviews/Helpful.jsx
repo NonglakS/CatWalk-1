@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
+import { TrackerContext } from '../App.jsx';
 
 export default function Helpful({ id, helpfulness }) {
+  const clickTracker = useContext(TrackerContext);
   const [voted, setVoted] = useState(false);
   const [helpScore, setHelpScore] = useState(helpfulness);
   const [reported, setReported] = useState(false);
@@ -12,6 +14,8 @@ export default function Helpful({ id, helpfulness }) {
 
     axios.put(`/reviews/${id}/helpful`)
       .catch((err) => console.log(err));
+
+    clickTracker('helpful', 'ratings & reviews');
   };
 
   const handleReport = () => {
@@ -19,6 +23,8 @@ export default function Helpful({ id, helpfulness }) {
 
     axios.put(`/reviews/${id}/report`)
       .catch((err) => console.log(err));
+
+    clickTracker('report', 'ratings & reviews');
   };
 
   return (

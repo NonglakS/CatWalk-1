@@ -24,7 +24,7 @@ export default function ReviewBody({ body, photos }) {
         )}
       <div style={{display: 'flex'}}>
         {photos.map((photo) => (
-          <ReviewPic url={photo.url} />
+          <ReviewPic url={photo.url} key={photo.url} />
         ))}
       </div>
       {expandable && (

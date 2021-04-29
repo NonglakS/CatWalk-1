@@ -6,7 +6,7 @@ import ProductInfo from './productInfo.jsx';
 import ProductOverview from './productOverview.jsx';
 import ShareIcon from './shareIcon.jsx';
 import Cart from './cart.jsx';
-import { TrackerContext } from '../App.jsx'
+import { TrackerContext } from '../App.jsx';
 
 export default function Overview({ product, reviewScore }) {
   const clickTracker = useContext(TrackerContext);
@@ -28,7 +28,7 @@ export default function Overview({ product, reviewScore }) {
   function handleStyleChange(newStyle) {
     setCurrentStyle(newStyle);
     setSelect(`tick_${newStyle.style_id}`);
-    clickTracker('style selector', 'overview')
+    clickTracker('style selector', 'overview');
   }
 
   return (

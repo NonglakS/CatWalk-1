@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import { useParams } from 'react-router-dom'
 import axios from 'axios';
 import ReviewTile from './ReviewTile.jsx';
@@ -7,8 +7,10 @@ import Ratings from './Ratings.jsx';
 import Modal from '../../shared-components/Modal.jsx';
 import ReviewForm from './ReviewForm.jsx';
 import Characteristic from './Characteristic.jsx';
+import { TrackerContext } from '../App.jsx';
 
 export default function ReviewsSection({ reviewsMeta, name, reviewScore }) {
+  const clickTracker = useContext(TrackerContext);
   const [reviews, setReviews] = useState([]);
   const [reviewCount, setReviewCount] = useState(2);
   const [renderedReviews, setRenderedReviews] = useState([]);
@@ -29,6 +31,7 @@ export default function ReviewsSection({ reviewsMeta, name, reviewScore }) {
   const rerenderReviews = () => {
     setRenderedReviews(reviews.slice(0, reviewCount + 2));
     setReviewCount(reviewCount + 2);
+    clickTracker(`more reviews button`, 'ratings & reviews');
   };
 
   const handleSort = async (sortBy) => {
@@ -39,6 +42,7 @@ export default function ReviewsSection({ reviewsMeta, name, reviewScore }) {
     } catch (err) {
       console.log(err);
     }
+    clickTracker(`sort reviews by ${sortBy}`, 'ratings & reviews');
   };
 
   const handleFilter = (filterBy) => {
@@ -51,6 +55,12 @@ export default function ReviewsSection({ reviewsMeta, name, reviewScore }) {
     const filteredReviews = currentFilters.length ? reviews.slice().filter((review) => currentFilters.includes(review.rating)) : reviews;
     setRenderedReviews(filteredReviews);
     setFilters(currentFilters);
+    clickTracker(`filter by ${filterBy} reviews`, 'ratings & reviews');
+  };
+
+  const openModal = () => {
+    modal.current.open();
+    clickTracker('review form modal', 'ratings & reviews');
   };
 
   return (
@@ -61,7 +71,7 @@ export default function ReviewsSection({ reviewsMeta, name, reviewScore }) {
           <Ratings reviewsMeta={reviewsMeta} reviewScore={reviewScore} onFilter={handleFilter} />
           {reviewsMeta.characteristics && (
             Object.keys(reviewsMeta.characteristics).map((key) => (
-              <Characteristic average={reviewsMeta.characteristics[key].value} characteristic={key} />
+              <Characteristic average={reviewsMeta.characteristics[key].value} characteristic={key} key={key} />
             )))}
         </div>
 
@@ -81,11 +91,11 @@ export default function ReviewsSection({ reviewsMeta, name, reviewScore }) {
           <div className="reviews">
             {reviews
               && renderedReviews.map((review) => (
-                <ReviewTile review={review} />
+                <ReviewTile review={review} key={review.review_id} />
               ))}
           </div>
           <div style={{ display: 'flex' }}>
-            <button className="show-more-btn" type="button" onClick={() => modal.current.open()}>
+            <button className="show-more-btn" type="button" onClick={openModal}>
               Add Review
             </button>
             {!filters.length && reviewCount < reviews.length && (
