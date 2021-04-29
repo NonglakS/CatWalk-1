@@ -4,14 +4,19 @@ import getData from '../../helperFunctions/getData.js';
 
 
 function Thumbnails({
-  currentStyle, handleSelect, activeIndexArray, activeIndex, scrollUp, scrollDown,
+  currentStyle, handleSelect, activeIndexArray, activeIndex, scrollUp, scrollDown, view
 }) {
   const N = currentStyle.photos.length;
 
-  const style_img = {
+  var style_img = view === 7 ? {
     height: '60px',
     width: '60px',
-  };
+  } : {
+    height: '40px',
+    width: '40px',
+    borderRadius: '20px',
+    margin: '2px'
+  }
 
   const style_thumbnail = {
     listStyleType: 'none',

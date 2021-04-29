@@ -2,14 +2,13 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Carousel } from 'react-bootstrap';
 import Thumbnails from './thumbnails.jsx';
 import Modal from '../../shared-components/Modal.jsx';
-import { BiCollapse } from 'react-icons/bi';
+import { AiFillCloseCircle } from 'react-icons/ai';
 
 function Gallery({ currentStyle, handleViewChange, view, collapse }) {
   const modal = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [activeIndexArray, setActiveIndexArray] = useState([0, 1, 2, 3, 4, 5, 6]);
   const [expand, setExpand] = useState(false);
-  const [imgPos, setImgPos] = useState(0,0)
 
 
   const highLightThumbnail = (index) => {
@@ -57,28 +56,19 @@ function Gallery({ currentStyle, handleViewChange, view, collapse }) {
   const move = (e) => {
     e.preventDefault();
     if (view === 12 && expand) {
-           var bound = e.target.getBoundingClientRect();
-      var imgWidth = bound.width;
-      var imgHeight = bound.height;
-      var offsetX = document.querySelector('div.active').getBoundingClientRect().x;
-      var offsetY = document.querySelector('div.active').getBoundingClientRect().y;
-      var boxX = document.querySelector('div.active').getBoundingClientRect().width;
-      var boxY = document.querySelector('div.active').getBoundingClientRect().height;
-      var posX = e.pageX - offsetX;
-      var posY = e.pageY - offsetY;
-      var percentX = posX/boxX;
-      var percentY = posY/boxY;
-      var nextBoxWidth  = boxX/ 2.5;
-      var nextBoxHeight = boxY/ 2.5;
-      var deltaX = (nextBoxWidth - boxX) * (percentX - 0.5);
-      var deltaY = (nextBoxHeight - boxY) * (percentY - 0.5);
-
+      var bound = document.querySelector('div.active').getBoundingClientRect()
+      var posX = e.pageX - bound.x;
+      var posY = e.pageY - bound.y;
+      var percentX = posX/bound.width;
+      var percentY = posY/bound.height;
+      var nextBoxWidth  = bound.width/ 2.5;
+      var nextBoxHeight = bound.height/ 2.5;
+      var deltaX = (nextBoxWidth - bound.width) * (percentX - 0.5);
+      var deltaY = (nextBoxHeight - bound.height) * (percentY - 0.5);
       e.target.style.transform = 'scale(2.5)';
       e.target.style.position = 'absolute';
-
-      e.target.style.left = 2.5*(deltaX)+ 'px'
-      e.target.style.top = 2.5*(deltaY) + 'px'
-
+      e.target.style.left = 2.5*(deltaX)+ 'px';
+      e.target.style.top = 2.5*(deltaY) + 'px';
     }
   }
 
@@ -87,7 +77,6 @@ function Gallery({ currentStyle, handleViewChange, view, collapse }) {
     if (view === 12 && expand) {
       e.target.style.left = 0 + 'px';
       e.target.style.top = 'auto';
-
     }
    }
 
@@ -105,29 +94,19 @@ function Gallery({ currentStyle, handleViewChange, view, collapse }) {
         prevIcon.hidden = true;
         nextIcon.hidden = true;
         document.querySelector('ul#left-thumbnails').hidden = true;
-        var bound = e.target.getBoundingClientRect();
-        var imgWidth = bound.width;
-        var imgHeight = bound.height;
-        var offsetX = document.querySelector('div.active').getBoundingClientRect().x;
-        var offsetY = document.querySelector('div.active').getBoundingClientRect().y;
-        var boxX = document.querySelector('div.active').getBoundingClientRect().width;
-        var boxY = document.querySelector('div.active').getBoundingClientRect().height;
-        var posX = e.pageX - offsetX;
-        var posY = e.pageY - offsetY;
-        var percentX = posX/boxX;
-        var percentY = posY/boxY;
-        var nextBoxWidth  = boxX/ 2.5;
-        var nextBoxHeight = boxY/ 2.5;
-        var deltaX = (nextBoxWidth - boxX) * (percentX - 0.5);
-        var deltaY = (nextBoxHeight - boxY) * (percentY - 0.5);
-
+        var bound = document.querySelector('div.active').getBoundingClientRect()
+        var posX = e.pageX - bound.x;
+        var posY = e.pageY - bound.y;
+        var percentX = posX/bound.width;
+        var percentY = posY/bound.height;
+        var nextBoxWidth  = bound.width/ 2.5;
+        var nextBoxHeight = bound.height/ 2.5;
+        var deltaX = (nextBoxWidth - bound.width) * (percentX - 0.5);
+        var deltaY = (nextBoxHeight - bound.height) * (percentY - 0.5);
         e.target.style.transform = 'scale(2.5)';
         e.target.style.position = 'absolute';
-
-        e.target.style.left = 2.5*(deltaX)+ 'px'
-        e.target.style.top = 2.5*(deltaY) + 'px'
-
-        setImgPos({x: `${2.5*(deltaX)}px`, y:`${2.5*(deltaY)}px`})
+        e.target.style.left = 2.5*(deltaX)+ 'px';
+        e.target.style.top = 2.5*(deltaY) + 'px';
 
       } else {
 
@@ -142,6 +121,8 @@ function Gallery({ currentStyle, handleViewChange, view, collapse }) {
       setExpand(!tempEx)
     }
   }
+
+  const viewStyle = view === 12 ? { height: '750px'} : {height: '650px'};
 
   useEffect(() => {
     highLightThumbnail(activeIndex);
@@ -190,21 +171,25 @@ function Gallery({ currentStyle, handleViewChange, view, collapse }) {
             handleSelect={handleSelect}
             scrollUp={scrollUp}
             scrollDown={scrollDown}
+            view={view}
           />
         )}
       </div>
+      <div className="text-right">
       {view === 12
-        ? <BiCollapse id="expand-icon" onClick={(e) => { collapse(e) }}
+        ? <AiFillCloseCircle id="expand-icon" onClick={(e) => { collapse(e) }}
         size={30} />
         : null}
+        </div>
       <Carousel
         indicators={false}
         activeIndex={activeIndex}
         interval={null}
         onSelect={handleSelect}
       >
+
         {currentStyle.photos.map((photo) => (
-          <Carousel.Item style={{ height: '650px' }}>
+          <Carousel.Item style={viewStyle}>
             <div className="d-flex h-100 align-items-center justify-content-center">
               <img
                 onMouseLeave={(e) => leave(e)}
