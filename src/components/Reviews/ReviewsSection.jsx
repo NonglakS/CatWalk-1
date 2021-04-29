@@ -97,11 +97,7 @@ export default function ReviewsSection({ reviewsMeta, name, reviewScore }) {
               ))}
           </div>
           <div style={{ display: 'flex' }}>
-<<<<<<< HEAD
-            <button className={`${theme}-theme-secondary show-more-btn`} type="button" onClick={() => modal.current.open()}>
-=======
-            <button className="show-more-btn" type="button" onClick={openModal}>
->>>>>>> master
+            <button className={`${theme}-theme-secondary show-more-btn`} type="button" onClick={openModal}>
               Add Review
             </button>
             {!filters.length && reviewCount < reviews.length && (
