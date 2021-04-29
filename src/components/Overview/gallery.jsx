@@ -5,7 +5,7 @@
 /* eslint-disable no-plusplus */
 /* eslint-disable react/prop-types */
 /* eslint-disable import/extensions */
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Carousel } from 'react-bootstrap';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import Thumbnails from './thumbnails.jsx';
@@ -62,7 +62,7 @@ function Gallery({
   const move = (e) => {
     e.preventDefault();
     if (view === 12 && expand) {
-      const bound = document.querySelector('div.active').getBoundingClientRect()
+      const bound = document.querySelector('div.active').getBoundingClientRect();
       const mouseX = e.pageX - bound.x;
       const mouseY = e.pageY - bound.y;
       const percentX = mouseX / bound.width;
@@ -94,11 +94,11 @@ function Gallery({
     if (view === 12) {
       const tempEx = expand;
       if (!tempEx) {
-        e.target.style.cursor = 'zoom-out'
+        e.target.style.cursor = 'zoom-out';
         prevIcon.hidden = true;
         nextIcon.hidden = true;
         document.querySelector('ul#left-thumbnails').hidden = true;
-        const bound = document.querySelector('div.active').getBoundingClientRect()
+        const bound = document.querySelector('div.active').getBoundingClientRect();
         const posX = e.pageX - bound.x;
         const posY = e.pageY - bound.y;
         const percentX = posX / bound.width;
@@ -185,8 +185,7 @@ function Gallery({
               size={30}
             />
           )
-          : null
-        }
+          : null}
       </div>
       <Carousel
         indicators={false}

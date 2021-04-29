@@ -5,7 +5,7 @@ import { CgCheckO } from 'react-icons/cg';
 function StyleSelector({ handleStyleChange, currentStyle, select, styles }) {
 
   return (
-    <div className="style-selector"> <strong>STYLE ></strong> {currentStyle.name}
+    <div className="style-selector"> <strong>STYLE > </strong> {currentStyle.name}
       <div className="style-selector row">
         <Circle  styles={styles} select={select} handleStyleChange={handleStyleChange} />
       </div>

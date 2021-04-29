@@ -1,3 +1,8 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable react/prop-types */
+/* eslint-disable import/extensions */
 import React from 'react';
 import { FaRegStar, FaStar, FaStarHalfAlt } from 'react-icons/fa';
 import Price from './price.jsx';

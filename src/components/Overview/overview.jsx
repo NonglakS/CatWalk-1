@@ -35,16 +35,13 @@ export default function Overview({ product, reviewScore }) {
   }
 
   function handleViewChange() {
-
-    changeView(12)
-
+    changeView(12);
   }
 
   function collapse(e) {
     e.preventDefault();
-    changeView(7)
+    changeView(7);
     document.querySelector('ul#left-thumbnails').hidden = false;
-
   }
 
   return (
@@ -54,36 +51,42 @@ export default function Overview({ product, reviewScore }) {
       </div>
       <div><br /></div>
       <div className="row mainview">
-        <div className={`col-md-${view} my-auto d-flex justify-content-center`} >
-          {currentStyle &&
-            <Gallery currentStyle={currentStyle}
+        <div className={`col-md-${view} my-auto d-flex justify-content-center`}>
+          {currentStyle && (
+            <Gallery
+              currentStyle={currentStyle}
               handleViewChange={handleViewChange}
               view={view}
-              collapse={collapse} />}
+              collapse={collapse}
+            />
+          )}
         </div>
         {view !== 12
-          ? <div className="col-3 product-information">
-            <ProductInfo
-              reviewScore={reviewScore}
-              product={product}
-              styles={styles}
-              currentStyle={currentStyle} />
-            <StyleSelector
-              handleStyleChange={handleStyleChange}
-              styles={styles}
-              currentStyle={currentStyle}
-              select={select}
-            />
-            {currentStyle !== '' &&
-              <Cart currentStyle={currentStyle} />
-            }
-            <ShareIcon />
-          </div>
+          ? (
+            <div className="col-3 product-information">
+              <ProductInfo
+                reviewScore={reviewScore}
+                product={product}
+                styles={styles}
+                currentStyle={currentStyle}
+              />
+              <StyleSelector
+                handleStyleChange={handleStyleChange}
+                styles={styles}
+                currentStyle={currentStyle}
+                select={select}
+              />
+              {currentStyle !== ''
+              && <Cart currentStyle={currentStyle} />}
+              <ShareIcon />
+            </div>
+)
           : null}
       </div>
       <div className="product-overview">
         <ProductOverview
-          product={product} />
+          product={product}
+        />
       </div>
     </div>
   );

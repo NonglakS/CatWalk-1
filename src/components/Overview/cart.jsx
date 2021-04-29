@@ -19,8 +19,6 @@ function Cart({ currentStyle }) {
 
   const tempSize = [];
 
-
-
   const handleQtyChange = (e) => {
     setCurrentVal({ label: e.value, value: e.value, sku: currentVal.sku });
   };
@@ -30,7 +28,8 @@ function Cart({ currentStyle }) {
     return arr.map((val) => ({ value: val, label: val }));
   };
 
-  const handleAddToCart = (e, cb) => {
+  const handleAddToCart = (e) => {
+    e.preventDefault();
     if (!currentVal.value) {
       setClickAdd(true);
     } else {
@@ -44,9 +43,7 @@ function Cart({ currentStyle }) {
         headers: { Authorization: process.env.TOKEN },
       };
 
-      axios(options)
-        .then((res) => cb(res))
-        .catch((err) => cb(err));
+      axios(options);
     }
   };
 
