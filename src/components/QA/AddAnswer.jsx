@@ -68,7 +68,7 @@ function AddAnswer({ questionId, questionBody }) {
             onChange={handleInputChange}
           />
           <br />
-          <div className="disclaimer">For privacy reasons, do not use your full name or email address</text>
+          <div className="disclaimer">For privacy reasons, do not use your full name or email address</div>
           <br />
           <div>Your email *&nbsp;&nbsp;</div>
           <input
