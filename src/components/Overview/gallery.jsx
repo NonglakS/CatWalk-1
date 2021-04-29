@@ -9,6 +9,7 @@ function Gallery({ currentStyle, handleViewChange, view, collapse }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [activeIndexArray, setActiveIndexArray] = useState([0, 1, 2, 3, 4, 5, 6]);
   const [expand, setExpand] = useState(false);
+  const [imgPos, setImgPos] = useState(0,0)
 
 
   const highLightThumbnail = (index) => {
@@ -56,14 +57,27 @@ function Gallery({ currentStyle, handleViewChange, view, collapse }) {
   const move = (e) => {
     e.preventDefault();
     if (view === 12 && expand) {
+           var bound = e.target.getBoundingClientRect();
+      var imgWidth = bound.width;
+      var imgHeight = bound.height;
+      var offsetX = document.querySelector('div.active').getBoundingClientRect().x;
+      var offsetY = document.querySelector('div.active').getBoundingClientRect().y;
+      var boxX = document.querySelector('div.active').getBoundingClientRect().width;
+      var boxY = document.querySelector('div.active').getBoundingClientRect().height;
+      var posX = e.pageX - offsetX;
+      var posY = e.pageY - offsetY;
+      var percentX = posX/boxX;
+      var percentY = posY/boxY;
+      var nextBoxWidth  = boxX/ 2.5;
+      var nextBoxHeight = boxY/ 2.5;
+      var deltaX = (nextBoxWidth - boxX) * (percentX - 0.5);
+      var deltaY = (nextBoxHeight - boxY) * (percentY - 0.5);
+
+      e.target.style.transform = 'scale(2.5)';
       e.target.style.position = 'absolute';
-       var bound = e.target.getBoundingClientRect();
-       var offsetX = document.querySelector('div.active').getBoundingClientRect().x;
-       var offsetY = document.querySelector('div.active').getBoundingClientRect().y;
-       var posX = e.pageX - offsetX;
-       var posY = e.pageY - offsetY;
-       e.target.style.left = -posX/1.5 + 'px'
-       e.target.style.top = -posY/1.5 + 'px'
+
+      e.target.style.left = 2.5*(deltaX)+ 'px'
+      e.target.style.top = 2.5*(deltaY) + 'px'
 
     }
   }
@@ -88,29 +102,32 @@ function Gallery({ currentStyle, handleViewChange, view, collapse }) {
       if (!tempEx) {
 
         e.target.style.cursor = 'zoom-out'
-        e.target.style.transform = 'scale(2.5)';
         prevIcon.hidden = true;
         nextIcon.hidden = true;
         document.querySelector('ul#left-thumbnails').hidden = true;
-        // console.log('target-offset',e.target.offsetWidth, e.target.offsetHeight)
         var bound = e.target.getBoundingClientRect();
-        var bound = e.target.getBoundingClientRect();
+        var imgWidth = bound.width;
+        var imgHeight = bound.height;
         var offsetX = document.querySelector('div.active').getBoundingClientRect().x;
         var offsetY = document.querySelector('div.active').getBoundingClientRect().y;
+        var boxX = document.querySelector('div.active').getBoundingClientRect().width;
+        var boxY = document.querySelector('div.active').getBoundingClientRect().height;
         var posX = e.pageX - offsetX;
         var posY = e.pageY - offsetY;
+        var percentX = posX/boxX;
+        var percentY = posY/boxY;
+        var nextBoxWidth  = boxX/ 2.5;
+        var nextBoxHeight = boxY/ 2.5;
+        var deltaX = (nextBoxWidth - boxX) * (percentX - 0.5);
+        var deltaY = (nextBoxHeight - boxY) * (percentY - 0.5);
+
+        e.target.style.transform = 'scale(2.5)';
         e.target.style.position = 'absolute';
-        e.target.style.left = -posX/1.5 + 'px'
-        e.target.style.top = -posY/1.5 + 'px'
 
+        e.target.style.left = 2.5*(deltaX)+ 'px'
+        e.target.style.top = 2.5*(deltaY) + 'px'
 
-        //TOD): capture mouse pose - calculate x-y - set x-y
-
-
-
-
-
-
+        setImgPos({x: `${2.5*(deltaX)}px`, y:`${2.5*(deltaY)}px`})
 
       } else {
 
@@ -140,7 +157,6 @@ function Gallery({ currentStyle, handleViewChange, view, collapse }) {
       nextIcon.hidden = false;
     }
 
-    // active Index array for show / hide thumbnail
     if (currentStyle.photos.length < 7) {
       setActiveIndexArray(Array.from(Array(currentStyle.photos.length).keys()));
     }
