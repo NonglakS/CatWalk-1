@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable import/extensions */
 import React, { useEffect, useState } from 'react';
 import getData from '../../helperFunctions/getData.js';
 import Gallery from './gallery.jsx';
@@ -12,7 +14,7 @@ export default function Overview({ product, reviewScore }) {
   const [styles, setStyles] = useState('');
   const [currentStyle, setCurrentStyle] = useState('');
   const [select, setSelect] = useState('');
-  const [view, changeView] = useState(7)
+  const [view, changeView] = useState(7);
 
   useEffect(() => {
     const getStyleUrl = `products/${product.id}/styles`;
