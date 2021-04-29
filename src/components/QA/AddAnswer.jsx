@@ -55,12 +55,12 @@ function AddAnswer({ questionId, questionBody }) {
       <button className={`${theme}-theme-secondary add-answer`} type="button" onClick={() => modal.current.open()}>ADD AN ANSWER</button>
       <Modal ref={modal} fade>
         <form id="answer-form" className="submit-answer">
-          <text>Submit Your Answer</text>
+          <div className="submit-header">Submit Your Answer</div>
           <div>Product Name: {questionBody}</div>
           <br />
           {invalidEntry
-            && <text className="bad-entry"> You must enter the following: </text>}
-          <text>What is your nickname *&nbsp;&nbsp;</text>
+            && <div className="bad-entry"> You must enter the following: </div>}
+          <div>What is your nickname *&nbsp;&nbsp;</div>
           <input
             type="text"
             name="name"
@@ -68,18 +68,18 @@ function AddAnswer({ questionId, questionBody }) {
             onChange={handleInputChange}
           />
           <br />
-          <text>For privacy reasons, do not use your full name or email address</text>
+          <div className="disclaimer">For privacy reasons, do not use your full name or email address</text>
           <br />
-          <text>Your email *&nbsp;&nbsp;</text>
+          <div>Your email *&nbsp;&nbsp;</div>
           <input
             type="text"
             name="email"
             onChange={handleInputChange}
           />
           <br />
-          <text>For authentication reasons, you will not be emailed</text>
+          <div className="disclaimer">For authentication reasons, you will not be emailed</div>
           <br />
-          <text>Your Answer *&nbsp;&nbsp;</text>
+          <div>Your Answer *&nbsp;&nbsp;</div>
           <input
             type="textArea"
             name="body"
@@ -87,7 +87,7 @@ function AddAnswer({ questionId, questionBody }) {
             onChange={handleInputChange}
           />
           <br />
-          <text>* mandatory field</text>
+          <div className="disclaimer">* mandatory field</div>
           <br />
           <button type="submit" onClick={addItem}>Submit answer</button>
         </form>

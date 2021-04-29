@@ -1,10 +1,8 @@
 /* eslint-disable max-len */
 import React, { useEffect, useState, useContext } from 'react';
 import { Button, Icon } from 'semantic-ui-react';
-import {ThemeContext} from "../themeContext.jsx"
 
 function AddButton({ handleAddToCart, outOfStock }) {
-  const { theme } = useContext(ThemeContext);
 
   return (
 
