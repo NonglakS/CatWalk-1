@@ -71,7 +71,7 @@ export default function ReviewsSection({ reviewsMeta, name, reviewScore }) {
           <Ratings reviewsMeta={reviewsMeta} reviewScore={reviewScore} onFilter={handleFilter} />
           {reviewsMeta.characteristics && (
             Object.keys(reviewsMeta.characteristics).map((key) => (
-              <Characteristic average={reviewsMeta.characteristics[key].value} characteristic={key} />
+              <Characteristic average={reviewsMeta.characteristics[key].value} characteristic={key} key={key} />
             )))}
         </div>
 
@@ -91,7 +91,7 @@ export default function ReviewsSection({ reviewsMeta, name, reviewScore }) {
           <div className="reviews">
             {reviews
               && renderedReviews.map((review) => (
-                <ReviewTile review={review} />
+                <ReviewTile review={review} key={review.review_id} />
               ))}
           </div>
           <div style={{ display: 'flex' }}>
