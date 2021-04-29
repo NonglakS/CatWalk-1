@@ -8,8 +8,10 @@ import Modal from '../../shared-components/Modal.jsx';
 import ReviewForm from './ReviewForm.jsx';
 import Characteristic from './Characteristic.jsx';
 import { ThemeContext } from "../themeContext.jsx"
+import { TrackerContext } from '../App.jsx';
 
 export default function ReviewsSection({ reviewsMeta, name, reviewScore }) {
+  const clickTracker = useContext(TrackerContext);
   const [reviews, setReviews] = useState([]);
   const [reviewCount, setReviewCount] = useState(2);
   const [renderedReviews, setRenderedReviews] = useState([]);
@@ -20,7 +22,7 @@ export default function ReviewsSection({ reviewsMeta, name, reviewScore }) {
 
   useEffect(async () => {
     try {
-      const res = await axios.get(`reviews?product_id=${id}&count=10000`);
+      const res = await axios.get(`/reviews?product_id=${id}&count=10000`);
       setReviews(res.data.results);
       setRenderedReviews(res.data.results.slice(0, reviewCount));
     } catch (err) {
@@ -31,19 +33,18 @@ export default function ReviewsSection({ reviewsMeta, name, reviewScore }) {
   const rerenderReviews = () => {
     setRenderedReviews(reviews.slice(0, reviewCount + 2));
     setReviewCount(reviewCount + 2);
+    clickTracker(`more reviews button`, 'ratings & reviews');
   };
 
-  const handleSort = (sortBy) => {
-    console.log('sortBy', sortBy);
-    getData(`reviews?product_id=${id}&count=10000&sort=${sortBy}`, (err, res) => {
-      if (err) {
-        console.log('err', err);
-      } else {
-        console.log('res', res);
-        setReviews(res.data.results);
-        setRenderedReviews(res.data.results.slice(0, reviewCount));
-      }
-    });
+  const handleSort = async (sortBy) => {
+    try {
+      const res = await axios.get(`/reviews?product_id=${id}&count=10000&sort=${sortBy}`);
+      setReviews(res.data.results);
+      setRenderedReviews(res.data.results.slice(0, reviewCount));
+    } catch (err) {
+      console.log(err);
+    }
+    clickTracker(`sort reviews by ${sortBy}`, 'ratings & reviews');
   };
 
   const handleFilter = (filterBy) => {
@@ -56,6 +57,12 @@ export default function ReviewsSection({ reviewsMeta, name, reviewScore }) {
     const filteredReviews = currentFilters.length ? reviews.slice().filter((review) => currentFilters.includes(review.rating)) : reviews;
     setRenderedReviews(filteredReviews);
     setFilters(currentFilters);
+    clickTracker(`filter by ${filterBy} reviews`, 'ratings & reviews');
+  };
+
+  const openModal = () => {
+    modal.current.open();
+    clickTracker('review form modal', 'ratings & reviews');
   };
 
   return (
@@ -66,7 +73,7 @@ export default function ReviewsSection({ reviewsMeta, name, reviewScore }) {
           <Ratings reviewsMeta={reviewsMeta} reviewScore={reviewScore} onFilter={handleFilter} />
           {reviewsMeta.characteristics && (
             Object.keys(reviewsMeta.characteristics).map((key) => (
-              <Characteristic average={reviewsMeta.characteristics[key].value} characteristic={key} />
+              <Characteristic average={reviewsMeta.characteristics[key].value} characteristic={key} key={key} />
             )))}
         </div>
 
@@ -86,11 +93,15 @@ export default function ReviewsSection({ reviewsMeta, name, reviewScore }) {
           <div className="reviews">
             {reviews
               && renderedReviews.map((review) => (
-                <ReviewTile review={review} />
+                <ReviewTile review={review} key={review.review_id} />
               ))}
           </div>
           <div style={{ display: 'flex' }}>
+<<<<<<< HEAD
             <button className={`${theme}-theme-secondary show-more-btn`} type="button" onClick={() => modal.current.open()}>
+=======
+            <button className="show-more-btn" type="button" onClick={openModal}>
+>>>>>>> master
               Add Review
             </button>
             {!filters.length && reviewCount < reviews.length && (

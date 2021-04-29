@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-plusplus */
@@ -15,11 +16,11 @@ export default function ReviewTile({ review }) {
     <div className="review-tile">
       <div className="rating-wrapper">
         <div className="stars" style={{ display: 'flex', justifyContent: 'start' }}>
-          {stars.map((star) => {
+          {stars.map((star, index) => {
             if (star) {
-              return <FaStar color="gold" />;
+              return <FaStar color="gold" key={index} />;
             }
-            return <FaRegStar />;
+            return <FaRegStar key={index} />;
           })}
         </div>
         <div className="user">{review.reviewer_name}, {Moment(review.date).format('MMMM Do, YYYY')} </div>
