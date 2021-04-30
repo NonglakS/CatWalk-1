@@ -9,7 +9,7 @@ export default function Characteristics({ average, characteristic }) {
   const containerStyles = {
     height: 8,
     width: '74%',
-    backgroundColor: '#e0e0de',
+    backgroundColor: '#999999',
   };
 
   const fillerStyles = {

@@ -1,13 +1,15 @@
 /* eslint-disable no-useless-return */
 /* eslint-disable no-else-return */
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import AddQuestion from './AddQuestion.jsx';
 import Questions from './Questions.jsx';
 import Answers from './Answers.jsx';
 import QuestionSearch from './QuestionSearch.jsx';
+import { TrackerContext } from '../App.jsx'
+import { ThemeContext } from "../themeContext.jsx"
 
 export default function QuestionsSection() {
   const [allQuestions, setAllQuestions] = useState('');
@@ -17,8 +19,9 @@ export default function QuestionsSection() {
   const [inputText, setInputText] = useState('');
   const [searchActivated, setSearchActivated] = useState(false);
   const [noResults, setNoResults] = useState(false);
-
   const { id } = useParams();
+  const clickTracker = useContext(TrackerContext);
+  const { theme } = useContext(ThemeContext);
 
   const searchQuestions = (input) => {
     const searchQ = [];
@@ -48,8 +51,15 @@ export default function QuestionsSection() {
     }
   };
 
+  const noQuestions = () => {
+    if(!displayedQuestions) {
+      setSearchActivated(true);
+    }
+  };
+
   const renderQuestions = (questionArray) => {
     const questions = [];
+    clickTracker('More Questions', 'QA');
     for (let i = 0; i < questionsRendered; i++) {
       if (questionArray[i] === undefined) {
         return;
@@ -66,7 +76,7 @@ export default function QuestionsSection() {
     try {
       const res = await axios.get(`qa/questions?product_id=${id}&count=1000`);
       setAllQuestions(res.data.results);
-      setDisplayedQuestions(res.data.results.slice(0, 2));
+      setDisplayedQuestions(res.data.results.slice(0, 2))
     } catch (err) {
       console.log(err);
     }
@@ -74,7 +84,7 @@ export default function QuestionsSection() {
 
   return (
     <>
-      <h3>Questions and Answers</h3>
+      <h3 className="qa-meta">Questions and Answers</h3>
       <div className="questions-area">
         <QuestionSearch inputText={inputText} handleInput={handleInputChange} />
       </div>
@@ -93,7 +103,10 @@ export default function QuestionsSection() {
             : searchedQuestions.map((data) => <Questions key={data.toString()} question={data} />)}
           {searchActivated
             ? null
-            : <button className="display-questions" type="submit" onClick={() => renderQuestions(allQuestions)}> MORE QUESTIONS </button>}
+            : [displayedQuestions.length !== allQuestions.length
+              ? <button className={`${theme}-theme-secondary display-questions`} type="submit" onClick={() => renderQuestions(allQuestions)}> MORE QUESTIONS </button>
+              : null,
+            ]}
 
         </div>
         <AddQuestion />

@@ -1,10 +1,12 @@
 import { useParams } from 'react-router-dom';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import averageReviewScore from '../helperFunctions/averageReviewScore.js';
 import QuestionsSection from './QA/QuestionsSection.jsx';
 import ReviewsSection from './Reviews/ReviewsSection.jsx';
 import Overview from './Overview/overview.jsx';
+import {ThemeContext} from "./themeContext.jsx"
+
 
 export const TrackerContext = React.createContext();
 
@@ -13,6 +15,7 @@ export default function App() {
   const [product, setProduct] = useState('');
   const [reviewsMeta, setReviewsMeta] = useState({});
   const [reviewScore, setReviewScore] = useState(0);
+  const { theme } = useContext(ThemeContext)
 
   useEffect(async () => {
     try {
