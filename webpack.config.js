@@ -1,14 +1,14 @@
-var path = require("path");
-var SRC_DIR = path.join(__dirname, "/src");
-var DIST_DIR = path.join(__dirname, "/public");
-const webpack = require('webpack');
+const path = require('path');
+
+const SRC_DIR = path.join(__dirname, '/src');
+const DIST_DIR = path.join(__dirname, '/public');
 
 const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   entry: `${SRC_DIR}/index.jsx`,
   output: {
-    filename: "bundle.js",
+    filename: 'bundle.js',
     path: DIST_DIR,
   },
   module: {
@@ -17,12 +17,12 @@ module.exports = {
         test: /\.jsx?/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
         },
       },
     ],
   },
   plugins: [
-    new Dotenv()
+    new Dotenv(),
   ],
 };

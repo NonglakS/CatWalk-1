@@ -1,37 +1,38 @@
 /* eslint-disable react/prop-types */
+/* eslint-disable import/no-cycle */
 /* eslint-disable import/extensions */
-import React, { useEffect, useState } from 'react';
-import getData from '../../helperFunctions/getData.js';
+import React, { useEffect, useState, useContext } from 'react';
+import axios from 'axios';
 import Gallery from './gallery.jsx';
 import StyleSelector from './styleSelector.jsx';
 import ProductInfo from './productInfo.jsx';
 import ProductOverview from './productOverview.jsx';
 import ShareIcon from './shareIcon.jsx';
 import Cart from './cart.jsx';
-
+import { TrackerContext } from '../App.jsx';
 
 export default function Overview({ product, reviewScore }) {
+  const clickTracker = useContext(TrackerContext);
   const [styles, setStyles] = useState('');
   const [currentStyle, setCurrentStyle] = useState('');
   const [select, setSelect] = useState('');
   const [view, changeView] = useState(7);
 
-  useEffect(() => {
-    const getStyleUrl = `products/${product.id}/styles`;
-    getData(getStyleUrl, (err, res) => {
-      if (err) {
-        console.log('ERROR', err);
-      } else {
-        setStyles(res.data.results);
-        setCurrentStyle(res.data.results[0]);
-        setSelect(`tick_${res.data.results[0].style_id}`);
-      }
-    });
+  useEffect(async () => {
+    try {
+      const res = await axios.get(`/products/${product.id}/styles`);
+      setStyles(res.data.results);
+      setCurrentStyle(res.data.results[0]);
+      setSelect(`tick_${res.data.results[0].style_id}`);
+    } catch (err) {
+      console.log(err);
+    }
   }, []);
 
   function handleStyleChange(newStyle) {
     setCurrentStyle(newStyle);
     setSelect(`tick_${newStyle.style_id}`);
+    clickTracker('style selector', 'overview');
   }
 
   function handleViewChange() {
@@ -46,20 +47,19 @@ export default function Overview({ product, reviewScore }) {
 
   return (
     <div className="overview">
-      <div className="row">
-        <div className="col logo-bar">LOGO</div>
-      </div>
+      <div className="logo-bar">LOGO</div>
       <div><br /></div>
       <div className="row mainview">
         <div className={`col-md-${view} my-auto d-flex justify-content-center`}>
-          {currentStyle && (
-            <Gallery
-              currentStyle={currentStyle}
-              handleViewChange={handleViewChange}
-              view={view}
-              collapse={collapse}
-            />
-          )}
+          {currentStyle
+            && (
+              <Gallery
+                currentStyle={currentStyle}
+                handleViewChange={handleViewChange}
+                view={view}
+                collapse={collapse}
+              />
+            )}
         </div>
         {view !== 12
           ? (
@@ -77,10 +77,10 @@ export default function Overview({ product, reviewScore }) {
                 select={select}
               />
               {currentStyle !== ''
-              && <Cart currentStyle={currentStyle} />}
+                && <Cart currentStyle={currentStyle} />}
               <ShareIcon />
             </div>
-)
+          )
           : null}
       </div>
       <div className="product-overview">

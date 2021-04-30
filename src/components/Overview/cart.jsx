@@ -1,15 +1,19 @@
+/* eslint-disable import/no-cycle */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable react/prop-types */
 /* eslint-disable import/extensions */
 /* eslint-disable max-len */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import Select from 'react-select';
 import { Button, Icon } from 'semantic-ui-react';
 import axios from 'axios';
 import AddButton from './addButton.jsx';
+import { TrackerContext } from '../App.jsx';
 
 // eslint-disable-next-line react/prop-types
 function Cart({ currentStyle }) {
+  const clickTracker = useContext(TrackerContext);
+
   const [sizeOptions, setSizeOptions] = useState([]);
   const [qtyOptions, setQtyOptions] = useState([]);
   const [outOfStock, setOutOfStock] = useState(false);
@@ -21,6 +25,7 @@ function Cart({ currentStyle }) {
 
   const handleQtyChange = (e) => {
     setCurrentVal({ label: e.value, value: e.value, sku: currentVal.sku });
+    clickTracker('quantity selector', 'overview');
   };
 
   const updateRange = (max) => {
@@ -28,23 +33,23 @@ function Cart({ currentStyle }) {
     return arr.map((val) => ({ value: val, label: val }));
   };
 
-  const handleAddToCart = (e) => {
-    e.preventDefault();
+  const handleAddToCart = async (e) => {
     if (!currentVal.value) {
       setClickAdd(true);
     } else {
-      const options = {
-        method: 'post',
-        url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/cart',
-        data: {
-          sku_id: currentVal.sku,
-          count: currentVal.value,
-        },
-        headers: { Authorization: process.env.TOKEN },
+      const data = {
+        sku_id: currentVal.sku,
+        count: currentVal.value,
       };
 
-      axios(options);
+      try {
+        await axios.post('/cart', data);
+        console.log('Added an item to the cart!');
+      } catch (err) {
+        console.log(err);
+      }
     }
+    clickTracker('add to cart', 'overview');
   };
 
   useEffect(() => {
@@ -67,6 +72,7 @@ function Cart({ currentStyle }) {
     } else {
       setQtyOptions(updateRange(15));
     }
+    clickTracker('add to cart', 'overview');
   };
 
   return (

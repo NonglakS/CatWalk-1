@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
+import { TrackerContext } from '../App.jsx';
 
 export default function Helpful({ id, helpfulness }) {
+  const clickTracker = useContext(TrackerContext);
   const [voted, setVoted] = useState(false);
   const [helpScore, setHelpScore] = useState(helpfulness);
   const [reported, setReported] = useState(false);
@@ -10,19 +12,19 @@ export default function Helpful({ id, helpfulness }) {
     setHelpScore(helpScore + 1);
     setVoted(true);
 
-    axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews/${id}/helpful`, null, {
-      headers: { Authorization: process.env.TOKEN },
-    })
+    axios.put(`/reviews/${id}/helpful`)
       .catch((err) => console.log(err));
+
+    clickTracker('helpful', 'ratings & reviews');
   };
 
   const handleReport = () => {
     setReported(true);
 
-    axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews/${id}/report`, null, {
-      headers: { Authorization: process.env.TOKEN },
-    })
+    axios.put(`/reviews/${id}/report`)
       .catch((err) => console.log(err));
+
+    clickTracker('report', 'ratings & reviews');
   };
 
   return (

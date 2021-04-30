@@ -1,33 +1,32 @@
-import React, { useEffect, useState } from 'react';
+/* eslint-disable react/prop-types */
+import React, { useEffect } from 'react';
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md';
-import getData from '../../helperFunctions/getData.js';
-
 
 function Thumbnails({
-  currentStyle, handleSelect, activeIndexArray, activeIndex, scrollUp, scrollDown, view
+  currentStyle, handleSelect, activeIndexArray, scrollUp, scrollDown, view,
 }) {
   const N = currentStyle.photos.length;
 
-  var style_img = view === 7 ? {
+  const styleImg = view === 7 ? {
     height: '60px',
     width: '60px',
   } : {
     height: '40px',
     width: '40px',
     borderRadius: '20px',
-    margin: '2px'
+    margin: '2px',
   }
 
-  const style_thumbnail = {
+  const styleThumbnail = {
     listStyleType: 'none',
     border: '0',
   };
 
   const show = (arr) => {
-    for (var i = 0; i < currentStyle.photos.length; i++) {
+    for (let i = 0; i < currentStyle.photos.length; i++) {
       document.querySelector(`#index_${i}`).style.display = 'none';
     }
-    for (var i = 0; i < 7; i++) {
+    for (let i = 0; i < 7; i++) {
       document.querySelector(`#index_${arr[i]}`).style.display = 'list-item';
     }
   };
@@ -66,13 +65,14 @@ function Thumbnails({
             )
             : null}
           {currentStyle.photos.map((photo, index) => (
-            <li style={style_thumbnail}>
+            <li style={styleThumbnail}>
               <button
+                type="button"
                 id={`index_${index}`}
                 className="button-thumbnail"
                 onClick={(e) => { handleSelect(index, e); }}
               >
-                <img src={photo.thumbnail_url} alt="thumbnail" style={style_img} />
+                <img src={photo.thumbnail_url} alt="thumbnail" style={styleImg} />
               </button>
             </li>
           ))}

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/img-redundant-alt */
@@ -5,14 +6,16 @@
 /* eslint-disable no-plusplus */
 /* eslint-disable react/prop-types */
 /* eslint-disable import/extensions */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Carousel } from 'react-bootstrap';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import Thumbnails from './thumbnails.jsx';
+import { TrackerContext } from '../App.jsx';
 
 function Gallery({
   currentStyle, handleViewChange, view, collapse,
 }) {
+  const clickTracker = useContext(TrackerContext);
   const [activeIndex, setActiveIndex] = useState(0);
   const [activeIndexArray, setActiveIndexArray] = useState([0, 1, 2, 3, 4, 5, 6]);
   const [expand, setExpand] = useState(false);
@@ -32,6 +35,7 @@ function Gallery({
     e.preventDefault();
     setActiveIndex(selectedIndex);
     highLightThumbnail(selectedIndex);
+    clickTracker('thumbnails', 'overview');
   };
 
   const scrollUp = () => {
@@ -44,6 +48,7 @@ function Gallery({
         setActiveIndex(arr[6]);
       }
     }
+    clickTracker('thumbnails', 'overview');
   };
 
   const scrollDown = () => {
@@ -57,6 +62,7 @@ function Gallery({
         setActiveIndex(arr[0]);
       }
     }
+    clickTracker('thumbnails', 'overview');
   };
 
   const move = (e) => {
@@ -122,6 +128,7 @@ function Gallery({
       }
       setExpand(!tempEx);
     }
+    clickTracker('thumbnails', 'overview');
   };
 
   const viewStyle = view === 12 ? { height: '750px' } : { height: '650px' };

@@ -26,9 +26,7 @@ function AddQuestion({ product, productName }) {
   };
 
   const postQuestion = (params, callback) => {
-    axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/qa/questions', params, {
-      headers: { Authorization: process.env.TOKEN },
-    })
+    axios.post('/qa/questions', params)
       .then((res) => callback(null, res))
       .catch((err) => callback(err));
   };

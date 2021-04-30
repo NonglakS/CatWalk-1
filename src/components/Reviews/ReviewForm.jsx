@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { FaRegStar, FaStar } from 'react-icons/fa';
-import buildStars from '../../helperFunctions/buildStars.js';
 import axios from 'axios';
+import buildStars from '../../helperFunctions/buildStars.js';
 import characteristicsExplanations from './sharedConstants.js';
 
 const ratingExplanations = ['', 'Poor', 'Fair', 'Average', 'Good', 'Great'];
@@ -20,7 +20,6 @@ export default function ReveiwForm({ name, characteristics, modal }) {
 
   const startingCharacteristics = {};
   const { id } = useParams();
-  console.log(typeof id)
 
   Object.keys(characteristics).forEach((key) => {
     startingCharacteristics[key] = 0;
@@ -30,13 +29,13 @@ export default function ReveiwForm({ name, characteristics, modal }) {
   const createCharacteristicsObj = () => {
     const result = {};
     Object.keys(characteristics).forEach((key) => {
-      let thing = characteristics[key];
-      result[thing.id] = Number(characteristicRatings[key]);
+      const charVal = characteristics[key];
+      result[charVal.id] = Number(characteristicRatings[key]);
     });
     return result;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const postCharacteristics = createCharacteristicsObj();
@@ -51,16 +50,13 @@ export default function ReveiwForm({ name, characteristics, modal }) {
       photos: images,
       characteristics: postCharacteristics,
     };
-    axios({
-      method: 'post',
-      url: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/reviews',
-      data,
-      headers: { Authorization: process.env.TOKEN },
-    })
-      .then(() => {
-        modal.current.close();
-      })
-      .catch((err) => console.log('err', err));
+
+    try {
+      await axios.post('/reviews', data);
+      modal.current.close();
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleStarClick = (index) => {
@@ -82,7 +78,7 @@ export default function ReveiwForm({ name, characteristics, modal }) {
   };
 
   const handleBodyEntry = (e) => {
-    const text = e.target.value
+    const text = e.target.value;
     if (bodyCharsLeft > 0) {
       setBodyCharsLeft(50 - text.length);
     }
@@ -104,7 +100,7 @@ export default function ReveiwForm({ name, characteristics, modal }) {
       <form onSubmit={handleSubmit}>
         <div className="form-row">
           <label className="form-label">Select your rating*:</label>
-          <div className="stars" >
+          <div className="stars">
             {stars.map((star, index) => {
               if (star) {
                 return <button className="star-selector" type="button" onClick={() => handleStarClick(index)}><FaStar color="gold" /></button>;
@@ -126,7 +122,7 @@ export default function ReveiwForm({ name, characteristics, modal }) {
                 type="radio"
                 name="recommend"
                 id="yes"
-                value={true}
+                value
                 style={{ marginLeft: '5px' }}
                 required
               />
@@ -159,7 +155,12 @@ export default function ReveiwForm({ name, characteristics, modal }) {
                 </div>
               </div>
               <div className="radio">
-                <div style={{ width: '100px', marginRight: '20px', textAlign: 'right', fontSize: '12px' }}>{characteristicsExplanations[key]['1']}</div>
+                <div style={{
+                  width: '100px', marginRight: '20px', textAlign: 'right', fontSize: '12px',
+                }}
+                >
+                  {characteristicsExplanations[key]['1']}
+                </div>
                 <div className="radio-btns" onChange={(e) => handleCharacteristicRating(e)}>
                   <label htmlFor={key} style={{ marginBottom: '0px' }}>
                     1
@@ -241,7 +242,10 @@ export default function ReveiwForm({ name, characteristics, modal }) {
             required
             style={{ width: '75%' }}
           />
-          <div>minimum required characters left:&nbsp;{bodyCharsLeft}</div>
+          <div>
+            minimum required characters left:&nbsp;
+            {bodyCharsLeft}
+          </div>
         </div>
 
         <div className="form-row">

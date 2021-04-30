@@ -22,9 +22,7 @@ function AddAnswer({ questionId, questionBody }) {
   };
 
   const postAnswer = (params, callback) => {
-    axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/qa/questions/${questionId}/answers`, params, {
-      headers: { Authorization: process.env.TOKEN },
-    })
+    axios.post(`/qa/questions/${questionId}/answers`, params)
       .then((res) => callback(null, res))
       .catch((err) => callback(err));
   };
