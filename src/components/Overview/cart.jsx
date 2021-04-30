@@ -93,7 +93,7 @@ function Cart({ currentStyle }) {
           <AddButton handleAddToCart={handleAddToCart} outOfStock={!!outOfStock} />
         </div>
         <div className="col d-flex flex-row-reverse add-to-collection" id="fav">
-          <Button basic>
+          <Button>
             <Icon name="star outline" />
           </Button>
         </div>

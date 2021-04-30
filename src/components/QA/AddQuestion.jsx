@@ -1,19 +1,22 @@
 /* eslint-disable no-useless-return */
 /* eslint-disable no-else-return */
 /* eslint-disable react/jsx-one-expression-per-line */
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Modal from '../../shared-components/Modal.jsx';
+import { TrackerContext } from '../App.jsx';
+import { ThemeContext } from '../themeContext.jsx';
 
 function AddQuestion({ product, productName }) {
+  const { theme } = useContext(ThemeContext);
   const modal = useRef(null);
   const { id } = useParams();
+  const clickTracker = useContext(TrackerContext);
   const [values, setValues] = useState({
     name: '', email: '', body: '', product_id: Number(id),
   });
   const [invalidEntry, setInvalidEntry] = useState(false);
-
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -26,6 +29,7 @@ function AddQuestion({ product, productName }) {
   };
 
   const postQuestion = (params, callback) => {
+    clickTracker('Add Question', 'QA');
     axios.post('/qa/questions', params)
       .then((res) => callback(null, res))
       .catch((err) => callback(err));
@@ -33,6 +37,7 @@ function AddQuestion({ product, productName }) {
 
   const addItem = (e) => {
     e.preventDefault();
+    clickTracker('Add Question', 'QA');
     const { name, email, body } = values;
     if (!name || !email || !body || !validateEmail(email)) {
       console.log('invalid entries');
@@ -44,6 +49,7 @@ function AddQuestion({ product, productName }) {
         console.log('err', err);
       } else {
         alert('Question Submitted');
+        modal.current.close();
         setInvalidEntry(false);
       }
     });
@@ -51,15 +57,15 @@ function AddQuestion({ product, productName }) {
 
   return (
     <>
-      <button className="add-question" type="button" onClick={() => modal.current.open()}>ADD A QUESTION +</button>
+      <button className={`${theme}-theme-secondary add-question`} type="button" onClick={() => modal.current.open()}>ADD A QUESTION +</button>
       <Modal ref={modal} fade>
         <form id="question-form">
-          <text>Ask Your Question</text>
+          <div className="submit-header">Ask Your Question</div>
           <div>About the {productName}</div>
           <br />
           {invalidEntry
-            && <text className="bad-entry"> You must enter the following: </text>}
-          <text>What is your nickname *&nbsp;&nbsp;</text>
+            && <div className="bad-entry"> You must fill in all valid entries: </div>}
+          <div>What is your nickname *&nbsp;&nbsp;</div>
           <input
             type="text"
             name="name"
@@ -68,9 +74,9 @@ function AddQuestion({ product, productName }) {
             value={values.name}
           />
           <br />
-          <text>For privacy reasons, do not use your full name or email address</text>
+          <div className="disclaimer">For privacy reasons, do not use your full name or email address</div>
           <br />
-          <text>Your email *&nbsp;&nbsp;</text>
+          <div>Your email *&nbsp;&nbsp;</div>
           <input
             type="text"
             name="email"
@@ -78,19 +84,22 @@ function AddQuestion({ product, productName }) {
             value={values.email}
           />
           <br />
-          <text>For authentication reasons, you will not be emailed</text>
+          <div className="disclaimer">For authentication reasons, you will not be emailed</div>
           <br />
-          <text>Your question? *&nbsp;&nbsp;</text>
+          <div>Your question? *&nbsp;&nbsp;</div>
           <input
             type="textArea"
             name="body"
+            id="summary"
             placeholder="Why did you like the product or not"
             onChange={handleInputChange}
             value={values.body}
+            style={{ width: '75%', height: '30px' }}
           />
           <br />
-          <text>* mandatory field</text>
-          <button type="submit" onClick={addItem}>Submit question</button>
+          <div className="disclaimer">* mandatory field</div>
+          <br />
+          <button type="submit" style={{ marginTop: '12px}' }} onClick={addItem}>Submit question</button>
         </form>
       </Modal>
     </>
