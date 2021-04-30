@@ -81,13 +81,13 @@ function Cart({ currentStyle }) {
       <div className="row  size-qty-selector">
         <div className="col-8 select-size">
           {clickAdd
-            ? <Select id="size-options" menuIsOpen options={sizeOptions} onChange={handleSizeChange} />
-            : <Select menuColor="red" id="size-options" options={sizeOptions} placeholder={outOfStock ? 'Out of Stock' : 'SELECT SIZE'} onChange={handleSizeChange} />}
+            ? <Select id="size-options" menuIsOpen options={sizeOptions} onChange={handleSizeChange} key={Math.random()} />
+            : <Select menuColor="red" id="size-options" options={sizeOptions} placeholder={outOfStock ? 'Out of Stock' : 'SELECT SIZE'} onChange={handleSizeChange} key={Math.random()} />}
         </div>
         <div className="col-4 select-quantity">
           {!disable
-            ? <Select id="qty-options" options={qtyOptions} value={currentVal} onChange={handleQtyChange} />
-            : <Select id="qty-options" options={qtyOptions} placeholder="-" isDisabled={disable} />}
+            ? <Select id="qty-options" options={qtyOptions} value={currentVal} onChange={handleQtyChange} key={Math.random()}/>
+            : <Select id="qty-options" options={qtyOptions} placeholder="-" isDisabled={disable} key={Math.random()} />}
         </div>
       </div>
       <div className="row cart">

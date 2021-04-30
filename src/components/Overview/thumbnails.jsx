@@ -65,7 +65,7 @@ function Thumbnails({
             )
             : null}
           {currentStyle.photos.map((photo, index) => (
-            <li style={styleThumbnail}>
+            <li style={styleThumbnail} key={index}>
               <button
                 type="button"
                 id={`index_${index}`}

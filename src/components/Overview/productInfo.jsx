@@ -26,11 +26,11 @@ function ProductInfo({ product, currentStyle, reviewScore }) {
             <div className="col d-flex h-100 align-items-center align-middle " id="overview-star-review" style={{ display: 'flex', justifyContent: 'start' }}>
               {stars.map((star) => {
                 if (star === 0) {
-                  return <FaRegStar />;
+                  return <FaRegStar key={Math.random()} />;
                 } if (star === 1) {
-                  return <FaStar />;
+                  return <FaStar key={Math.random()} />;
                 }
-                return <FaStarHalfAlt />;
+                return <FaStarHalfAlt key={Math.random()} />;
               })}
               <a id="read-all-reviews" onClick={handleReadReview}>Read all reviews</a>
             </div>

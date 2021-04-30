@@ -11,7 +11,7 @@ function ProductOverview({ product }) {
       </div>
       <div className="col-md align-self-center">
         {product.features.map((feature) => (
-          <div className="features">
+          <div className="features" key={Math.random()}>
             <span className="check-feature"><FaCheck size={12} color="green" /></span>
             <span className="feature">{`${feature.feature} : ${feature.value}`}</span>
           </div>

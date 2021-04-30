@@ -202,7 +202,7 @@ function Gallery({
       >
 
         {currentStyle.photos.map((photo) => (
-          <Carousel.Item style={viewStyle}>
+          <Carousel.Item style={viewStyle} key={Math.random()}>
             <div className="d-flex h-100 align-items-center justify-content-center">
               <img
                 onMouseLeave={(e) => leave(e)}

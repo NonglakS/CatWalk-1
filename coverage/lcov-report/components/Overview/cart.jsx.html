@@ -39,7 +39,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/8</span>
+                <span class='fraction'>0/9</span>
             </div>
         
             
@@ -163,7 +163,9 @@
 <a name='L104'></a><a href='#L104'>104</a>
 <a name='L105'></a><a href='#L105'>105</a>
 <a name='L106'></a><a href='#L106'>106</a>
-<a name='L107'></a><a href='#L107'>107</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L107'></a><a href='#L107'>107</a>
+<a name='L108'></a><a href='#L108'>108</a>
+<a name='L109'></a><a href='#L109'>109</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -174,14 +176,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -189,25 +185,10 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -239,6 +220,29 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -269,18 +273,21 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/* eslint-disable max-len */
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/* eslint-disable import/no-cycle */
+/* eslint-disable no-unused-expressions */
+/* eslint-disable react/prop-types */
+/* eslint-disable import/extensions */
+/* eslint-disable max-len */
 import React, { useEffect, useState, useContext } from 'react';
 import Select from 'react-select';
 import { Button, Icon } from 'semantic-ui-react';
 import axios from 'axios';
-import AddButton from './addButton.jsx'
-import { TrackerContext } from '../App.jsx'
+import AddButton from './addButton.jsx';
+import { TrackerContext } from '../App.jsx';
 &nbsp;
-&nbsp;
+// eslint-disable-next-line react/prop-types
 function <span class="fstat-no" title="function not covered" >Cart(</span>{ currentStyle }) {
-&nbsp;
-  const clickTracker = <span class="cstat-no" title="statement not covered" >useContext(TrackerContext)</span>
+  const clickTracker = <span class="cstat-no" title="statement not covered" >useContext(TrackerContext);</span>
 &nbsp;
   const [sizeOptions, setSizeOptions] = <span class="cstat-no" title="statement not covered" >useState([]);</span>
   const [qtyOptions, setQtyOptions] = <span class="cstat-no" title="statement not covered" >useState([]);</span>
@@ -291,33 +298,9 @@ function <span class="fstat-no" title="function not covered" >Cart(</span>{ curr
 &nbsp;
   const tempSize = <span class="cstat-no" title="statement not covered" >[];</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  useEffect(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    for (const key in currentStyle.skus) {</span>
-<span class="cstat-no" title="statement not covered" >      if (Number(currentStyle.skus[key].quantity) &gt; 0) {</span>
-<span class="cstat-no" title="statement not covered" >        tempSize.push({ value: currentStyle.skus[key].quantity, label: currentStyle.skus[key].size, sku: key });</span>
-      }
-    }
-&nbsp;
-<span class="cstat-no" title="statement not covered" >    tempSize.length === 0 ? setOutOfStock(true) : setSizeOptions(tempSize);</span>
-  }, [currentStyle]);
-&nbsp;
-  const handleSizeChange = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(e</span>) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    setDisable(false);</span>
-<span class="cstat-no" title="statement not covered" >    setClickAdd(false);</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >    setCurrentVal({ label: 1, value: 1, sku: e.sku });</span>
-<span class="cstat-no" title="statement not covered" >    if (e.value &lt; 15) {</span>
-<span class="cstat-no" title="statement not covered" >      setQtyOptions(updateRange(e.value));</span>
-    } else {
-<span class="cstat-no" title="statement not covered" >      setQtyOptions(updateRange(15));</span>
-    }
-&nbsp;
-<span class="cstat-no" title="statement not covered" >    clickTracker('size selector', 'overview');</span>
-  };
-&nbsp;
   const handleQtyChange = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(e</span>) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    setCurrentVal({ label: e.value, value: e.value, sku: currentVal.sku });</span>
-<span class="cstat-no" title="statement not covered" >    clickTracker('quantity selector', 'overview')</span>
+<span class="cstat-no" title="statement not covered" >    clickTracker('quantity selector', 'overview');</span>
   };
 &nbsp;
   const updateRange = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(m</span>ax) =&gt; {</span>
@@ -341,7 +324,30 @@ function <span class="fstat-no" title="function not covered" >Cart(</span>{ curr
 <span class="cstat-no" title="statement not covered" >        console.log(err);</span>
       }
     }
-<span class="cstat-no" title="statement not covered" >    clickTracker('add to cart', 'overview')</span>
+<span class="cstat-no" title="statement not covered" >    clickTracker('add to cart', 'overview');</span>
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  useEffect(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    Object.keys(currentStyle.skus).forEach(<span class="fstat-no" title="function not covered" >(k</span>) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      if (Number(currentStyle.skus[k].quantity) &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >        tempSize.push({ value: currentStyle.skus[k].quantity, label: currentStyle.skus[k].size, sku: k });</span>
+      }
+    });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    tempSize.length === 0 ? setOutOfStock(true) : setSizeOptions(tempSize);</span>
+  }, [currentStyle]);
+&nbsp;
+  const handleSizeChange = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(e</span>) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    setDisable(false);</span>
+<span class="cstat-no" title="statement not covered" >    setClickAdd(false);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    setCurrentVal({ label: 1, value: 1, sku: e.sku });</span>
+<span class="cstat-no" title="statement not covered" >    if (e.value &lt; 15) {</span>
+<span class="cstat-no" title="statement not covered" >      setQtyOptions(updateRange(e.value));</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      setQtyOptions(updateRange(15));</span>
+    }
+<span class="cstat-no" title="statement not covered" >    clickTracker('add to cart', 'overview');</span>
   };
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  return (</span>
@@ -350,21 +356,21 @@ function <span class="fstat-no" title="function not covered" >Cart(</span>{ curr
       &lt;div className="row  size-qty-selector"&gt;
         &lt;div className="col-8 select-size"&gt;
           {clickAdd
-            ? &lt;Select id="size-options" menuIsOpen options={sizeOptions} onChange={handleSizeChange} /&gt;
-            : &lt;Select id="size-options" options={sizeOptions} placeholder={outOfStock ? 'Out of Stock' : 'SELECT SIZE'} onChange={handleSizeChange} /&gt;}
+            ? &lt;Select id="size-options" menuIsOpen options={sizeOptions} onChange={handleSizeChange} key={Math.random()} /&gt;
+            : &lt;Select menuColor="red" id="size-options" options={sizeOptions} placeholder={outOfStock ? 'Out of Stock' : 'SELECT SIZE'} onChange={handleSizeChange} key={Math.random()} /&gt;}
         &lt;/div&gt;
         &lt;div className="col-4 select-quantity"&gt;
           {!disable
-            ? &lt;Select id="qty-options" options={qtyOptions} value={currentVal} onChange={handleQtyChange} /&gt;
-            : &lt;Select id="qty-options" options={qtyOptions} placeholder="-" isDisabled={disable} /&gt;}
+            ? &lt;Select id="qty-options" options={qtyOptions} value={currentVal} onChange={handleQtyChange} key={Math.random()}/&gt;
+            : &lt;Select id="qty-options" options={qtyOptions} placeholder="-" isDisabled={disable} key={Math.random()} /&gt;}
         &lt;/div&gt;
       &lt;/div&gt;
       &lt;div className="row cart"&gt;
         &lt;div className="col add-to-bag " id="add"&gt;
-          &lt;AddButton handleAddToCart={handleAddToCart} outOfStock={!!outOfStock} /&gt;
+          &lt;AddButton handleAddToCart={handleAddToCart} outOfStock={outOfStock} /&gt;
         &lt;/div&gt;
         &lt;div className="col d-flex flex-row-reverse add-to-collection" id="fav"&gt;
-          &lt;Button basic&gt;
+          &lt;Button&gt;
             &lt;Icon name="star outline" /&gt;
           &lt;/Button&gt;
         &lt;/div&gt;
@@ -382,7 +388,7 @@ export default Cart;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Wed Apr 28 2021 10:26:54 GMT-0700 (Pacific Daylight Time)
+                at Fri Apr 30 2021 12:54:42 GMT-0700 (Pacific Daylight Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>
