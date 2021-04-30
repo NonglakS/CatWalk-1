@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect } from 'react';
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md';
 
 function Thumbnails({
@@ -70,7 +70,7 @@ function Thumbnails({
                 type="button"
                 id={`index_${index}`}
                 className="button-thumbnail"
-                onClick={(e) => { handleSelect(index, e); }}
+                onMouseMove={(e) => { handleSelect(index, e); }}
               >
                 <img src={photo.thumbnail_url} alt="thumbnail" style={styleImg} />
               </button>

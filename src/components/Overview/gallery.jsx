@@ -36,7 +36,6 @@ function Gallery({
     e.preventDefault();
     setActiveIndex(selectedIndex);
     highLightThumbnail(selectedIndex);
-    clickTracker('thumbnails', 'overview');
   };
 
   const scrollUp = () => {
