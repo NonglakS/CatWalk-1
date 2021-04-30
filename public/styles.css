@@ -1,16 +1,92 @@
 #app {
-  margin: 0 200px;
+  padding: 0 200px;
+  background-color: rgb(255, 237, 166);
 }
 
-.logo-bar {
-  background-color: gray;
-  height: 50px;
-  margin-top: 2.5%;
-  font: italic 2em -webkit-xxx-large;
-  text-decoration: underline;
+.light-theme-primary {
+  background-color: rgb(255, 237, 166);
+}
+
+.light-theme-secondary {
+  background-color: #FF971F
+}
+
+.light-theme-tertiary {
+  background-color: rgb(255, 243, 199);
+}
+
+.light-theme-helpful {
+  color:black
+}
+
+.dark-theme-primary {
+  background-color: rgb(46, 46, 46);
   color: white;
 }
 
+.dark-theme-secondary {
+  background-color:  #0a1572;
+  color: white;
+}
+
+.dark-theme-tertiary {
+  background-color: rgb(62, 62, 62);
+  color: white;
+}
+
+.dark-theme-button-text {
+  color: white;
+}
+
+.dark-theme-helpful {
+  color:white
+}
+
+.light-theme-button-text {
+  color: black;
+}
+
+.ui.button{
+  background-color: white;
+}
+
+.react-icon {
+  color:black
+}
+
+.ui.basic.button {
+  background-color: white;
+}
+
+.element.style {
+  color:black;
+}
+
+.tickmark{
+  color:black;
+}
+
+.css-2b097c-container {
+  color: black;
+}
+
+.logo-bar {
+  display: flex;
+  justify-content: space-between;
+  background-color: gray;
+  height: 50px;
+  font: italic 2em -webkit-xxx-large;
+  color: white;
+}
+
+.toggle-button {
+  font-weight: bold;
+  font-size: .5em;
+  font-variant: small-caps;
+  margin-right: 7px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
 
 a#read-all-reviews {
   margin-left: 5%;
@@ -24,11 +100,17 @@ div#product-name {
   margin-bottom: 1%;
 }
 
-.col-md-3.style-icon, .share-icon, .product-overview {
+.col-md-3.style-icon, .share-icon {
   margin-top: 3%;
 }
 
+.product-overview {
+  margin: 3% 0;
+}
 
+.product-information {
+  margin: 0 5%;
+}
 
 .style-selector, .price {
   font-size: large;
@@ -38,6 +120,11 @@ div#product-name {
   position: absolute;
   left: 0px;
   z-index: 99999;
+}
+
+button.button-thumbnail {
+  background-color: transparent;
+  margin: 3px;
 }
 
 #expand-icon {
@@ -70,6 +157,7 @@ img.d-block.w-100.align-middle {
   -ms-transition: all 0.5s ease-in-out;
   -o-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
+  padding: 0;
 }
 
 .col-md-7.my-auto.d-flex.justify-content-center {
@@ -78,6 +166,7 @@ img.d-block.w-100.align-middle {
   -ms-transition: all 0.5s ease-in-out;
   -o-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
+  padding: 0;
 }
 
 
@@ -152,7 +241,7 @@ span#sale-price, div#select-size-reminder {
   justify-content: space-between;
   margin-bottom: 10px;
   font-size: 12px;
-  color: rgb(160, 158, 158);
+  color: rgb(121, 121, 121);
 }
 
 .stars {
@@ -170,7 +259,6 @@ span#sale-price, div#select-size-reminder {
 
 .review-body {
   font-size: 12px;
-  color: rgb(83, 82, 82);
   margin-bottom: 10px;
   display: flex;
   flex-direction: column;
@@ -193,14 +281,20 @@ span#sale-price, div#select-size-reminder {
   max-height: 90vh;
 }
 
+.qa-meta {
+  margin-top: 5px;
+  font-weight: 800;
+}
+
 .search-bar{
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 60%;
-  padding: 10px;
+  padding: 10px 0;
   font-size: 1.5em;
-  margin-left: 1px
+  margin-left: 1px;
+  background-color: auto
 }
 
 .no-results{
@@ -223,7 +317,6 @@ span#sale-price, div#select-size-reminder {
   flex-direction: column;
   width: 100%;
   overflow-y: scroll;
-  margin-left: 11px;
 }
 
 .helpful-btn {
@@ -243,14 +336,14 @@ span#sale-price, div#select-size-reminder {
   border: none;
   background: none;
   text-decoration: underline;
-  color:rgb(160, 158, 158);
+  color:rgb(121, 121, 121);
   margin-bottom: 10px;
 }
 
 .report-btn-pressed {
   border: none;
   background: none;
-  color:rgb(160, 158, 158);
+  color:rgb(121, 121, 121);
   margin-bottom: 10px;
   font-weight: bold;
   cursor: not-allowed;
@@ -262,10 +355,14 @@ span#sale-price, div#select-size-reminder {
   margin-top: 10px;
 }
 
+.submit-header {
+  color:rgb(233, 232, 232);
+  font-size: 1.2em;
+}
+
 .add-answer {
   margin-left: 5px;
   font-size: .8em;
-  background: none;
   font-weight: 400;
 }
 
@@ -275,13 +372,11 @@ span#sale-price, div#select-size-reminder {
 
 .add-question {
   margin-bottom: 20px;
-  background-color: aliceblue;
   font-weight: bold;
   padding-left: 12px;
   padding-right: 12px;
   padding-top: 8px;
   padding-bottom: 8px;
-  margin-left: 10px;
   width: 220px;
 }
 
@@ -295,7 +390,7 @@ span#sale-price, div#select-size-reminder {
 
 .response-text {
   font-size: 11px;
-  color:rgb(160, 158, 158)
+  color:rgb(121, 121, 121)
 }
 
 .bad-entry {
@@ -304,7 +399,6 @@ span#sale-price, div#select-size-reminder {
 
 .display-answers {
   margin-bottom: 20px;
-  background-color: aliceblue;
   font-weight: bold;
   padding-left: 12px;
   padding-right: 12px;
@@ -318,7 +412,6 @@ span#sale-price, div#select-size-reminder {
   width: 40%;
   margin-top: 10px;
   margin-bottom: 20px;
-  background-color: aliceblue;
   font-weight: bold;
   padding-left: 12px;
   padding-right: 12px;
@@ -329,9 +422,15 @@ span#sale-price, div#select-size-reminder {
 
  .show-more-btn {
   margin-top: 5px;
+  margin-left: 10px;
   margin-bottom: 10px;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  width: 220px;
   align-self: center;
-  background-color: white;
+  font-weight: bold;
  }
 
  span#sale-price {
@@ -347,15 +446,14 @@ span#sale-price, div#select-size-reminder {
 .help-btn {
   border: none;
   color: rgb(99, 98, 98);
-  background-color: white;
   text-decoration: underline;
+  background: none;
   font-size: 11px;
 }
 
 .filter-btn {
   border: none;
   color: rgb(99, 98, 98);
-  background-color: white;
   text-decoration: underline;
   font-size: 11px;
   width: 45px;
@@ -429,7 +527,9 @@ span#sale-price, div#select-size-reminder {
   width: 50%;
 }
 
-
+.ratings-header {
+  font-weight: 800;
+}
 
  /* Modal Styles */
 

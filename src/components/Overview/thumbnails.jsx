@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md';
 
 function Thumbnails({
@@ -15,7 +15,7 @@ function Thumbnails({
     width: '40px',
     borderRadius: '20px',
     margin: '2px',
-  }
+  };
 
   const styleThumbnail = {
     listStyleType: 'none',

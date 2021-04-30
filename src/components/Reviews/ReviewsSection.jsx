@@ -7,6 +7,7 @@ import Ratings from './Ratings.jsx';
 import Modal from '../../shared-components/Modal.jsx';
 import ReviewForm from './ReviewForm.jsx';
 import Characteristic from './Characteristic.jsx';
+import { ThemeContext } from "../themeContext.jsx"
 import { TrackerContext } from '../App.jsx';
 
 export default function ReviewsSection({ reviewsMeta, name, reviewScore }) {
@@ -17,6 +18,7 @@ export default function ReviewsSection({ reviewsMeta, name, reviewScore }) {
   const [filters, setFilters] = useState([]);
   const modal = useRef(null);
   const { id } = useParams();
+  const { theme } = useContext(ThemeContext);
 
   useEffect(async () => {
     try {
@@ -65,7 +67,7 @@ export default function ReviewsSection({ reviewsMeta, name, reviewScore }) {
 
   return (
     <>
-      <h5>Ratings & Reviews</h5>
+      <h3 className="ratings-header">Ratings & Reviews</h3>
       <div className="ratings-and-reviews">
         <div className="ratings">
           <Ratings reviewsMeta={reviewsMeta} reviewScore={reviewScore} onFilter={handleFilter} />
@@ -81,7 +83,7 @@ export default function ReviewsSection({ reviewsMeta, name, reviewScore }) {
               {reviews.length}
               {' '}
               reviews, sorted by
-              <select className="review-summary" style={{ border: 'none', textDecoration: 'underline' }} onChange={(e) => handleSort(e.target.value)}>
+              <select className={`${theme}-theme-primary review-summary`} style={{ border: 'none', textDecoration: 'underline' }} onChange={(e) => handleSort(e.target.value)}>
                 <option value="relevant">relevance</option>
                 <option value="helpful">helpfulness</option>
                 <option value="newest">newest</option>
@@ -95,11 +97,11 @@ export default function ReviewsSection({ reviewsMeta, name, reviewScore }) {
               ))}
           </div>
           <div style={{ display: 'flex' }}>
-            <button className="show-more-btn" type="button" onClick={openModal}>
+            <button className={`${theme}-theme-secondary show-more-btn`} type="button" onClick={openModal}>
               Add Review
             </button>
             {!filters.length && reviewCount < reviews.length && (
-              <button className="show-more-btn" type="button" onClick={() => rerenderReviews()}>More Reviews</button>
+              <button className={`${theme}-theme-secondary show-more-btn`} type="button" onClick={() => rerenderReviews()}>More Reviews</button>
             )}
           </div>
           <Modal ref={modal} fade>

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable import/no-cycle */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
@@ -28,7 +29,7 @@ function Gallery({
     }
 
     elem = document.querySelector(`button#index_${index}`);
-    elem.style.border = '5px solid black';
+    elem.style.border = '5px solid grey';
   };
 
   const handleSelect = (selectedIndex, e) => {
@@ -202,7 +203,7 @@ function Gallery({
       >
 
         {currentStyle.photos.map((photo) => (
-          <Carousel.Item style={viewStyle} key={Math.random()}>
+          <Carousel.Item style={viewStyle}>
             <div className="d-flex h-100 align-items-center justify-content-center">
               <img
                 onMouseLeave={(e) => leave(e)}

@@ -44,7 +44,7 @@ function Cart({ currentStyle }) {
 
       try {
         await axios.post('/cart', data);
-        console.log('Added an item to the cart!');
+        alert('Added an item to the cart!');
       } catch (err) {
         console.log(err);
       }
@@ -81,20 +81,20 @@ function Cart({ currentStyle }) {
       <div className="row  size-qty-selector">
         <div className="col-8 select-size">
           {clickAdd
-            ? <Select id="size-options" menuIsOpen options={sizeOptions} onChange={handleSizeChange} key={Math.random()} />
-            : <Select menuColor="red" id="size-options" options={sizeOptions} placeholder={outOfStock ? 'Out of Stock' : 'SELECT SIZE'} onChange={handleSizeChange} key={Math.random()} />}
+            ? <Select id="size-options" menuIsOpen options={sizeOptions} onChange={handleSizeChange} />
+            : <Select menuColor="red" id="size-options" options={sizeOptions} placeholder={outOfStock ? 'Out of Stock' : 'SELECT SIZE'} onChange={handleSizeChange} />}
         </div>
         <div className="col-4 select-quantity">
           {!disable
-            ? <Select id="qty-options" options={qtyOptions} value={currentVal} onChange={handleQtyChange} key={Math.random()}/>
-            : <Select id="qty-options" options={qtyOptions} placeholder="-" isDisabled={disable} key={Math.random()} />}
+            ? <Select id="qty-options" options={qtyOptions} value={currentVal} onChange={handleQtyChange} />
+            : <Select id="qty-options" options={qtyOptions} placeholder="-" isDisabled={disable} />}
         </div>
       </div>
       <div className="row cart">
-        <div className="col add-to-bag " id="add">
+        <div className="col-8 add-to-bag " id="add">
           <AddButton handleAddToCart={handleAddToCart} outOfStock={outOfStock} />
         </div>
-        <div className="col d-flex flex-row-reverse add-to-collection" id="fav">
+        <div className="col-4 d-flex flex-row-reverse add-to-collection" id="fav">
           <Button>
             <Icon name="star outline" />
           </Button>

@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import {ThemeContext} from "../themeContext.jsx"
 
 export default function RatingBar({ rating, ratingCount, totalRatings, onFilter }) {
+  const { theme } = useContext(ThemeContext)
   const [isFiltered, setIsFiltered] = useState(false);
 
   const ratingPercent = (ratingCount / totalRatings) * 100;
@@ -24,7 +26,7 @@ export default function RatingBar({ rating, ratingCount, totalRatings, onFilter 
 
   return (
     <div className="rating-breakdown">
-      <button type="button" className="filter-btn" style={isFiltered ? {fontWeight: 'bolder'} : {}} onClick={handleFilterClick}>
+      <button type="button" className={`${theme}-theme-primary filter-btn`} style={isFiltered ? {fontWeight: 'bolder'} : {}} onClick={handleFilterClick}>
         {rating}
         {' '}
         stars

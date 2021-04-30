@@ -7,9 +7,11 @@ import {
   Link,
 } from 'react-router-dom';
 import App from './components/App.jsx';
+import {ThemeContextProvider} from "./components/themeContext.jsx"
 
 export default function Routes() {
   return (
+    <ThemeContextProvider>
     <Router>
         <Switch>
           <Route exact path="/">
@@ -18,6 +20,7 @@ export default function Routes() {
           <Route path="/:id" children={<App />} />
         </Switch>
     </Router>
+    </ThemeContextProvider>
   );
 }
 

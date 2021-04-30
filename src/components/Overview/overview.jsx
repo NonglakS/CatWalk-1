@@ -9,7 +9,8 @@ import ProductInfo from './productInfo.jsx';
 import ProductOverview from './productOverview.jsx';
 import ShareIcon from './shareIcon.jsx';
 import Cart from './cart.jsx';
-import { TrackerContext } from '../App.jsx';
+import { ThemeContext } from "../themeContext.jsx"
+import { TrackerContext } from '../App.jsx'
 
 export default function Overview({ product, reviewScore }) {
   const clickTracker = useContext(TrackerContext);
@@ -17,6 +18,7 @@ export default function Overview({ product, reviewScore }) {
   const [currentStyle, setCurrentStyle] = useState('');
   const [select, setSelect] = useState('');
   const [view, changeView] = useState(7);
+  const { theme, toggleTheme } = useContext(ThemeContext);
 
   useEffect(async () => {
     try {
@@ -47,8 +49,11 @@ export default function Overview({ product, reviewScore }) {
 
   return (
     <div className="overview">
-      <div className="logo-bar">LOGO</div>
-      <div><br /></div>
+        <div className="logo-bar">
+          LOGO
+          <button type="submit" onClick={toggleTheme} className={`${theme}-theme-secondary toggle-button`}> {theme} theme </button>
+        </div>
+      <div><br/></div>
       <div className="row mainview">
         <div className={`col-md-${view} my-auto d-flex justify-content-center`}>
           {currentStyle
