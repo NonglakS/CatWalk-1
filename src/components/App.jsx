@@ -7,7 +7,6 @@ import ReviewsSection from './Reviews/ReviewsSection.jsx';
 import Overview from './Overview/overview.jsx';
 import {ThemeContext} from "./themeContext.jsx"
 
-
 export const TrackerContext = React.createContext();
 
 export default function App() {
@@ -15,7 +14,7 @@ export default function App() {
   const [product, setProduct] = useState('');
   const [reviewsMeta, setReviewsMeta] = useState({});
   const [reviewScore, setReviewScore] = useState(0);
-  const { theme } = useContext(ThemeContext)
+  const { theme } = useContext(ThemeContext);
 
   useEffect(async () => {
     try {

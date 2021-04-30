@@ -5,9 +5,9 @@ import { CgCheckO } from 'react-icons/cg';
 function StyleSelector({ handleStyleChange, currentStyle, select, styles }) {
 
   return (
-    <div className="style-selector"> <strong>STYLE ></strong> {currentStyle.name}
+    <div className="style-selector"> <strong>STYLE > </strong> {currentStyle.name}
       <div className="style-selector row">
-        <Circle  styles={styles} select={select} handleStyleChange={handleStyleChange} />
+        <Circle  styles={styles} select={select} handleStyleChange={handleStyleChange} key={Math.random()}/>
       </div>
     </div>)
 }
@@ -37,10 +37,10 @@ function Circle({ styles, select, handleStyleChange }) {
       <div className="row">
         {typeof styles !== 'string' && styles.map((style => {
           return (
-            <div className="col-md-3 style-icon">
+            <div className="col-md-3 style-icon" key={style.style_id}>
               { select === `tick_${style.style_id}` &&
                 <div className="tickmark">
-                  <CgCheckO style={tickStyle} size={25} />
+                  <CgCheckO style={tickStyle} size={25} key={Math.random()}/>
                 </div>
               }
               <img data-testid="style-icon" id={style.style_id} src={style.photos[0].thumbnail_url} alt={style.name} style={circleStyle} onClick={() => {

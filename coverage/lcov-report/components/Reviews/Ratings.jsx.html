@@ -100,34 +100,11 @@
 <a name='L41'></a><a href='#L41'>41</a>
 <a name='L42'></a><a href='#L42'>42</a>
 <a name='L43'></a><a href='#L43'>43</a>
-<a name='L44'></a><a href='#L44'>44</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -138,12 +115,44 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/* eslint-disable max-len */
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/* eslint-disable react/no-array-index-key */
+/* eslint-disable max-len */
 import React from 'react';
 import { FaRegStar, FaStar, FaStarHalfAlt } from 'react-icons/fa';
 import makeAverageStars from '../../helperFunctions/makeAverageStars.js';
@@ -152,7 +161,7 @@ import getRecommendPercent from '../../helperFunctions/getRecommendPercent.js';
 import RatingBar from './RatingBar.jsx';
 &nbsp;
 export default function <span class="fstat-no" title="function not covered" >Ratings(</span>{ reviewsMeta, reviewScore, onFilter }) {
-  const {ratings, recommended} = <span class="cstat-no" title="statement not covered" >reviewsMeta;</span>
+  const { ratings, recommended } = <span class="cstat-no" title="statement not covered" >reviewsMeta;</span>
   const starRating = <span class="cstat-no" title="statement not covered" >makeAverageStars(reviewScore);</span>
   const reviewCount = <span class="cstat-no" title="statement not covered" >getReviewCount(ratings);</span>
   const recommendPercent = <span class="cstat-no" title="statement not covered" >recommended ? getRecommendPercent(recommended.true, reviewCount) : 0;</span>
@@ -161,13 +170,13 @@ export default function <span class="fstat-no" title="function not covered" >Rat
       &lt;div style={{ display: 'flex' }}&gt;
         &lt;h1 style={{ marginRight: '5px' }}&gt;{reviewScore}&lt;/h1&gt;
         &lt;div&gt;
-          {starRating.map(<span class="fstat-no" title="function not covered" >(s</span>tar) =&gt; {
+          {starRating.map(<span class="fstat-no" title="function not covered" >(s</span>tar, index) =&gt; {
 <span class="cstat-no" title="statement not covered" >            if (star === 0) {</span>
-<span class="cstat-no" title="statement not covered" >              return &lt;FaRegStar /&gt;;</span>
+<span class="cstat-no" title="statement not covered" >              return &lt;FaRegStar key={index} /&gt;;</span>
             } <span class="cstat-no" title="statement not covered" >if (star === 1) {</span>
-<span class="cstat-no" title="statement not covered" >              return &lt;FaStar /&gt;;</span>
+<span class="cstat-no" title="statement not covered" >              return &lt;FaStar key={index} /&gt;;</span>
             }
-<span class="cstat-no" title="statement not covered" >            return &lt;FaStarHalfAlt /&gt;;</span>
+<span class="cstat-no" title="statement not covered" >            return &lt;FaStarHalfAlt key={index} /&gt;;</span>
           })}
         &lt;/div&gt;
         &lt;div&gt;
@@ -177,10 +186,13 @@ export default function <span class="fstat-no" title="function not covered" >Rat
           reviews)
         &lt;/div&gt;
       &lt;/div&gt;
-      &lt;div&gt;{recommendPercent}% of reviews recommend this product&lt;/div&gt;
+      &lt;div&gt;
+        {recommendPercent}
+        % of reviews recommend this product
+      &lt;/div&gt;
       &lt;div style={{ display: 'flex', flexDirection: 'column', marginBottom: '20px' }}&gt;
         {ratings &amp;&amp; Object.keys(ratings).map(<span class="fstat-no" title="function not covered" >(r</span>ating) =&gt; (
-<span class="cstat-no" title="statement not covered" >          &lt;RatingBar rating={rating} ratingCount={ratings[rating]} totalRatings={reviewCount} onFilter={onFilter} /&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;RatingBar rating={rating} ratingCount={ratings[rating]} totalRatings={reviewCount} onFilter={onFilter} key={rating} /&gt;</span>
         ))}
       &lt;/div&gt;
     &lt;/&gt;
@@ -193,7 +205,7 @@ export default function <span class="fstat-no" title="function not covered" >Rat
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Wed Apr 28 2021 10:26:54 GMT-0700 (Pacific Daylight Time)
+                at Fri Apr 30 2021 12:54:42 GMT-0700 (Pacific Daylight Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>
