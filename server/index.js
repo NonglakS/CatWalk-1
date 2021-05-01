@@ -10,6 +10,12 @@ const port = 3000;
 
 app.use(express.static(path.join(__dirname, '../public')));
 
+app.get('*.js', (req, res, next) => {
+  req.url += '.gz';
+  res.set('Content-Encoding', 'gzip');
+  next();
+});
+
 // product requests
 app.get('/products/:id', async (req, res) => {
   try {

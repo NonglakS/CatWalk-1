@@ -1,13 +1,15 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable react/prop-types */
 import React from 'react';
-import Moment from 'moment';
 import { FaGripLinesVertical } from 'react-icons/fa';
 import AnswerHelpful from './AnswerHelpful.jsx';
 import AnswerReport from './AnswerReport.jsx';
+import convertDate from '../../helperFunctions/convertDate';
 
 function Answers({ answer }) {
-  const strReplace = function (string) {
+  const date = convertDate(answer.date);
+
+  const strReplace = (string) => {
     let newStr = '';
     for (let i = 0; i < string.length; i++) {
       if (string[i] === '&' && string[i + 1] === '#') {
@@ -30,7 +32,7 @@ function Answers({ answer }) {
       <div className="response-text">
         <div>
           {answer.answerer_name}&nbsp;
-          {Moment(answer.date).format('MMMM Do YYYY')}
+          {date}
         </div>
         <FaGripLinesVertical /> Helpful?
         <AnswerHelpful answerId={answer.id} answerHelpfulness={answer.helpfulness} />
