@@ -7,6 +7,7 @@
 /* eslint-disable no-plusplus */
 /* eslint-disable react/prop-types */
 /* eslint-disable import/extensions */
+import 'lazysizes';
 import React, { useState, useEffect, useContext } from 'react';
 import { Carousel } from 'react-bootstrap';
 import { AiFillCloseCircle } from 'react-icons/ai';
@@ -202,15 +203,17 @@ function Gallery({
       >
 
         {currentStyle.photos.map((photo) => (
-          <Carousel.Item style={viewStyle} key={photo.url} >
+          <Carousel.Item style={viewStyle} key={photo.url}>
             <div className="d-flex h-100 align-items-center justify-content-center">
               <img
                 onMouseLeave={(e) => leave(e)}
                 onMouseMove={(e) => move(e)}
                 onClick={(e) => { handleImageClick(e); }}
-                className="d-block w-100 align-middle"
+                className="d-block w-100 align-middle lazyload"
                 id="main-image"
+                data-sizes="auto"
                 src={photo.url}
+                data-src={photo.url}
                 alt={`image of ${currentStyle.name}`}
               />
             </div>
