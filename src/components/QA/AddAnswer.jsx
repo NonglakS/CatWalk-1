@@ -6,7 +6,7 @@ import Modal from '../../shared-components/Modal.jsx';
 import { ThemeContext } from '../themeContext.jsx';
 import { TrackerContext } from '../App.jsx';
 
-function AddAnswer({ productName, questionBody }) {
+function AddAnswer({ productName, questionBody, questionId }) {
   const { theme } = useContext(ThemeContext);
   const modal = useRef(null);
   const [values, setValues] = useState({

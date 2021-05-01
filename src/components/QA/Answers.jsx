@@ -24,17 +24,16 @@ function Answers({ answer }) {
     <div>
       <div className="qa-header">
         A:&nbsp;&nbsp;
+        {strReplace(answer.body)}
       </div>
-      {strReplace(answer.body)}
-      <br />
       <div className="response-text">
         <div>
           {answer.answerer_name}&nbsp;
           {Moment(answer.date).format('MMMM Do YYYY')}
+          <FaGripLinesVertical /> Helpful?
+          <AnswerHelpful answerId={answer.id} answerHelpfulness={answer.helpfulness} />
+          <AnswerReport answerId={answer.id} />
         </div>
-        <FaGripLinesVertical /> Helpful?
-        <AnswerHelpful answerId={answer.id} answerHelpfulness={answer.helpfulness} />
-        <AnswerReport answerId={answer.id} />
       </div>
     </div>
   );
