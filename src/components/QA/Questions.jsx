@@ -4,11 +4,11 @@
 import React, { useEffect, useState, useContext } from 'react';
 import Answers from './Answers.jsx';
 import QuestionHelpful from './QuestionHelpful.jsx';
-import AddAnswer from './AddAnswer.jsx'
-import { TrackerContext } from '../App.jsx'
-import {ThemeContext} from "../themeContext.jsx"
+import AddAnswer from './AddAnswer.jsx';
+import { TrackerContext } from '../App.jsx';
+import { ThemeContext } from '../themeContext.jsx';
 
-function Questions({ question }) {
+function Questions({ question, productName }) {
   const initializeAnswers = function (questionObject) {
     const answerKeys = Object.values(questionObject.answers);
     return answerKeys.sort((a, b) => b.helpfulness - a.helpfulness);
@@ -43,13 +43,34 @@ function Questions({ question }) {
       <AddAnswer
         questionId={question.question_id}
         questionBody={question.question_body}
+        productName={productName}
       />
       {displayedAnswers
-      && displayedAnswers.map((data) => <Answers key={data.toString()} answer={data} />)}
-      {displayedAnswers && displayedAnswers < allAnswers && (
-        <button className={`${theme}-theme-helpful change-questions`} type="submit" onClick={() => displayAllAnswers()}> MORE ANSWERS </button>)}
+      && displayedAnswers.map((data) => (
+        <Answers
+          key={data.id}
+          answer={data}
+        />
+      ))}
+      {displayedAnswers && displayedAnswers < allAnswers
+        && (
+        <button
+          className={`${theme}-theme-helpful change-questions`}
+          type="submit"
+          onClick={() => displayAllAnswers()}
+        >
+          MORE ANSWERS
+        </button>
+        )}
       {displayedAnswers && allAnswersDisplayed && (
-        <button className={`${theme}-theme-helpful change-questions`} type="submit" onClick={() => displayDefaultAnswers()}> COLLAPSE ANSWERS </button>)}
+        <button
+          className={`${theme}-theme-helpful change-questions`}
+          type="submit"
+          onClick={() => displayDefaultAnswers()}
+        >
+          COLLAPSE ANSWERS
+        </button>
+      )}
       <br />
     </div>
   );

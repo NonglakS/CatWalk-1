@@ -3,17 +3,17 @@
 import React, { useState, useRef, useContext } from 'react';
 import axios from 'axios';
 import Modal from '../../shared-components/Modal.jsx';
-import {ThemeContext} from "../themeContext.jsx"
-import { TrackerContext } from '../App.jsx'
+import { ThemeContext } from '../themeContext.jsx';
+import { TrackerContext } from '../App.jsx';
 
-function AddAnswer({ questionId, questionBody }) {
-  const { theme } = useContext(ThemeContext)
+function AddAnswer({ productName, questionBody }) {
+  const { theme } = useContext(ThemeContext);
   const modal = useRef(null);
   const [values, setValues] = useState({
-    name: '', email: '', body: '',
+    name: '', email: '', body: '', image: '',
   });
   const [invalidEntry, setInvalidEntry] = useState(false);
-  const clickTracker = useContext(TrackerContext)
+  const clickTracker = useContext(TrackerContext);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -34,7 +34,7 @@ function AddAnswer({ questionId, questionBody }) {
   const addItem = (e) => {
     clickTracker('Add Answer', 'QA');
     e.preventDefault();
-    const { name, email, body } = values;
+    const { name, email, body, image } = values;
     if (!name || !email || !body || !validateEmail(email)) {
       setInvalidEntry(true);
       return;
@@ -56,7 +56,7 @@ function AddAnswer({ questionId, questionBody }) {
       <Modal ref={modal} fade>
         <form id="answer-form" className="submit-answer">
           <div className="submit-header">Submit Your Answer</div>
-          <div>Product Name: {questionBody}</div>
+          <div> {productName} : {questionBody}</div>
           <br />
           {invalidEntry
             && <div className="bad-entry"> You must enter the following: </div>}
@@ -87,6 +87,18 @@ function AddAnswer({ questionId, questionBody }) {
             onChange={handleInputChange}
           />
           <br />
+          <br />
+          <div className="form-row">
+            <label className="form-label">upload images (separated by commas)</label>
+            <input
+              type="text"
+              name="image"
+              id="image"
+              placeholder="add image url here"
+              onChange={handleInputChange}
+              style={{ width: '75%', marginBottom: '5px' }}
+            />
+          </div>
           <div className="disclaimer">* mandatory field</div>
           <br />
           <button type="submit" onClick={addItem}>Submit answer</button>
