@@ -1,3 +1,6 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable import/no-cycle */
+/* eslint-disable import/extensions */
 /* eslint-disable no-useless-return */
 /* eslint-disable no-else-return */
 /* eslint-disable no-unused-vars */

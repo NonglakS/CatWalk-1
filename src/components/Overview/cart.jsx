@@ -5,7 +5,7 @@
 /* eslint-disable max-len */
 import React, { useEffect, useState, useContext } from 'react';
 import Select from 'react-select';
-import { Button, Icon } from 'semantic-ui-react';
+import { AiFillStar } from 'react-icons/ai';
 import axios from 'axios';
 import AddButton from './addButton.jsx';
 import { TrackerContext } from '../App.jsx';
@@ -95,9 +95,9 @@ function Cart({ currentStyle }) {
           <AddButton handleAddToCart={handleAddToCart} outOfStock={outOfStock} />
         </div>
         <div className="col-4 d-flex flex-row-reverse add-to-collection" id="fav">
-          <Button>
-            <Icon name="star outline" />
-          </Button>
+          <button type="button" id="fav">
+            <AiFillStar />
+          </button>
         </div>
       </div>
 

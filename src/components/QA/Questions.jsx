@@ -1,11 +1,12 @@
+/* eslint-disable import/no-cycle */
+/* eslint-disable import/extensions */
 /* eslint-disable max-len */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable react/prop-types */
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import Answers from './Answers.jsx';
 import QuestionHelpful from './QuestionHelpful.jsx';
 import AddAnswer from './AddAnswer.jsx';
-import { TrackerContext } from '../App.jsx';
 import { ThemeContext } from '../themeContext.jsx';
 
 function Questions({ question, productName }) {

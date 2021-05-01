@@ -210,6 +210,7 @@ function Gallery({
                 onClick={(e) => { handleImageClick(e); }}
                 className="d-block w-100 align-middle"
                 id="main-image"
+                data-sizes="auto"
                 src={photo.url}
                 alt={`image of ${currentStyle.name}`}
               />
