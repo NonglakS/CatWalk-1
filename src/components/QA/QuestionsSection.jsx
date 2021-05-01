@@ -8,10 +8,10 @@ import AddQuestion from './AddQuestion.jsx';
 import Questions from './Questions.jsx';
 import Answers from './Answers.jsx';
 import QuestionSearch from './QuestionSearch.jsx';
-import { TrackerContext } from '../App.jsx'
-import { ThemeContext } from "../themeContext.jsx"
+import { TrackerContext } from '../App.jsx';
+import { ThemeContext } from '../themeContext.jsx';
 
-export default function QuestionsSection() {
+export default function QuestionsSection({ productName }) {
   const [allQuestions, setAllQuestions] = useState('');
   const [questionsRendered, setQuestionsRendered] = useState(4);
   const [displayedQuestions, setDisplayedQuestions] = useState('');
@@ -52,7 +52,7 @@ export default function QuestionsSection() {
   };
 
   const noQuestions = () => {
-    if(!displayedQuestions) {
+    if (!displayedQuestions) {
       setSearchActivated(true);
     }
   };
@@ -76,7 +76,7 @@ export default function QuestionsSection() {
     try {
       const res = await axios.get(`qa/questions?product_id=${id}&count=1000`);
       setAllQuestions(res.data.results);
-      setDisplayedQuestions(res.data.results.slice(0, 2))
+      setDisplayedQuestions(res.data.results.slice(0, 2));
     } catch (err) {
       console.log(err);
     }
@@ -99,17 +99,29 @@ export default function QuestionsSection() {
             )
             : null}
           {displayedQuestions && searchedQuestions.length < 1
-            ? displayedQuestions.map((data) => <Questions key={data.toString()} question={data} />)
-            : searchedQuestions.map((data) => <Questions key={data.toString()} question={data} />)}
+            ? displayedQuestions.map((data) => (
+              <Questions
+                key={data.question_id}
+                question={data}
+                productName={productName}
+              />
+            ))
+            : searchedQuestions.map((data) => (
+              <Questions
+                key={data.question_id.toString()}
+                question={data}
+                productName={productName}
+              />
+            ))}
           {searchActivated
             ? null
             : [displayedQuestions.length !== allQuestions.length
-              ? <button className={`${theme}-theme-secondary display-questions`} type="submit" onClick={() => renderQuestions(allQuestions)}> MORE QUESTIONS </button>
+              ? <button key="jlkaf903ufjko9u" className={`${theme}-theme-secondary display-questions`} type="submit" onClick={() => renderQuestions(allQuestions)}> MORE QUESTIONS </button>
               : null,
             ]}
 
         </div>
-        <AddQuestion />
+        <AddQuestion productName={productName} />
       </div>
     </>
   );
