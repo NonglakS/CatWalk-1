@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-import 'lazysizes';
 import React, { useEffect } from 'react';
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md';
 
@@ -73,7 +72,7 @@ function Thumbnails({
                 className="button-thumbnail"
                 onMouseMove={(e) => { handleSelect(index, e); }}
               >
-                <img className="lazyload" data-src={photo.thumbnail_url} src={photo.thumbnail_url} alt="thumbnail" style={styleImg} />
+                <img src={photo.thumbnail_url} alt="thumbnail" style={styleImg} />
               </button>
             </li>
           ))}
