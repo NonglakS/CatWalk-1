@@ -1,4 +1,6 @@
 const path = require('path');
+const CompressionPlugin = require('compression-webpack-plugin');
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const SRC_DIR = path.join(__dirname, '/src');
 const DIST_DIR = path.join(__dirname, '/public');
@@ -24,5 +26,13 @@ module.exports = {
   },
   plugins: [
     new Dotenv(),
+    new CompressionPlugin({
+      filename: 'bundle.js.gz',
+      algorithm: 'gzip',
+      test: /\.(js|css|html|svg)$/,
+      threshold: 8192,
+      minRatio: 0.8,
+    }),
+    // new BundleAnalyzerPlugin(),
   ],
 };
