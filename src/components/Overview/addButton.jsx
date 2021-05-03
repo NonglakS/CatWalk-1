@@ -1,12 +1,10 @@
 /* eslint-disable max-len */
 import React from 'react';
-import { Button } from 'semantic-ui-react';
 
 // eslint-disable-next-line react/prop-types
 function AddButton({ handleAddToCart, outOfStock }) {
   return (
-
-    <Button icon="plus" data-testid="add-to-cart" content="ADD TO CART" labelPosition="right" onClick={(e) => handleAddToCart(e)} disabled={outOfStock} />);
+    <button type="button" data-testid="add-to-cart" id="add-to-cart-button" onClick={(e) => handleAddToCart(e)} disabled={outOfStock}>ADD TO CART</button>);
 }
 
 export default AddButton;

@@ -1,7 +1,6 @@
 import React from 'react';
 import { CgCheckO } from 'react-icons/cg';
 
-
 function StyleSelector({ handleStyleChange, currentStyle, select, styles }) {
 
   return (

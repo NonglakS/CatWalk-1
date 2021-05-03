@@ -3,14 +3,15 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-plusplus */
 import React from 'react';
-import Moment from 'moment';
 import { FaCheck, FaRegStar, FaStar } from 'react-icons/fa';
 import ReviewBody from './ReviewBody.jsx';
 import Helpful from './Helpful.jsx';
 import buildStars from '../../helperFunctions/buildStars.js';
+import convertDate from '../../helperFunctions/convertDate';
 
 export default function ReviewTile({ review }) {
   const stars = buildStars(review.rating);
+  const date = convertDate(review.date);
 
   return (
     <div className="review-tile">
@@ -23,7 +24,7 @@ export default function ReviewTile({ review }) {
             return <FaRegStar key={index} />;
           })}
         </div>
-        <div className="user">{review.reviewer_name}, {Moment(review.date).format('MMMM Do, YYYY')} </div>
+        <div className="user">{review.reviewer_name}, {date} </div>
       </div>
       <div className="review-summary">{review.summary}</div>
       <ReviewBody body={review.body} photos={review.photos} />

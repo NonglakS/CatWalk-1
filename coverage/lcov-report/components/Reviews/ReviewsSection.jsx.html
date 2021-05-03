@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/42</span>
+                <span class='fraction'>0/43</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/41</span>
+                <span class='fraction'>0/42</span>
             </div>
         
             
@@ -169,7 +169,9 @@
 <a name='L110'></a><a href='#L110'>110</a>
 <a name='L111'></a><a href='#L111'>111</a>
 <a name='L112'></a><a href='#L112'>112</a>
-<a name='L113'></a><a href='#L113'>113</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L113'></a><a href='#L113'>113</a>
+<a name='L114'></a><a href='#L114'>114</a>
+<a name='L115'></a><a href='#L115'>115</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -181,6 +183,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -290,6 +294,7 @@ import Ratings from './Ratings.jsx';
 import Modal from '../../shared-components/Modal.jsx';
 import ReviewForm from './ReviewForm.jsx';
 import Characteristic from './Characteristic.jsx';
+import { ThemeContext } from "../themeContext.jsx"
 import { TrackerContext } from '../App.jsx';
 &nbsp;
 export default function <span class="fstat-no" title="function not covered" >ReviewsSection(</span>{ reviewsMeta, name, reviewScore }) {
@@ -300,6 +305,7 @@ export default function <span class="fstat-no" title="function not covered" >Rev
   const [filters, setFilters] = <span class="cstat-no" title="statement not covered" >useState([]);</span>
   const modal = <span class="cstat-no" title="statement not covered" >useRef(null);</span>
   const { id } = <span class="cstat-no" title="statement not covered" >useParams();</span>
+  const { theme } = <span class="cstat-no" title="statement not covered" >useContext(ThemeContext);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  useEffect(<span class="fstat-no" title="function not covered" >as</span>ync () =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    try {</span>
@@ -348,7 +354,7 @@ export default function <span class="fstat-no" title="function not covered" >Rev
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  return (</span>
     &lt;&gt;
-      &lt;h5&gt;Ratings &amp; Reviews&lt;/h5&gt;
+      &lt;h3 className="ratings-header"&gt;Ratings &amp; Reviews&lt;/h3&gt;
       &lt;div className="ratings-and-reviews"&gt;
         &lt;div className="ratings"&gt;
           &lt;Ratings reviewsMeta={reviewsMeta} reviewScore={reviewScore} onFilter={handleFilter} /&gt;
@@ -364,7 +370,7 @@ export default function <span class="fstat-no" title="function not covered" >Rev
               {reviews.length}
               {' '}
               reviews, sorted by
-              &lt;select className="review-summary" style={{ border: 'none', textDecoration: 'underline' }} onChange={<span class="fstat-no" title="function not covered" >(e</span>) =&gt; <span class="cstat-no" title="statement not covered" >handleSort(e.target.value)}</span>&gt;
+              &lt;select className={`${theme}-theme-primary review-summary`} style={{ border: 'none', textDecoration: 'underline' }} onChange={<span class="fstat-no" title="function not covered" >(e</span>) =&gt; <span class="cstat-no" title="statement not covered" >handleSort(e.target.value)}</span>&gt;
                 &lt;option value="relevant"&gt;relevance&lt;/option&gt;
                 &lt;option value="helpful"&gt;helpfulness&lt;/option&gt;
                 &lt;option value="newest"&gt;newest&lt;/option&gt;
@@ -378,11 +384,11 @@ export default function <span class="fstat-no" title="function not covered" >Rev
               ))}
           &lt;/div&gt;
           &lt;div style={{ display: 'flex' }}&gt;
-            &lt;button className="show-more-btn" type="button" onClick={openModal}&gt;
+            &lt;button className={`${theme}-theme-secondary show-more-btn`} type="button" onClick={openModal}&gt;
               Add Review
             &lt;/button&gt;
             {!filters.length &amp;&amp; reviewCount &lt; reviews.length &amp;&amp; (
-              &lt;button className="show-more-btn" type="button" onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >rerenderReviews()}</span>&gt;More Reviews&lt;/button&gt;
+              &lt;button className={`${theme}-theme-secondary show-more-btn`} type="button" onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >rerenderReviews()}</span>&gt;More Reviews&lt;/button&gt;
             )}
           &lt;/div&gt;
           &lt;Modal ref={modal} fade&gt;
@@ -400,7 +406,7 @@ export default function <span class="fstat-no" title="function not covered" >Rev
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Fri Apr 30 2021 12:54:42 GMT-0700 (Pacific Daylight Time)
+                at Mon May 03 2021 08:30:46 GMT-0700 (Pacific Daylight Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>

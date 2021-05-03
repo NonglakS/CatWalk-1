@@ -1,11 +1,12 @@
+/* eslint-disable import/no-cycle */
+/* eslint-disable import/extensions */
 import { useParams } from 'react-router-dom';
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import averageReviewScore from '../helperFunctions/averageReviewScore.js';
 import QuestionsSection from './QA/QuestionsSection.jsx';
 import ReviewsSection from './Reviews/ReviewsSection.jsx';
 import Overview from './Overview/overview.jsx';
-import {ThemeContext} from "./themeContext.jsx"
 
 export const TrackerContext = React.createContext();
 
@@ -14,7 +15,6 @@ export default function App() {
   const [product, setProduct] = useState('');
   const [reviewsMeta, setReviewsMeta] = useState({});
   const [reviewScore, setReviewScore] = useState(0);
-  const { theme } = useContext(ThemeContext);
 
   useEffect(async () => {
     try {
@@ -41,9 +41,6 @@ export default function App() {
     };
 
     axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/interactions', body, { headers: { Authorization: process.env.TOKEN } })
-      .then(() => {
-        console.log('clicked!');
-      })
       .catch((err) => console.log('err', err));
   };
 

@@ -1,6 +1,10 @@
 node_modules
 public/bundle.js
+bundle.js
 public/bundle.js.LICENSE.txt
+bundle.js.LICENSE.txt
 config.js
+public/bundle.js.gz
+bundle.js.gz
 .env
 Beeact.pem

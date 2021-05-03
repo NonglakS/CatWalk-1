@@ -46,16 +46,29 @@
   color: black;
 }
 
-.ui.button{
-  background-color: white;
-}
-
 .react-icon {
   color:black
 }
 
-.ui.basic.button {
+button#fav {
+  border-radius: 4px;
+  color: grey;
   background-color: white;
+  border: 1px solid #b5b8b6;
+  width: 100%;
+  height: 125%;
+
+}
+
+button#add-to-cart-button {
+  border-radius: 4px;
+  color: grey;
+  background-color: white;
+  border: 1px solid #b5b8b6;
+  width: 90%;
+  height: 125%;
+  margin-left: 5%;
+  padding: 0;
 }
 
 .element.style {
@@ -196,14 +209,6 @@ span#sale-price, div#select-size-reminder {
 
  #qty-options {
    padding-top: 10px;
- }
-
- #add, button.ui.basic.button{
-   padding-left: 25px;
- }
-
- button.ui.basic.icon.right.labeled.button {
-   width: 160%;
  }
 
  #fb-icon:hover, #twitter-icon:hover, #pinterest-icon:hover {
@@ -353,6 +358,12 @@ span#sale-price, div#select-size-reminder {
   font-size: 18px;
   font-weight: bold;
   margin-top: 10px;
+}
+
+.a-header {
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 5px;
 }
 
 .submit-header {
