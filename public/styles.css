@@ -360,6 +360,12 @@ span#sale-price, div#select-size-reminder {
   margin-top: 10px;
 }
 
+.a-header {
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 5px;
+}
+
 .submit-header {
   color:rgb(233, 232, 232);
   font-size: 1.2em;

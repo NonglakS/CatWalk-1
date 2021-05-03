@@ -4,6 +4,7 @@ import React from 'react';
 import { FaGripLinesVertical } from 'react-icons/fa';
 import AnswerHelpful from './AnswerHelpful.jsx';
 import AnswerReport from './AnswerReport.jsx';
+import AnswerPic from './AnswerPic.jsx'
 import convertDate from '../../helperFunctions/convertDate';
 
 function Answers({ answer }) {
@@ -24,9 +25,13 @@ function Answers({ answer }) {
 
   return (
     <div>
-      <div className="qa-header">
+      <div className="a-header">
         A:&nbsp;&nbsp;
         {strReplace(answer.body)}
+        <br />
+        {answer.photos.map((pic) => (
+          <AnswerPic photos={pic} key={pic} />
+        ))}
       </div>
       <div className="response-text">
         <div>
