@@ -31,10 +31,11 @@ function Answers({ answer }) {
         <div>
           {answer.answerer_name}&nbsp;
           {Moment(answer.date).format('MMMM Do YYYY')}
-        </div>
         <FaGripLinesVertical /> Helpful?
         <AnswerHelpful answerId={answer.id} answerHelpfulness={answer.helpfulness} />
         <AnswerReport answerId={answer.id} />
+        </div>
+
       </div>
     </div>
   );
