@@ -50,8 +50,11 @@ export default function Overview({ product, reviewScore }) {
   return (
     <div className="overview">
         <div className="logo-bar">
-          LOGO
-          <button type="submit" onClick={toggleTheme} className={`${theme}-theme-secondary toggle-button`}> {theme} theme </button>
+          <img src="https://i.imgur.com/M8PGgc4_d.webp?maxwidth=760&fidelity=grand" alt="Beeact Logo" />
+          {theme === 'dark'
+          ? <button type="submit" onClick={toggleTheme} className={`${theme}-theme-secondary toggle-button`}> light theme </button>
+          : <button type="submit" onClick={toggleTheme} className={`${theme}-theme-secondary toggle-button`}> dark theme </button>
+            }
         </div>
       <div><br/></div>
       <div className="row mainview">
