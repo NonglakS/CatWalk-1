@@ -17,7 +17,10 @@ module.exports = {
   },
 
   getProductById: function (id) {
-    return pool.query(`SELECT p.id, p.name, p.slogan, p.description, p.category, p.default_price, JSON_AGG (json_build_object('feature', f.feature, 'value', f.value)) AS features FROM products AS p LEFT JOIN features AS f ON p.id = f.productid WHERE p.id=${id} GROUP BY p.id, p.name;`)
+    return pool.query(`SELECT p.id, p.name, p.slogan, p.description, p.category, p.default_price,
+      JSON_AGG (json_build_object('feature', f.feature, 'value', f.value)) AS features FROM products AS p
+      LEFT JOIN features AS f ON p.id = f.productid WHERE p.id=${id}
+      GROUP BY p.id, p.name;`)
       .then(res => {
         return res.rows[0];
       })
@@ -34,22 +37,21 @@ module.exports = {
 
   getStyles: function (id) {
     return pool.query(`
-    SELECT
-      s.*,
-      JSON_AGG(json_build_object('thumbnail_url', p.thumbnail_url, 'url', p.url)) AS photos,
-      (
-        SELECT json_object_agg(id, (json_build_object('quantity', quantity, 'size', size)))
-        AS skus
-        FROM inventory  where s.style_id=inventory.styleid
-     )
-      FROM styles s
-      LEFT JOIN photos p ON (s.style_id=p.styleid)
-      WHERE s.product_id=${id}
-      GROUP BY s.style_id;
-
-`)
+      SELECT
+        s.*,
+        JSON_AGG(json_build_object('thumbnail_url', p.thumbnail_url, 'url', p.url)) AS photos,
+        (
+          SELECT json_object_agg(id, (json_build_object('quantity', quantity, 'size', size)))
+          AS skus
+          FROM inventory  where s.style_id=inventory.styleid
+        )
+        FROM styles s
+        LEFT JOIN photos p ON (s.style_id=p.styleid)
+        WHERE s.product_id=${id}
+        GROUP BY s.style_id;
+    `)
       .then((res) => { return res.rows })
       .catch(err => console.log('error executing query', err.stack));
-  },
+  }
 
-}
+};

@@ -1,5 +1,4 @@
 const express = require('express');
-const axios = require('axios');
 const path = require('path');
 const bodyParser = require('body-parser');
 const products = require('./controllers/controllers.js');
@@ -17,7 +16,7 @@ app.get('*.js', (req, res, next) => {
   next();
 });
 
-app.use("/products", products);
+app.use('/products', products);
 
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'), (err) => {
