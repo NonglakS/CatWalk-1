@@ -39,9 +39,6 @@ export default function App() {
       widget,
       time: new Date().toDateString(),
     };
-
-    axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo/interactions', body, { headers: { Authorization: process.env.TOKEN } })
-      .catch((err) => console.log('err', err));
   };
 
   return (
@@ -49,8 +46,8 @@ export default function App() {
       {product && (
         <TrackerContext.Provider value={clickTracker}>
           <Overview product={product} reviewScore={reviewScore} />
-          <QuestionsSection productName={product.name} />
-          <ReviewsSection reviewsMeta={reviewsMeta} name={product.name} reviewScore={reviewScore} />
+          {/* <QuestionsSection productName={product.name} />
+          <ReviewsSection reviewsMeta={reviewsMeta} name={product.name} reviewScore={reviewScore} /> */}
         </TrackerContext.Provider>
       )}
     </div>

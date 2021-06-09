@@ -23,9 +23,9 @@ export default function Overview({ product, reviewScore }) {
   useEffect(async () => {
     try {
       const res = await axios.get(`/products/${product.id}/styles`);
-      setStyles(res.data.results);
-      setCurrentStyle(res.data.results[0]);
-      setSelect(`tick_${res.data.results[0].style_id}`);
+      setStyles(res.data);
+      setCurrentStyle(res.data[0]);
+      setSelect(`tick_${res.data[0].style_id}`);
     } catch (err) {
       console.log(err);
     }

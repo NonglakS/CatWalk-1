@@ -34,21 +34,21 @@ function Cart({ currentStyle }) {
   };
 
   const handleAddToCart = async (e) => {
-    if (!currentVal.value) {
-      setClickAdd(true);
-    } else {
-      const data = {
-        sku_id: currentVal.sku,
-        count: currentVal.value,
-      };
+    // if (!currentVal.value) {
+    //   setClickAdd(true);
+    // } else {
+    //   const data = {
+    //     sku_id: currentVal.sku,
+    //     count: currentVal.value,
+    //   };
 
-      try {
-        await axios.post('/cart', data);
-        alert('Added an item to the cart!');
-      } catch (err) {
-        console.log(err);
-      }
-    }
+    //   try {
+    //     await axios.post('/cart', data);
+    //     alert('Added an item to the cart!');
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
+    //}
     clickTracker('add to cart', 'overview');
   };
 
