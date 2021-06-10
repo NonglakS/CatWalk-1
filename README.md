@@ -8,12 +8,13 @@ Tech Stack
 * Deployment: aws EC2
 
 ## Product Overview Page:
-  * Allow users to view product images based on their selected styles <br />
-  <p><img align="left" alt="style_selector" src="https://i.imgur.com/gaYLDvP.gif"></p>
+   Allow users to view product images based on their selected styles <br />
+<!--   <p align="center"> -->
+  <p><img alt="style_selector" src="https://github.com/NonglakS/CatWalk-1/blob/master/public/assets/style_selector.gif"></p><br />
 
-  * Allow users to view images in zoom-in mode.<br />
-<!--  <p><img align="left" alt="zoom" src="https://i.imgur.com/YcUwYpb.gif"></p> -->
+  Allow users to view images in zoom-in mode.<br />
+ <p><img alt="zoom" src="https://github.com/NonglakS/CatWalk-1/blob/master/public/assets/zoom.gif"></p><br />
 
-  * Allow users to select size, quantity and add the item to cart.<br />
-<!--   <p><img align="left" alt="cart" src="https://i.imgur.com/um5uLGs.gif"></p> -->
+  Allow users to select size, quantity and add the item to cart.<br />
+  <p><img alt="cart" src="https://github.com/NonglakS/CatWalk-1/blob/master/public/assets/cart.gif"></p>
 
