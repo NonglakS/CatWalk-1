@@ -2,8 +2,8 @@
 CatWalk is an online shopping web application.
 
 Tech Stack
- Front End: React.
- Back End: express.js
+ Front End: React
+ Back End: express
  Database: PostgreSQL
  Deployment: aws EC2
 
